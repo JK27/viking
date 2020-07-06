@@ -14,7 +14,7 @@
 
         {% block corecss %}
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-            <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
             <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
         {% endblock %}
 
@@ -38,9 +38,9 @@
     <body>
         <header class="container-fluid fixed-top">
             <!----------------------------------------------------------- NAVIGATION MENU -->
-            <nav class="navbar navbar-dark bg-dark shadow-sm sticky-top py-1">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow-sm">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
-                    <a class="navbar-brand" href="#">VIKING GYM</a>
+                    <a class="navbar-brand" href="{% url 'home' %}"><strong>VIKING GYM</strong></a>
 
                     <!-- If user is authenticated, only display Profile and Logout options -->
                     {% if user.is_authenticated %}
@@ -52,19 +52,12 @@
                     <a class="navbar-link py-2 d-none d-md-inline-block" href="#">Sign in</a>
                     <a class="navbar-link py-2 d-none d-md-inline-block" href="#">Register</a>
                     {% endif %}
-
-                    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarHeader" aria-expanded="false" aria-controls="navbarHeader" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                 </div>
             </nav>
         </header>
 
         <!--------------------------------------------------------------- PAGE HEADER -->
-        <h1 class="page-heading text-center">{% block page_header %}{% endblock %}</h1>
+        <h1 class="page-header text-center">{% block page_header %}{% endblock %}</h1>
 
         <!--------------------------------------------------------------- MESSAGES -->
         {% if messages %}
