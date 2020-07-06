@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        {% block meta %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% endblock %}
+
+        {% block extra_meta %}
+        {% endblock %}
+
+        {% block corecss %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+            <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+            <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+        {% endblock %}
+
+        {% block extra_css %}
+        {% endblock %}
+
+        {% block corejs %}
+            <script src="https://kit.fontawesome.com/5d6ba07855.js" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        {% endblock %}
+        
+        {% block extra_js %}
+        {% endblock %}
+        
+        <title>{% block page_title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        <header class="container-fluid fixed-top">
+            <!----------------------------------------------------------- NAVIGATION MENU -->
+            <nav class="navbar navbar-dark bg-dark shadow-sm sticky-top py-1">
+                <div class="container d-flex flex-column flex-md-row justify-content-between">
+                    <a class="navbar-brand" href="#">VIKING GYM</a>
+
+                    <!-- If user is authenticated, only display Profile and Logout options -->
+                    {% if user.is_authenticated %}
+                    <a class="navbar-link py-2 d-none d-md-inline-block" href="#">Profile</a>
+                    <a class="navbar-link py-2 d-none d-md-inline-block" href="#">Logout</a>
+
+                    <!-- If user is NOT authenticated, then display Login and Register options -->
+                    {% else %}
+                    <a class="navbar-link py-2 d-none d-md-inline-block" href="#">Sign in</a>
+                    <a class="navbar-link py-2 d-none d-md-inline-block" href="#">Register</a>
+                    {% endif %}
+
+                    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarHeader" aria-expanded="false" aria-controls="navbarHeader" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!--------------------------------------------------------------- PAGE HEADER -->
+        <h1 class="page-heading text-center">{% block page_header %}{% endblock %}</h1>
+
+        <!--------------------------------------------------------------- MESSAGES -->
+        {% if messages %}
+        <div class="alert alert-success message-container">
+            <div class="messages">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!--------------------------------------------------------------- BLOCK CONTENT -->
+        {% block content %}
+        {% endblock %}
+
+        <!--------------------------------------------------------------- FOOTER -->
+        <footer class="text-muted text-center bg-dark text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <h4 class="header-text">About</h4>
+                        <p class="text-muted">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas eligendi cupiditate
+                            sint
+                            ipsum officiis? Nemo ratione quas eum explicabo voluptatem blanditiis quo temporibus
+                            eligendi minima fugit quibusdam totam, dolores inventore?
+                        </p>
+                    </div>
+                    <div class="col-sm-4 offset-md-1 py-4">
+                        <h4 class="header-text">Contact</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#" class="header-text">Follow on Twitter</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header-text">Like on Facebook</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header-text">Follow on Instagram</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        {% block postloadjs %}
+        {% endblock %}
+    </body>
+
+</html>
