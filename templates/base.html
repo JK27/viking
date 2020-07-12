@@ -36,38 +36,40 @@
 
     <body>
         <header class="container-fluid fixed-top">
-            <!----------------------------------------------------------- NAVBAR -->
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow-sm">
-                <div class="container">
-                <div class="row">
+            <!----------------------------------------------------------- TOP MENU -->
+            <div id="topmenu" class="row bg-dark pt-lg-2 d-none d-lg-flex">
+                <!-- Logo -->
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center">
                     <a class="navbar-brand" href="{% url 'home' %}"><strong>VIKING GYM</strong></a>
-                    <!-- Navba toggler -->
+                    <!-- Navbar toggler -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav mx-auto">
+                </div>
+                <!-- Authentication links -->
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                    <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
+                        <ul class="list-inline list-unstyled text-center text-lg-left my-0">
                             <!-- If user is authenticated, only display Profile and Logout options -->
                             {% if user.is_authenticated %}
-                            <li class="nav-item">
+                            <li class="list-inline-item">
                                 <a class="navbar-link p-2 d-md-inline-block" href="#"><strong>Profile</strong></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="list-inline-item">
                                 <a class="navbar-link p-2 d-md-inline-block" href="{% url 'account_logout' %}"><strong>Log out</strong></a>
                             </li>
 
                             <!-- If user is NOT authenticated, then display Login and Register options -->
                             {% else %}
-                            <li class="nav-item">
+                            <li class="list-inline-item">
                                 <a class="navbar-link p-2 d-md-inline-block" href="{% url 'account_login' %}"><strong>Log in</strong></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="list-inline-item">
                                 <a class="navbar-link p-2 d-md-inline-block" href="{% url 'account_signup' %}"><strong>Register</strong></a>
                             </li>
                             {% endif %}
                             <!-- Shop dropdown -->
-                            <li class="nav-item dropdown">
+                            <li class="list-inline-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="shopdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Shop</strong></a>
                                 <div class="dropdown-menu" aria-labelledby="shopdropdown">
                                     <a class="dropdown-item" href="#">Category 1</a>
@@ -76,31 +78,34 @@
                                 </div>
                             </li>
                         </ul>
-                        <!-- Search bar -->
-                        <form method="GET" action="" class="form-inline border rounded-0 my-2 my-md-0" >
-                            <div class="input-group w-100">
-                                <input class="form-control" type="text" name="q" placeholder="Search in the shop">
-                                <div class="input-group-append">
-                                    <button class="form-control btn btn-white border rounded-0" type="submit">
-                                        <span class="icon">
-                                            <i class="fas fa-search"></i>
-                                        </span>
-                                    </button>
-                                </div>
+                    <!-- </div> -->
+                </div>
+                <!-- Search bar -->
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                    <form method="GET" action="" class="form-inline border rounded-0 my-2 my-md-0" >
+                        <div class="input-group w-100">
+                            <input class="form-control" type="text" name="q" placeholder="Search in the shop">
+                            <div class="input-group-append">
+                                <button class="form-control btn btn-white border rounded-0" type="submit">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </button>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                </div>
-                <div class="row bg-white">
-                    <nav class="navbar navbar-expand-lg navbar-light w-100">
+                        </div>
+                    </form>
+                </div>  
+            </div>
+            <!-- SHOP NAV -->
+            <div class="row bg-white">
+                <nav class="navbar navbar-expand-lg navbar-light w-100">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#shop-nav" aria-controls="shop-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                {% include 'includes/shop-nav.html' %}
-            </nav>
-        </div>
-            </nav>
+                    {% include 'includes/mobile-top-header.html' %}
+                    {% include 'includes/shop-nav.html' %}
+                </nav>
+            </div>
         </header>
 
         <!--------------------------------------------------------------- PAGE HEADER -->

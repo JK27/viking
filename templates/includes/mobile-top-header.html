@@ -1,0 +1,19 @@
+<!doctype html>
+
+{% if user.is_authenticated %}
+    <li class="list-inline-item">
+        <a class="navbar-link d-block d-lg-none" href="#"><strong>Profile</strong></a>
+    </li>
+    <li class="list-inline-item">
+        <a class="navbar-link d-block d-lg-none" href="{% url 'account_logout' %}"><strong>Log out</strong></a>
+    </li>
+
+    <!-- If user is NOT authenticated, then display Login and Register options -->
+    {% else %}
+    <li class="list-inline-item">
+        <a class="navbar-link d-block d-lg-none" href="{% url 'account_login' %}"><strong>Log in</strong></a>
+    </li>
+    <li class="list-inline-item">
+        <a class="navbar-link d-block d-lg-none" href="{% url 'account_signup' %}"><strong>Register</strong></a>
+    </li>
+{% endif %}
