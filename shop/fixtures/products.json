@@ -3,16 +3,17 @@
     "pk": "1526",
     "model": "shop.product",
     "fields": {
-      "sku": "6814201",
+      "article_number": "6814201",
       "name": "Puma Big Cat Backpack Black",
       "description": "1. Polyester/nylon blend for lightweight durability. 2. Two-way zip opening and zip pockets on sides and front for optimum storage.  3. Small zip case for added convenience. 4. Adjustable and padded shoulder straps for added comfort. 5. Slate-black in colour. 6. 18\\\" length x 12\\\" breadth. This backpack is big on space and style. It is light as a feather and looks stunningly good.",
       "price": "12.99",
       "discounted_price": "9.99",
       "brand": "Puma",
+      "brand_logo_url": "http://assets.myntassets.com/assets/images/2015/11/17/11447736932686-113016-3ff8sf.jpg",
       "gender": "Unisex",
       "base_colour": "Black",
       "image_url": "http://assets.myntassets.com/v1/images/style/properties/6c920a7a479c59fa361548c0d1f74f9d_images.jpg",
-      "image": "1526.jpg",
+      "image": "shop/1526.jpg",
       "category": "1"
     }
   },
@@ -20,16 +21,17 @@
     "pk": "1528",
     "model": "shop.product",
     "fields": {
-      "sku": "55549001",
+      "article_number": "55549001",
       "name": "Puma Men Ferrari Black Fleece Jacket",
-      "description": "<p style=\\\"text-align: justify;\\\"><strong>Composition</strong><br />Black jacket made of blended fabric, has full sleeves with ribbed cuffs, full front zippered placket, spread collar, a patch pocket on the left chest, ferrari branding on left chest, Italy's flag colours above the pocket and at the hemline<br /><br /><strong>Fit</strong><br />Regular<br /> <br /><strong>Wash care</strong><br />Gentle machine wash in cool water<br />Do not bleach<br />Tumble dry at low temperature<br />Warm iron<br />Do not dry clean<br /><br />puma's Ferrari merchandise never goes out of demand. The brand sticks to its minimalist style while flaunting Italian colours on this jacket. Pair this with denims and a sober tee.<br /><br /><em>Model statistics</em><br />The model wears a size M with height 6' and shoulders 18\\\"</p>",
+      "description": "Black jacket made of blended fabric, has full sleeves with ribbed cuffs, full front zippered placket, spread collar, a patch pocket on the left chest, ferrari branding on left chest, Italy's flag colours above the pocket and at the hemline.",
       "price": "39.99",
       "discounted_price": "34.99",
       "brand": "Puma",
+      "brand_logo_url": "http://assets.myntassets.com/assets/images/2015/11/17/11447736932686-113016-3ff8sf.jpg",
       "gender": "Men",
       "base_colour": "Black",
       "image_url": "http://assets.myntassets.com/v1/images/style/properties/5217707cfecada95eca6fa33a88cc833_images.jpg",
-      "image": "1528.jpg",
+      "image": "shop/1528.jpg",
       "category": "14"
     }
   },
@@ -37,17 +39,92 @@
     "pk": "1530",
     "model": "shop.product",
     "fields": {
-      "sku": "76079302",
+      "article_number": "76079302",
       "name": "Puma Men Ferrari Track Jacket",
-      "description": "<p style=\\\"text-align: left;\\\">1. Durable <a href='/sports-shoes?src=desc' class='seolink'>sports shoes</a>                                                                                                                                    2. Soft feel on the soles                                                                                                                                 3. Perfect wear throughout the day</p>\\r\\n<p style=\\\"text-align: justify;\\\">Apart from pairing them up with a pair of jeans and t-shirts, these shoes will be a companion in that match which you want to win so badly!</p>",
-      "price": "27.99",
-      "discounted_price": "24.99",
-      "brand": "Reebok",
+      "description": "1. 85% cotton/15% polyester double knit jacket with fold over collar and   ferrari logo styling<br /> 2. Contrast stripes along the sleeves <br /> 3. Ribbed, banded cuffs and hem<br /> 4. Zippered front pockets <br /> 5. Iconic Ferrari badge at left chest <br /> 6. Ferrari branding below back collar <br /> 7. Italy badge on the right sleeve<br /> 8. Available in the Rosso Corsa shade which is the red, international motor   racing colour of cars entered by teams from Italy. Slip into this Scuderia Ferrari Track jacket and you'll have be blazing  all   over the city roads like a formula1 race car driver. The comfort  quotient is   a delight and the styling is a show stopper. The iconic  Ferrari badge on the   jacket might also give you the goosebumps.",
+      "price": "42.99",
+      "discounted_price": "39.99",
+      "brand": "Puma",
+      "brand_logo_url": "http://assets.myntassets.com/assets/images/2015/11/17/11447736932686-113016-3ff8sf.jpg",
       "gender": "Men",
-      "base_colour": "White",
-      "image_url": "http://assets.myntassets.com/v1/images/style/properties/dd47024956e708d87720c04e3ee168a8_images.jpg",
-      "image": "1618.jpg",
+      "base_colour": "Red",
+      "image_url": "http://assets.myntassets.com/v1/images/style/properties/470f495a596697306cc22fe87b8c5916_images.jpg",
+      "image": "shop/1530.jpg",
       "category": "14"
     }
+  },
+  {
+    "pk": "1550",
+    "model": "shop.product",
+    "fields": {
+      "article_number": "8149001",
+      "name": "Puma Cat Trainer-WBL Football",
+      "description": "1. A   football for soccer games in all weather conditions<br /> 2. puma's hi-tech airlock valve to keep the ball bouncy at 8-12 PSI,   0.6-0.8 bar<br /> 3. Comes in a catchy white, black, lime coloured design with a puma leaping   cat symbol<br /> 4. A size 5 football with 19 cm diameter.",
+      "price": "9.99",
+      "brand_logo_url": "http://assets.myntassets.com/assets/images/2015/11/17/11447736932686-113016-3ff8sf.jpg",
+      "discounted_price": "5.99",
+      "brand": "Puma",
+      "gender": "Unisex",
+      "base_colour": "White",
+      "image_url": "http://assets.myntassets.com/v1/images/style/properties/9489239f68c0eff77a204ba9f6bc18fd_images.jpg",
+      "image": "shop/1550.jpg",
+      "category": "7"
+    }
+  },
+  {
+    "pk": "1551",
+    "model": "shop.product",
+    "fields": {
+      "article_number": "8149002",
+      "name": "Puma Power Cat Trainer-OB Football",
+      "description": "1. A   football for soccer games in all weather conditions<br /> 2. puma's hi-tech airlock valve to keep the ball bouncy at 8-12 PSI,   0.6-0.8 bar<br /> 3. This fluorescent orange, black and white coloured ball can be spotted   effortlessly during night games<br /> 4. A size 5 football with 19 cm diameter.",
+      "price": "9.99",
+      "discounted_price": "5.99",
+      "brand": "Puma",
+      "brand_logo_url": "http://assets.myntassets.com/assets/images/2015/11/17/11447736932686-113016-3ff8sf.jpg",
+      "gender": "Unisex",
+      "base_colour": "Orange",
+      "image_url": "http://assets.myntassets.com/v1/images/style/properties/7042626a26ad0a3a00a087a4f249b81a_images.jpg",
+      "image": "shop/1551.jpg",
+      "category": "7"
+    }
+  },
+  {
+    "pk": "1552",
+    "model": "shop.product",
+    "fields": {
+      "article_number": "8149004",
+      "name": "Puma Power Cat Trainer-WR Football",
+      "description": "1. A   football for soccer games in all weather conditions<br /> 2. puma's hi-tech airlock valve to keep the ball bouncy at 8-12 PSI,   0.6-0.8 bar<br /> 3. Comes in a catchy white, red, black coloured design with puma leaping cat symbol on it<br /> 4. A size 5 football with 19 cm diameter.",
+      "price": "9.99",
+      "discounted_price": "5.99",
+      "brand": "Puma",
+      "brand_logo_url": "http://assets.myntassets.com/assets/images/2015/11/17/11447736932686-113016-3ff8sf.jpg",
+      "gender": "Unisex",
+      "base_colour": "White",
+      "image_url": "http://assets.myntassets.com/v1/images/style/properties/7ef5127388be765faf04dad2d78903c8_images.jpg",
+      "image": "shop/1552.jpg",
+      "category": "7"
+    }
+  },
+  {
+    "pk": "1553",
+    "model": "shop.product",
+    "fields": {
+      "article_number": "8149005",
+      "name": "Puma Power Cat Hard Ground Football",
+      "description": "A football for soccer games on \"Hard Grounds\" in all weather conditions<br/><p>2. puma's hi-tech perimeter balance technology&nbsp;</p>\r<br/><p>3. Airlock valve to keep the ball bouncy at 10-15 PSI, 0.8-1.0 bar</p>\r<br/><p>4. Comes in a catchy white, red, black coloured design with puma leaping cat symbol on it</p>\r<br/><p>5. A size 5 football with 19 cm diameter.",
+      "price": "11.99",
+      "discounted_price": "9.99",
+      "brand": "Puma",
+      "brand_logo_url": "http://assets.myntassets.com/assets/images/2015/11/17/11447736932686-113016-3ff8sf.jpg",
+      "gender": "Unisex",
+      "base_colour": "White",
+      "image_url": "http://assets.myntassets.com/v1/images/style/properties/cfcc721cdc48cc2d913e19988972066c_images.jpg",
+      "image": "shop/1553.jpg",
+      "category": "7"
+    }
   }
+
+
 ]

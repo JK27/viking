@@ -4,15 +4,23 @@ html {
 
 body {
     font-family: 'Oswald', sans-serif;
-    min-height: 100vh;
-    position: relative;
+    height: calc(100vh - 100px);
+    /* min-height: 100vh; */
+    /* position: relative; */
 }
 
 /* ------------------------------------ TOP MENU */
+.brand-font {
+    text-transform: uppercase;
+}
+
 .navbar-brand {
     width: fit-content;
 }
 
+#shop-nav {
+    background-color: aquamarine;
+}
 
 #all-products-link:active,
 .show > #all-products-link {
@@ -22,6 +30,17 @@ body {
 /* ------------------------------------ CAROUSEL */
 .carousel-item {
     height: 32rem;
+}
+
+/* ------------------------------------ OVERLAY */
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: #ffffff;
+    z-index: -1;
 }
 
 /* ------------------------------------ ICONS */
@@ -35,3 +54,35 @@ body {
 }
 
 /* ------------------------------------ MEDIA QUERIES */
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 100px;
+    }
+}
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 80px;
+    }
+
+    body {
+        height: calc(100vh - 80px);
+    }
+}
