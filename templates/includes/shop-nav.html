@@ -5,9 +5,9 @@
         <li class="nav-item dropdown">
             <a class="nav-link" id="all-products-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">All products</a>
             <div class="dropdown-menu" aria-labelledby="all-products-link">
-                <a class="dropdown-item" href="#">By price</a>
-                <a class="dropdown-item" href="#">By rating</a>
-                <a class="dropdown-item" href="#">By category</a>
+                <a class="dropdown-item" href="{% url 'shop' %}?sort=price&direction=asc">By price</a>
+                <a class="dropdown-item" href="{% url 'shop' %}?sort=brand&direction=asc">By brand</a>
+                <a class="dropdown-item" href="{% url 'shop' %}?sort=category&direction=asc">By category</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'shop' %}">All products</a>
             </div>
