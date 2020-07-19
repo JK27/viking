@@ -19,8 +19,21 @@ class Category(models.Model):
 
 # ------------------------------------------ PRODUCTS
 class Product(models.Model):
+
+    ACCESSORIES = 'AC'
+    CLOTHING = 'CL'
+    FOOTWEAR = 'FW'
+    ON_SALE = 'SA'
+    MASTER_CATEGORIES = [
+        (ACCESSORIES, 'Accessories'),
+        (CLOTHING, 'Clothing'),
+        (FOOTWEAR, 'Footwear'),
+        (ON_SALE, 'On sale'),
+    ]
+
     category = models.ForeignKey('Category', null=True, blank=True,
                                  on_delete=models.SET_NULL)
+    master_category = models.CharField(max_length=2, choices=MASTER_CATEGORIES, null=True, blank=True, default="")
     article_number = models.CharField(max_length=254, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
@@ -29,8 +42,9 @@ class Product(models.Model):
                                            null=True)
     brand = models.CharField(max_length=20, default="")
     brand_logo_url = models.URLField(max_length=1024, null=True, blank=True)
-    gender = models.CharField(max_length=10, default="")
+    gender = models.CharField(max_length=10, default="Unisex")
     base_colour = models.CharField(max_length=20, null=True, blank=True)
+    has_sizes = models.BooleanField(default=True, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 

@@ -16,30 +16,6 @@
   }
 },
 {
-  "pk": "3",
-  "model": "shop.category",
-  "fields": {
-    "name": "sunglasses",
-    "friendly_name": "Sunglasses"
-  }
-},
-{
-  "pk": "4",
-  "model": "shop.category",
-  "fields": {
-    "name": "caps",
-    "friendly_name": "Caps"
-  }
-},
-{
-  "pk": "5",
-  "model": "shop.category",
-  "fields": {
-    "name": "headbands",
-    "friendly_name": "Headbands"
-  }
-},
-{
   "pk": "6",
   "model": "shop.category",
   "fields": {
@@ -56,43 +32,11 @@
   }
 },
 {
-  "pk": "8",
-  "model": "shop.category",
-  "fields": {
-    "name": "watches",
-    "friendly_name": "Watches"
-  }
-},
-{
   "pk": "9",
   "model": "shop.category",
   "fields": {
     "name": "water_bottles",
     "friendly_name": "Water Bottles"
-  }
-},
-{
-  "pk": "10",
-  "model": "shop.category",
-  "fields": {
-    "name": "wristbands",
-    "friendly_name": "Wristbands"
-  }
-},
-{
-  "pk": "11",
-  "model": "shop.category",
-  "fields": {
-    "name": "bras",
-    "friendly_name": "Bras"
-  }
-},
-{
-  "pk": "12",
-  "model": "shop.category",
-  "fields": {
-    "name": "capris",
-    "friendly_name": "Capris"
   }
 },
 {
@@ -120,43 +64,11 @@
   }
 },
 {
-  "pk": "16",
-  "model": "shop.category",
-  "fields": {
-    "name": "skirts",
-    "friendly_name": "Skirts"
-  }
-},
-{
-  "pk": "17",
-  "model": "shop.category",
-  "fields": {
-    "name": "swimwear",
-    "friendly_name": "Swimwear"
-  }
-},
-{
-  "pk": "18",
-  "model": "shop.category",
-  "fields": {
-    "name": "tops",
-    "friendly_name": "Tops"
-  }
-},
-{
   "pk": "19",
   "model": "shop.category",
   "fields": {
     "name": "track_bottoms",
     "friendly_name": "Track Bottoms"
-  }
-},
-{
-  "pk": "20",
-  "model": "shop.category",
-  "fields": {
-    "name": "tracksuits",
-    "friendly_name": "Tracksuits"
   }
 },
 {
@@ -168,19 +80,11 @@
   }
 },
 {
-  "pk": "22",
-  "model": "shop.category",
-  "fields": {
-    "name": "flip_flops",
-    "friendly_name": "Flip Flops"
-  }
-},
-{
   "pk": "23",
   "model": "shop.category",
   "fields": {
-    "name": "sports_shoes",
-    "friendly_name": "Sports Shoes"
+    "name": "trainers",
+    "friendly_name": "Trainers"
   }
 }
 ]

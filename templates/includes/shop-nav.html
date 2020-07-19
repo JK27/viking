@@ -1,8 +1,9 @@
 <!doctype html>
 <div class="navbar-collapse collapse" id="shop-nav">
     <ul class="nav nav-pills w-auto mx-auto">
+        <!-- All products -->
         <li class="nav-item dropdown">
-            <a class="nav-link" id="all-products-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">All products</a>
+            <a class="nav-link" id="all-products-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">All products</a>
             <div class="dropdown-menu" aria-labelledby="all-products-link">
                 <a class="dropdown-item" href="#">By price</a>
                 <a class="dropdown-item" href="#">By rating</a>
@@ -13,23 +14,32 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a class="nav-link" id="shoes-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Shoes</a>
+            <a class="nav-link" id="shoes-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Footwear</a>
             <div class="dropdown-menu" aria-labelledby="shoes-link">
-                <a class="dropdown-item" href="#">By price</a>
-                <a class="dropdown-item" href="#">By rating</a>
-                <a class="dropdown-item" href="#">By category</a>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=trainers">Trainers</a>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=socks">Socks</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">All shoes</a>
+                <a class="dropdown-item" href="#">All footwear</a>
             </div>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" id="clothing-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Clothing</a>
             <div class="dropdown-menu" aria-labelledby="clothing-link">
-                <a class="dropdown-item" href="#">By price</a>
-                <a class="dropdown-item" href="#">By rating</a>
-                <a class="dropdown-item" href="#">By category</a>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=vests,tshirts">Vests and T-shirts</a>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=long_sleeves">Jackets and Sweaters</a>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=shorts,track_bottoms">Shorts and Track Bottoms</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">All clothing</a>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=vests,tshirts,long_sleeves,shorts,track_bottoms">All clothing</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" id="accessories-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Accessories</a>
+            <div class="dropdown-menu" aria-labelledby="accessories-link">
+                <a class="dropdown-item" href="{% url 'shop'%}?category=backpacks,bags">Backpacks and Bags</a>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=balls">Basketballs and Footballs</a>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=water_bottles">Water Bottles</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'shop'%}?category=backpacks,bags,balls,water_bottles">All accessories</a>
             </div>
         </li>
     </ul>

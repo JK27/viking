@@ -7,6 +7,7 @@ class ProductAdmin(admin.ModelAdmin):
         'id',
         'article_number',
         'name',
+        'master_category',
         'category',
         'price',
         'discounted_price',

@@ -72,9 +72,9 @@
                             <li class="list-inline-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="shopdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Shop</strong></a>
                                 <div class="dropdown-menu" aria-labelledby="shopdropdown">
-                                    <a class="dropdown-item" href="#">Category 1</a>
-                                    <a class="dropdown-item" href="#">Category 2</a>
-                                    <a class="dropdown-item" href="#">Category 3</a>
+                                    <a class="dropdown-item" href="#">Shoes</a>
+                                    <a class="dropdown-item" href="#">Clothing</a>
+                                    <a class="dropdown-item" href="#">Accessories</a>
                                 </div>
                             </li>
                             <!-- Shopping bag -->
@@ -97,7 +97,7 @@
                 </div>
                 <!-- Search bar -->
                 <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                    <form method="GET" action="" class="form-inline border rounded-0 my-2 my-md-0" >
+                    <form method="GET" action="{% url 'shop' %}" class="form-inline border rounded-0 my-2 my-md-0" >
                         <div class="input-group w-100">
                             <input class="form-control" type="text" name="q" placeholder="Search in the shop">
                             <div class="input-group-append">
