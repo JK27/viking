@@ -72,9 +72,9 @@
                             <li class="list-inline-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="shopdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Shop</strong></a>
                                 <div class="dropdown-menu" aria-labelledby="shopdropdown">
-                                    <a class="dropdown-item" href="#">Shoes</a>
-                                    <a class="dropdown-item" href="#">Clothing</a>
-                                    <a class="dropdown-item" href="#">Accessories</a>
+                                    <a class="dropdown-item" href="{% url 'shop'%}?category=trainers,socks">Footwear</a>
+                                    <a class="dropdown-item" href="{% url 'shop'%}?category=vests,tshirts,long_sleeves,shorts,track_bottoms">Clothing</a>
+                                    <a class="dropdown-item" href="{% url 'shop'%}?category=backpacks,bags,balls,water_bottles">Accessories</a>
                                 </div>
                             </li>
                             <!-- Shopping bag -->
@@ -128,7 +128,21 @@
         <div class="alert alert-success message-container">
             <div class="messages">
                 {% for message in messages %}
-                {{ message }}
+                    {% with message.level as level %}
+                        <!-- Error message -->
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toast_error.html' %}
+                        <!-- Warning message -->
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toast_warning.html' %}
+                        <!-- Success message -->
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toast_success.html' %}
+                        <!-- Info message -->
+                        {% else %}
+                            {% include 'includes/toasts/toast_info.html' %}
+                        {% endif %}
+                    {% endwith %}
                 {% endfor %}
             </div>
         </div>
@@ -172,6 +186,9 @@
         </footer>
 
         {% block postloadjs %}
+            <script type="text/javascript">
+                $('.toast').toast('show');
+            </script>
         {% endblock %}
     </body>
 

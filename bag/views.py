@@ -13,7 +13,7 @@ def add_to_bag(request, item_id):
     """ Adds quantity of specified product to shopping bag """
 
     product = get_object_or_404(Product, pk=item_id)
-    # Needs conversion to int as comes as string from from
+    # Quantity needs conversion to int as comes as string from from
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     size = None
@@ -35,8 +35,9 @@ def add_to_bag(request, item_id):
                 {bag[item_id]["items_by_size"][size]}.')
             # ... but if it has a different size...
             else:
-                # ... then add quantity of items of that size
+                # ... then add quantity of items of that size ...
                 bag[item_id]['items_by_size'][size] = quantity
+                # ... and display succes message in toasts
                 messages.success(request, f'Added size {size.upper()} \
                 {product.name} to your bag.')
         # But if product is not already in bag...
@@ -49,13 +50,16 @@ def add_to_bag(request, item_id):
     else:
         # ...and if item already exists in bag ...
         if item_id in list(bag.keys()):
-            bag[item_id] += quantity        # ...updates quantity accordingly
+            # ...updates quantity accordingly
+            bag[item_id] += quantity
+            # ... and display succes message in toasts
             messages.success(request, f'Updated {product.name} quantity to \
             {bag[item_id]}.')
         # But if item not alreay in bag ...
         else:
             # ... adds specified quantity of items to bag
             bag[item_id] = quantity
+            # ... and display succes message in toasts
             messages.success(request, f'Added {product.name} to your bag.')
     # Overwrites variable in session with updated version
     request.session['bag'] = bag
@@ -81,6 +85,7 @@ def adjust_bag(request, item_id):
         if quantity > 0:
             # ... sets quantity accordingly...
             bag[item_id]['items_by_size'][size] = quantity
+            # ... and display succes message in toasts
             messages.success(request, f'Updated size {size.upper()} \
             {product.name} quantity to {bag[item_id]["items_by_size"][size]}.')
 
@@ -92,6 +97,7 @@ def adjust_bag(request, item_id):
             if not bag[item_id]['items_by_size']:
                 # ... removes item completely
                 bag.pop(item_id)
+            # ... and display succes message in toasts
             messages.success(request, f'Removed size {size.upper()} \
             {product.name} from your bag.')
     # If product does not have sizes...
@@ -100,6 +106,7 @@ def adjust_bag(request, item_id):
         if quantity > 0:
             # ... sets quantity accordingly...
             bag[item_id] = quantity
+            # ... and display succes message in toasts
             messages.success(request, f'Updated {product.name} \
                                         quantity to {bag[item_id]}.')
         # ... otherwise...
@@ -132,6 +139,7 @@ def remove_from_bag(request, item_id):
             if not bag[item_id]['items_by_size']:
                 # ... removes item completely
                 bag.pop(item_id)
+            # ... and display succes message in toasts
             messages.success(request, f'Removed size {size.upper()} \
             {product.name} from your bag.')
         # If product does not have sizes...
