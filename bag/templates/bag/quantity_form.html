@@ -1,0 +1,37 @@
+<form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <!-- INPUT GROUP -->
+        <div class="input-group">
+            <!-- Decrement button -->
+            <div class="input-group-prepend">
+                <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                    <span>
+                        <i class="fas fa-minus fa-sm"></i>
+                    </span>
+                </button>
+            </div>
+            <!-- Input field -->
+            <input class="form-control form-control-sm qty_input" type="number"
+                name="quantity" value="{{ item.quantity }}" min="1" max="10"
+                data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+            <!-- Increment button -->
+            <div class="input-group-append">
+                <button class="increment-qty btn btn-sm btn-black rounded-0"
+                    data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                    <span>
+                        <i class="fas fa-plus fa-sm"></i>
+                    </span>
+                </button>
+            </div>
+            {% if item.product.has_sizes %}
+                <input type="hidden" name="product_size" value="{{ item.size }}">
+            {% endif %}
+        </div>
+    </div>
+</form>
+<!-- UPDATE AND REMOVE LINKS -->
+<a class="update-link text-info"><small>Update</small></a>
+<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"
+   data-product_size="{{ item.size }}"><small>Remove</small></a>

@@ -33,7 +33,8 @@ class Product(models.Model):
 
     category = models.ForeignKey('Category', null=True, blank=True,
                                  on_delete=models.SET_NULL)
-    master_category = models.CharField(max_length=2, choices=MASTER_CATEGORIES, null=True, blank=True, default="")
+    master_category = models.CharField(max_length=2, choices=MASTER_CATEGORIES,
+                                       null=True, blank=True, default="")
     article_number = models.CharField(max_length=254, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
