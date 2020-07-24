@@ -24,10 +24,12 @@ class StripeWH_Handler:
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
-            {'order': order}
+            # Context
+            {'order': order}    
         )
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
+            # Context
             {'order': order,
              'contact_email': settings.DEFAULT_FROM_EMAIL}
         )
@@ -35,8 +37,8 @@ class StripeWH_Handler:
         send_mail(
             subject,
             body,
-            settings.DEFAULT_FROM_EMAIL,
-            [cust_email]
+            settings.DEFAULT_FROM_EMAIL,    # from email
+            [cust_email]                    # to email(s)
         )
 
     # ------------------------------------------- Handle event method
