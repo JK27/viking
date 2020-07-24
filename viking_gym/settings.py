@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home',
     'shop',
     'bag',
+    'checkout',
 
     # Allauth
     'allauth',
@@ -52,6 +53,9 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.instagram',
     # 'allauth.socialaccount.providers.twitter',
+
+    # Other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +69,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'viking_gym.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -80,9 +86,17 @@ TEMPLATES = [
                 'django.template.context_processors.request',   # required
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 # Allows access to bag contents from any template
                 'bag.contexts.bag_contents',
             ],
+            'builtins': [
+                # Give access to everything needed from
+                # crispy_forms accross all templates by default
+
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
@@ -165,3 +179,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Stripe
+FREE_DELIVERY_THRESHOLD = 50
+STRIPE_CURRENCY = 'gbp'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')

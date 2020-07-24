@@ -3,16 +3,14 @@ from .models import Product, Category
 
 
 class ProductAdmin(admin.ModelAdmin):
+
+    readonly_fields = ('id', 'article_number')
+
     list_display = (
-        'id',
-        'article_number',
-        'name',
-        'master_category',
-        'category',
-        'price',
-        'discounted_price',
-        'brand',
-        'image',
+        'id', 'article_number', 'name',
+        'master_category', 'category',
+        'price', 'discounted_price',
+        'brand', 'image',
     )
 
     ordering = ('id',)
