@@ -55,7 +55,7 @@
                             <!-- If user is authenticated, only display Profile and Logout options -->
                             {% if user.is_authenticated %}
                             <li class="list-inline-item">
-                                <a class="navbar-link p-2 d-md-inline-block" href="#"><strong>Profile</strong></a>
+                                <a class="navbar-link p-2 d-md-inline-block" href="{% url 'profile' %}"><strong>Profile</strong></a>
                             </li>
                             <li class="list-inline-item">
                                 <a class="navbar-link p-2 d-md-inline-block" href="{% url 'account_logout' %}"><strong>Log out</strong></a>

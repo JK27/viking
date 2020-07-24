@@ -5,7 +5,7 @@ from django.conf import settings
 
 from .models import Order, OrderLineItem
 from shop.models import Product
-# from profiles.models import UserProfile
+from profiles.models import UserProfile
 
 import json
 import time
@@ -70,10 +70,13 @@ class StripeWH_Handler:
         # Update profile information if save_info was checked
         profile = None      # Allows anonymous users to check out
         username = intent.metadata.username
-        # If user is not anonymous, user is authenticated
+        # If user is not anonymous, user is authenticated...
         if username != 'AnonymousUser':
+            # ... get their profile using their username...
             profile = UserProfile.objects.get(user__username=username)
+            # ... and if save info was selected...
             if save_info:
+                # ... add info to their profile
                 profile.default_phone_number = shipping_details.phone,
                 profile.default_country = shipping_details.address.country,
                 profile.default_postcode = shipping_details.address.postal_code,
@@ -106,19 +109,25 @@ class StripeWH_Handler:
                     original_bag=bag,
                     stripe_pid=pid,
                 )
-                order_exists = True             # If order is found...
-                break                           # it will break out of the loop
+                # If order is found it will break out of the loop
+                order_exists = True
+                break
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
-        if order_exists:                        # If the order exists...
+        # If the order exists...
+        if order_exists:
             self._send_confirmation_email(order)
-            return HttpResponse(                # ...it will return 200 response
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+            # ...it will return 200 response
+            return HttpResponse(
+                content=f'Webhook received: {event["type"]} | SUCCESS: \
+                Verified order already in database',
                 status=200)
-        else:                                   # If the order doesn't exist
+        # If the order doesn't exist...
+        else:
             order = None
-            try:                                # it will create the order
+            # ... it will create the order
+            try:
                 order = Order.objects.create(
                     full_name=shipping_details.name,
                     user_profile=profile,

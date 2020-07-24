@@ -7,6 +7,8 @@ from .forms import OrderForm
 from .models import OrderLineItem, Order
 
 from shop.models import Product
+from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 
 import stripe
@@ -121,21 +123,21 @@ def checkout(request):
         # Attempt to prefill the form with any info...
         # ...the user maintains in their profile
         if request.user.is_authenticated:
-            # try:
-            #     profile = UserProfile.objects.get(user=request.user)
-            #     order_form = OrderForm(initial={
-            #         'full_name': profile.user.get_full_name(),
-            #         'email': profile.user.email,
-            #         'phone_number': profile.default_phone_number,
-            #         'country': profile.default_country,
-            #         'postcode': profile.default_postcode,
-            #         'town_or_city': profile.default_town_or_city,
-            #         'street_address1': profile.default_street_address1,
-            #         'street_address2': profile.default_street_address2,
-            #         'county': profile.default_county,
-            #     })
-            # except UserProfile.DoesNotExist:
-            order_form = OrderForm()
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'postcode': profile.default_postcode,
+                    'town_or_city': profile.default_town_or_city,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'county': profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
         else:
             order_form = OrderForm()
 
@@ -162,9 +164,9 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:
-        # profile = UserProfile.objects.get(user=request.user)
+        profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
-        # order.user_profile = profile
+        order.user_profile = profile
         order.save()
 
         # If user chooses to save their information...
@@ -178,11 +180,11 @@ def checkout_success(request, order_number):
                 'default_street_address2': order.street_address2,
                 'default_county': order.county,
             }
-            # user_profile_form = UserProfileForm(profile_data,
-            #                                     instance=profile)
+            user_profile_form = UserProfileForm(profile_data,
+                                                instance=profile)
             # ... and if form is valid, then save the form...
-            # if user_profile_form.is_valid():
-            #     user_profile_form.save()
+            if user_profile_form.is_valid():
+                user_profile_form.save()
     # ... then display success message
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
