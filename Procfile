@@ -1,0 +1,1 @@
+web: gunicorn viking_gym.wsgi:application
