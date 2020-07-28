@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Membership, Category, UserMembership
 
@@ -29,3 +29,16 @@ def list_memberships(request, category_slug=None):
     }
 
     return render(request, "memberships/memberships.html", context)
+
+
+# ------------------------------------- MEMBERSHIP DETAIL
+def membership_detail(request, membership_id):
+    """ Display individual membership details """
+
+    membership = get_object_or_404(Membership, pk=membership_id)
+
+    context = {
+        'membership': membership,
+    }
+
+    return render(request, 'memberships/membership_detail.html', context)

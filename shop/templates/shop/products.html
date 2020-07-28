@@ -62,10 +62,11 @@
                     </div>
                 </div>
                 <div class="row">
+                    <!-- PRODUCT CARDS -->
                     {% for product in products %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-0">
-                                <!-- Product image -->
+                                <!-- Product image with link to product details-->
                                 {% if product.image %}
                                 <a href="{% url 'product_detail' product.id %}">
                                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -128,7 +129,7 @@
             </div>
         </div>
     </div>
-    <!-- Back to top button -->
+    <!-- BACK TO TOP BUTTON -->
     <div class="btt-button shadow-sm rounded-0 border border-black">
         <a class="btt-link d-flex h-100">
             <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>

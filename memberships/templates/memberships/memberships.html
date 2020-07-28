@@ -1,41 +1,95 @@
-{% extends "base.html" %} {% load static %} {% block page_title %}Viking Gym -
-Shop{% endblock %} {% block page_header %}
-<div class="container header-container">
-  <div class="row">
-    <div class="col"></div>
-  </div>
-</div>
-{% endblock %} {% block content %}
-<div class="overlay"></div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="product-container col-10 offset-1">
-      <div class="row">
-        {% for membership in memberships %}
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-          <div class="card h-100 border-0">
-            <div class="card-body pb-0">
-              <h3>{{ membership.membership_type }}</h3>
-              <h5>{{ membership.category }}</h5>
-              <p>{{ membership.description }}</p>
-              <p>Price: £{{ membership.price }}<small>/month</small></p>
-            </div>
-            <form method="POST" action="#">
-              {% csrf_token %} 
-                {% if membership.membership_type != current_membership %}
-                <button class="btn btn-warning">Select</button>
-                {% else %}
-                <small>This is your current membership</small>
-                {% endif %}
-                <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"
-                />
-            </form>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</div>
+{% extends "base.html" %}
+{% load static %}
 
+{% block page_title %}Viking Gym - Memberships{% endblock %} 
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %} 
+
+{% block content %}
+    <div class="overlay"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="product-container col-10 offset-1">
+                    <div class="row">
+                        <!-- MEMBERSHIP CARDS -->
+                        {% for membership in memberships %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card h-100 border-0">
+                            <!-- Membership type with -->
+                                <div class="card-body pb-0">
+                                    <h3>{{ membership.membership_type }}</h3>
+                                </div>
+                                <!-- Card footer -->
+                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="small mt-1 mb-0">
+                                                <a class="text-muted"
+                                                href="{% url 'memberships' %}?category={{ membership.category.name }}">
+                                                    <i class="fas fa-tag mr-1"></i>{{ membership.category }}</a>
+                                            </p>
+                                            <p class="lead mb-0 text-left font-weight-bold">Price: £{{ membership.price }}<small>/month</small></p>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                {% if membership.membership_type == current_membership %}
+                                                <small>This is your current membership</small>
+                                            {% endif %}
+
+                                <!-- BUTTONS -->
+                                <div class="col{% if s %}-12 mt-2{% endif %}">
+                                    <!-- More details button -->
+                                    <a href="{% url 'membership_detail' membership.id %}"
+                                    class="btn btn-outline-black rounded-0 mt-5">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </span>
+                                        <span class="text-uppercase">More details</span>
+                                    </a>
+                                </div>
+                                
+                                <!-- <form method="POST" action="#">
+                                {% csrf_token %} 
+                                    {% if membership.membership_type != current_membership %}
+                                    <button class="btn btn-warning">Select</button>
+                                    {% else %}
+                                    <small>This is your current membership</small>
+                                    {% endif %}
+                                    <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"
+                                    />
+                                </form> -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <div class="btt-button shadow-sm rounded-0 border border-black">
+        <a class="btt-link d-flex h-100">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>	
+    </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- Scroll to top button -->
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
 {% endblock %}
