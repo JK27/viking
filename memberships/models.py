@@ -11,6 +11,26 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
+# ------------------------------------------ CATEGORIES
+class Category(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+    friendly_name = models.CharField(max_length=20, null=True, blank=True)
+    description = models.TextField(null=True)
+    slug = models.SlugField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
+
+
+# ------------------------------------------ MEMBERSHIPS
 MEMBERSHIP_CHOICES = (
     ('Legend', 'lgn'),
     ('Pro', 'pro'),
@@ -18,15 +38,15 @@ MEMBERSHIP_CHOICES = (
 )
 
 
-# ------------------------------------------ MEMBERSHIPS
 class Membership(models.Model):
-    slug = models.SlugField()
-    membership_type = models.CharField(
-        choices=MEMBERSHIP_CHOICES,
-        default='basic',
-        max_length=30)
-    price = models.IntegerField(default=15)
+    category = models.ForeignKey('Category', null=True, blank=True,
+                                 on_delete=models.SET_NULL)
+    membership_type = models.CharField(choices=MEMBERSHIP_CHOICES,
+                                       default='basic', max_length=30)
+    description = models.TextField(null=True)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     stripe_plan_id = models.CharField(max_length=40)
+    slug = models.SlugField()
 
     def __str__(self):
         return self.membership_type
@@ -43,6 +63,9 @@ class UserMembership(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_user_membership(self):
+        return self.user.membership
+
 
 # ------------------------------------------ SUBSCRIPTIONS
 class Subscription(models.Model):
@@ -53,6 +76,18 @@ class Subscription(models.Model):
 
     def __str__(self):
         return self.user_membership.user.username
+
+    @property
+    def get_created_date(self):
+        subscription = stripe.Subscription.retrieve(
+            self.stripe_subscription_id)
+        return datetime.fromtimestamp(subscription.created)
+
+    @property
+    def get_next_billing_date(self):
+        subscription = stripe.Subscription.retrieve(
+            self.stripe_subscription_id)
+        return datetime.fromtimestamp(subscription.current_period_end)
 
 
 # --------------------------------------------------- CREATE OR UPDATE PROFILE

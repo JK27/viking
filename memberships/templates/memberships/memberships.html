@@ -1,35 +1,41 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block page_title %}Viking Gym - Shop{% endblock %}
-
-{% block page_header %}
+{% extends "base.html" %} {% load static %} {% block page_title %}Viking Gym -
+Shop{% endblock %} {% block page_header %}
 <div class="container header-container">
-	<div class="row">
-		<div class="col"></div>
-	</div>
+  <div class="row">
+    <div class="col"></div>
+  </div>
 </div>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="overlay"></div>
 <div class="container-fluid">
-	<div class="row">
-        <div class="product-container col-10 offset-1">
-			<div class="row">
-				{% for membership in memberships %}
-				<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card h-100 border-0">
-                        <div class="card-body pb-0">
-                            <h3>{{ membership.membership_type }}</h3>
-                            <p>Price: £{{ membership.price }}<small>/month</small></p>
-                        </div>
-					</div>
-				</div>
-                {% endfor %}
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="product-container col-10 offset-1">
+      <div class="row">
+        {% for membership in memberships %}
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+          <div class="card h-100 border-0">
+            <div class="card-body pb-0">
+              <h3>{{ membership.membership_type }}</h3>
+              <h5>{{ membership.category }}</h5>
+              <p>{{ membership.description }}</p>
+              <p>Price: £{{ membership.price }}<small>/month</small></p>
+            </div>
+            <form method="POST" action="#">
+              {% csrf_token %} 
+                {% if membership.membership_type != current_membership %}
+                <button class="btn btn-warning">Select</button>
+                {% else %}
+                <small>This is your current membership</small>
+                {% endif %}
+                <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"
+                />
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

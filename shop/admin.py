@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Product, Category
 
 
+# ------------------------------------- PRODUCT ADMIN
 class ProductAdmin(admin.ModelAdmin):
 
     readonly_fields = ('id', 'article_number')
@@ -16,6 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ('id',)
 
 
+# ------------------------------------- CATEGORY ADMIN
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
