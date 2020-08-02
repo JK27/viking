@@ -43,13 +43,7 @@
                                 </span>
                                 <span class="text-uppercase">Back to memberships list</span>
                             </a>
-                            <!-- Add membership button -->
-                            {% if membership.membership_id != current_membership %}
-                                <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add membership">
-                            {% else %}
-                                <small>This is your current membership</small>
-                            {% endif %}
-                            <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"/>
+                            
                         </div>
                     </div>
                 </form>

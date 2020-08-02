@@ -8,7 +8,9 @@ def get_user_membership(request):
     user_membership_qs = UserMembership.objects.filter(user=request.user)
     if user_membership_qs.exists():
         return user_membership_qs.first()
-    return None
+
+    else:
+        return render(request, "memberships/memberships.html")
 
 
 # ------------------------------------------ MEMBERSHIPS LIST
@@ -29,6 +31,7 @@ def list_memberships(request, category_slug=None):
     }
 
     return render(request, "memberships/memberships.html", context)
+
 
 
 # ------------------------------------- MEMBERSHIP DETAIL
