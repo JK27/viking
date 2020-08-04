@@ -42,18 +42,12 @@
                         </a>
                     </p>
                 {% endif %} 
-                <!-- Edit and delete options for superuser -->
-                {% if request.user.is_superuser %}
-                    <small class="ml-3">
-                        <a href="#">Edit</a> | 
-                        <a class="text-danger" href="#">Delete</a>
-                    </small>
-                {% endif %}
+
                 <!-- Product description -->
                 <p class="mt-3" id="product_description">{{ product.description|linebreaks }}</p>
 
-                <!-- ADD TO BAG FORM -->
-                <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                <!-- ADD TO SHOPPING BAG FORM -->
+                <form class="form" action="{% url 'add_to_shoppingbag' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
                     <!-- Product size selector -->

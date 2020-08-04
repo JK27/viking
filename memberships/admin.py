@@ -33,7 +33,7 @@ class UserMembershipAdmin(admin.ModelAdmin):
     readonly_fields = ('id',)
 
     list_display = ('id', 'user', 'membership',
-    )
+                    )
 
     ordering = ('id',)
 

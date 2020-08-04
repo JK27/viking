@@ -24,31 +24,31 @@
         <!-- Shopping bag contents -->
         <div class="row">
             <div class="col">
-                {% if bag_items %}
+                {% if shoppingbag_items %}
                     <div class="d-block d-md-none">
                         <!-- Bag total -->
                         <div class="row">
                             <div class="col">
-                                {% include "bag/bag_total.html" %}
+                                {% include "shoppingbag/shoppingbag_total.html" %}
                             </div>
                         </div>
                         <!-- Checkout buttons -->
                         <div class="row">
                             <div class="col">
-                                {% include "bag/checkout_buttons.html" %}
+                                {% include "shoppingbag/checkout_buttons.html" %}
                                 <p class="text-muted mb-5">A summary of your bag contents is below</p>
                             </div>
                         </div>
-                        {% for item in bag_items %}
+                        {% for item in shoppingbag_items %}
                             <!-- Bag items summary -->
                             <div class="row">
                                 <!-- Item image -->
                                 <div class="col-12 col-sm-6 mb-2">
-                                    {% include "bag/product_image.html" %}
+                                    {% include "shoppingbag/product_image.html" %}
                                 </div>
                                 <!-- Item info -->
                                 <div class="col-12 col-sm-6 mb-2">
-                                    {% include "bag/product_info.html" %}
+                                    {% include "shoppingbag/product_info.html" %}
                                 </div>
                                 <!-- Item price -->
                                 <div class="col-12 col-sm-6 order-sm-last">
@@ -57,7 +57,7 @@
                                 </div>
                                 <!-- Bag quantity form -->
                                 <div class="col-12 col-sm-6">
-                                    {% include "bag/quantity_form.html" %}
+                                    {% include "shoppingbag/quantity_form.html" %}
                                 </div>
                             </div>
                             <div class="row"><div class="col"><hr></div></div>
@@ -82,15 +82,15 @@
                                 </tr>
                             </thead>
 
-                            {% for item in bag_items %}
+                            {% for item in shoppingbag_items %}
                                 <tr>
                                     <!-- Bag Item image -->
                                     <td class="p-3 w-25">
-                                        {% include "bag/product_image.html" %}
+                                        {% include "shoppingbag/product_image.html" %}
                                     </td>
                                     <!-- Bag Item info -->
                                     <td class="py-3">
-                                        {% include "bag/product_info.html" %}
+                                        {% include "shoppingbag/product_info.html" %}
                                     </td>
                                     <!-- Bag Item price -->
                                     <td class="py-3">
@@ -98,7 +98,7 @@
                                     </td>
                                     <!-- Quantity form -->
                                     <td class="py-3 w-25">
-                                        {% include "bag/quantity_form.html" %}
+                                        {% include "shoppingbag/quantity_form.html" %}
                                     </td>
                                     <!-- Subtotal -->
                                     <td class="py-3">
@@ -109,20 +109,20 @@
                             <!-- Bag total -->
                             <tr>
                                 <td colspan="5" class="pt-5 text-right">
-                                    {% include "bag/bag_total.html" %}
+                                    {% include "shoppingbag/shoppingbag_total.html" %}
                                 </td>
                             </tr>
                             <!-- Checkout buttons -->
                             <tr>
                                 <td colspan="5" class="text-right">
-                                    {% include "bag/checkout_buttons.html" %}
+                                    {% include "shoppingbag/checkout_buttons.html" %}
                                 </td>
                             </tr>
                         </table>
                     </div>
                 {% else %}
                     <!-- Empty bag message and keep shopping link -->
-                    <p class="lead mb-5">Your bag is empty.</p>
+                    <p class="lead mb-5">Your shopping bag is empty.</p>
                     <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
@@ -156,7 +156,7 @@
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
         var size = $(this).data('product_size');
-        var url = `/bag/remove/${itemId}/`;
+        var url = `/shoppingbag/remove/${itemId}/`;
         var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
 
         $.post(url, data)

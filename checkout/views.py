@@ -9,7 +9,7 @@ from .models import OrderLineItem, Order
 from shop.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
-from bag.contexts import bag_contents
+from shoppingbag.contexts import shoppingbag_contents
 
 import stripe
 import json
@@ -23,7 +23,7 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('bag', {})),
+            'shoppingbag': json.dumps(request.session.get('shoppingbag', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
@@ -40,7 +40,7 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
-        bag = request.session.get('bag', {})
+        shoppingbag = request.session.get('shoppingbag', {})
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -59,10 +59,10 @@ def checkout(request):
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
-            order.original_bag = json.dumps(bag)
+            order.original_shoppingbag = json.dumps(shoppingbag)
             order.save()
-            # Iterate through each bag item to create a line item
-            for item_id, item_data in bag.items():
+            # Iterate through each shopping bag item to create a line item
+            for item_id, item_data in shoppingbag.items():
                 try:
                     product = Product.objects.get(id=item_id)
                     # If item doesn't have sizes...
@@ -90,11 +90,11 @@ def checkout(request):
                 except Product.DoesNotExist:
                     # ... show error message
                     messages.error(request, (
-                        "One of the products in your bag wasn't found. \
+                        "One of the products in your shopping bag wasn't found. \
                         Please call us for assistance!")
                     )
                     order.delete()
-                    return redirect(reverse('view_bag'))
+                    return redirect(reverse('view_shoppingbag'))
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
@@ -105,14 +105,14 @@ def checkout(request):
                 Please double check your information.')
 
     else:
-        bag = request.session.get('bag', {})
-        if not bag:
+        shoppingbag = request.session.get('shoppingbag', {})
+        if not shoppingbag:
             messages.error(request,
-                           "There's nothing in your bag at the moment")
+                           "There's nothing in your shopping bag at the moment")
             return redirect(reverse('shop'))
 
-        current_bag = bag_contents(request)
-        total = current_bag['grand_total']
+        current_shoppingbag = shoppingbag_contents(request)
+        total = current_shoppingbag['grand_total']
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
@@ -190,9 +190,9 @@ def checkout_success(request, order_number):
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
 
-    # Delete bag from the session as it is no longer needed
-    if 'bag' in request.session:
-        del request.session['bag']
+    # Delete shopping bag from the session as it is no longer needed
+    if 'shoppingbag' in request.session:
+        del request.session['shoppingbag']
 
     template = 'checkout/checkout_success.html'
     context = {

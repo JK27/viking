@@ -38,12 +38,7 @@
                                         <p class="lead mb-0 text-left font-weight-bold">Price: £{{ membership.price }}<small>/month</small></p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                    <h6>{{ current_membership }}</h6>
-                            </div>
-                            
-
+                            </div>                         
                             <!-- BUTTONS -->
                             <div class="col{% if s %}-12 mt-2{% endif %}">
                                 <!-- More details button -->
@@ -58,7 +53,7 @@
                                     {% if membership.membership_type == current_membership %}
                                         <small>This is your current membership</small>
                                     {% else %}
-                                        <form method="POST" action="#">
+                                        <form method="POST" action="{% url 'select_membership' membership.id %}">
                                         {% csrf_token %} 
                                             <button class="btn btn-black rounded-0 text-uppercase mt-5">Select</button>
                                             <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"
@@ -66,7 +61,7 @@
                                         </form>
                                     {% endif %}
                                 {% else %}
-                                    <form method="POST" action="#">
+                                    <form method="POST" action="{% url 'select_membership' membership.id %}">
                                         {% csrf_token %} 
                                             <button class="btn btn-warning">Select</button>
                                             <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"

@@ -16,13 +16,13 @@
                 <hr class="mt-1 mb-3">
             </div>
         </div>
-        <!-- BAG NOTIFICATION -->
+        <!-- SHOPPING BAG NOTIFICATION -->
         {% if grand_total and not on_profile_page %}
             <!-- Product count -->
-            <p class="logo-font bg-white text-black py-1">Your bag ({{ product_count }})</p>
+            <p class="logo-font bg-white text-black py-1">Your shopping bag ({{ product_count }})</p>
             <!-- Shopping bag items -->
             <div class="bag-notification wrapper">
-                {% for item in bag_items %}
+                {% for item in shoppingbag_items %}
                     <div class="row">
                         <!-- Item image -->
                         <div class="col-3 my-1">
@@ -48,7 +48,7 @@
                         Total: <span class="float-right">£{{ total|floatformat:2 }}</span>
                     </p></strong>
                     <!-- Checkout button -->
-                    <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0">
+                    <a href="{% url 'view_shoppingbag' %}" class="btn btn-black btn-block rounded-0">
                         <span class="text-uppercase">Go To Secure Checkout</span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>

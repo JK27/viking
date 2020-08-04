@@ -2,16 +2,16 @@ from django.shortcuts import get_object_or_404
 from shop.models import Product
 
 
-# ------------------------------------- BAG CONTENTS
-def bag_contents(request):
+# ------------------------------------- SHOPPING BAG CONTENTS
+def shoppingbag_contents(request):
 
-    bag_items = []      # Empty list for items to live in
+    shoppingbag_items = []      # Empty list for items to live in
     total = 0           # Total amount initiates at 0
     product_count = 0   # Product count initiates at 0
-    bag = request.session.get('bag', {})  # Keeps bag contents during session.
+    shoppingbag = request.session.get('shoppingbag', {})  # Keeps bag contents during session.
 
-    # For each item in the bag...
-    for item_id, item_data in bag.items():
+    # For each item in the shopping bag...
+    for item_id, item_data in shoppingbag.items():
         # If item_data is integer it means it is just quantity with no sizes
         if isinstance(item_data, int):
             # ... first, we get the product ...
@@ -21,7 +21,7 @@ def bag_contents(request):
             # ... and number of products to total count
             product_count += item_data
 
-            bag_items.append({
+            shoppingbag_items.append({
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
@@ -37,7 +37,7 @@ def bag_contents(request):
                 # ... and number of products to total count
                 product_count += quantity
 
-                bag_items.append({
+                shoppingbag_items.append({
                     'item_id': item_id,
                     'quantity': quantity,
                     'product': product,
@@ -47,7 +47,7 @@ def bag_contents(request):
     grand_total = total
 
     context = {
-        'bag_items': bag_items,
+        'shoppingbag_items': shoppingbag_items,
         'total': total,
         'product_count': product_count,
         'grand_total': grand_total,

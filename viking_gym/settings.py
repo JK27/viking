@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'home',
     'shop',
-    'bag',
+    'shoppingbag',
     'checkout',
     'profiles',
     'memberships',
@@ -92,8 +92,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                # Allows access to bag contents from any template
-                'bag.contexts.bag_contents',
+                # Allows access to shopping bag contents from any template
+                'shoppingbag.contexts.shoppingbag_contents',
             ],
             'builtins': [
                 # Give access to everything needed from
