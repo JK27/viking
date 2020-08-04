@@ -17,11 +17,10 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
     friendly_name = models.CharField(max_length=20, null=True, blank=True)
     description = models.TextField(null=True)
-    slug = models.SlugField(max_length=20)
+    category_slug = models.SlugField(max_length=20)
 
     def __str__(self):
         return self.name
@@ -31,19 +30,13 @@ class Category(models.Model):
 
 
 # ------------------------------------------ MEMBERSHIPS
-MEMBERSHIP_CHOICES = (
-    ('Legend', 'lgn'),
-    ('Pro', 'pro'),
-    ('Basic', 'basic')
-)
-
-
 class Membership(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True,
                                  on_delete=models.SET_NULL)
-    membership_type = models.CharField(choices=MEMBERSHIP_CHOICES,
-                                       default='basic', max_length=30)
-    description = models.TextField(null=True)
+    membership_type = models.CharField(max_length=30)
+    friendly_name = models.CharField(max_length=40, null=True, blank=True)
+    short_description = models.TextField(null=True)
+    full_description = models.TextField(null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     stripe_plan_id = models.CharField(max_length=40)
     slug = models.SlugField()

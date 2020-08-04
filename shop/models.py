@@ -19,22 +19,8 @@ class Category(models.Model):
 
 # ------------------------------------------ PRODUCTS
 class Product(models.Model):
-
-    ACCESSORIES = 'AC'
-    CLOTHING = 'CL'
-    FOOTWEAR = 'FW'
-    ON_SALE = 'SA'
-    MASTER_CATEGORIES = [
-        (ACCESSORIES, 'Accessories'),
-        (CLOTHING, 'Clothing'),
-        (FOOTWEAR, 'Footwear'),
-        (ON_SALE, 'On sale'),
-    ]
-
     category = models.ForeignKey('Category', null=True, blank=True,
                                  on_delete=models.SET_NULL)
-    master_category = models.CharField(max_length=2, choices=MASTER_CATEGORIES,
-                                       null=True, blank=True, default="")
     article_number = models.CharField(max_length=254, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()

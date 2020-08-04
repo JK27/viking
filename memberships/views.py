@@ -90,6 +90,13 @@ def view_selected_membership(request):
     return render(request, 'memberships/view_selected_membership.html')
 
 
+# ------------------------------------- SELECT MEMBERSHIP
+def select_membership(request, item_id):
+    """ Selects membership """
+
+    membership = get_object_or_404(Membership, pk=item_id)
+    request.session['membership'] = membership
+    return render(request, 'memberships/membership_payment.html')
 
 
 
@@ -98,7 +105,7 @@ def view_selected_membership(request):
 
 
 
-##########################################################################################
+############################################################
 # ------------------------------------- SELECT MEMBERSHIP
 # def select_membership(request, **kwargs):
 #     selected_membership_type = request.POST.get('membership_type')

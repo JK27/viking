@@ -1,0 +1,32 @@
+[
+  {
+    "pk": "1",
+    "model": "memberships.category",
+    "fields": {
+      "name": "full",
+      "friendly_name": "Full membership",
+      "description": "Access at any time within the opening hours.",
+      "category_slug": "full"
+    }
+  },
+  {
+    "pk": "2",
+    "model": "memberships.category",
+    "fields": {
+      "name": "off-peak",
+      "friendly_name": "Off-peak membership",
+      "description": "Access only on weekdays between 9 am and 5 pm and weekends at any time within the opening hours.",
+      "category_slug": "off-peak"
+    }
+  },
+  {
+    "pk": "3",
+    "model": "memberships.category",
+    "fields": {
+      "name": "weekdays",
+      "friendly_name": "Weekdays membership",
+      "description": "Access only on weekdays between 9 am and 5 pm. No access at weekends.",
+      "category_slug": "weekdays"
+    }
+  }
+]

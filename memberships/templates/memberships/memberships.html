@@ -15,60 +15,66 @@
     <div class="overlay"></div>
     <div class="container-fluid">
         <div class="row">
+            <div class="col text-center mt-3">
+                <h2 class="brand-font">Memberships</h2>
+                {% for c in current_categories %}
+                    <a class="category-badge text-decoration-none" href="{% url 'memberships' %}?category={{ c.name }}">
+                        <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+                    </a>
+                {% endfor %}
+                <hr class="w-50 mb-1">
+            </div>
+        </div>
+        <div class="row">
             <div class="product-container col-10 offset-1">
                 <div class="row">
                     <!-- MEMBERSHIP CARDS -->
                     {% for membership in memberships %}
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                         <div class="card h-100 border-0">
-                        <!-- Membership type with -->
+                        <!-- Membership type -->
                             <div class="card-body pb-0">
-                                <h3>{{ membership.membership_type }}</h3>
-                                <!-- <h3>{{ membership.id }}</h3> -->
+                                <p class="lead mb-0 text-left font-weight-bold">{{ membership.membership_type }}</p>
+                                <p class="small mt-1 mb-0">
+                                    <a class="text-muted"
+                                    href="{% url 'memberships' %}?category={{ membership.category.name }}">
+                                        <i class="fas fa-tag mr-1"></i>{{ membership.category }}</a>
+                                </p>
+                                <p class="lead mb-0 text-left font-weight-bold">Price: £{{ membership.price }}<small>/month</small></p>
+                                <!-- Membership description -->
+                                <p class="mt-3" id="product_description">{{ membership.description|linebreaks }}</p>
                             </div>
-                            <!-- Card footer -->
-                            <div class="card-footer bg-white pt-0 border-0 text-left">
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="small mt-1 mb-0">
-                                            <a class="text-muted"
-                                            href="{% url 'memberships' %}?category={{ membership.category.name }}">
-                                                <i class="fas fa-tag mr-1"></i>{{ membership.category }}</a>
-                                        </p>
-                                        <p class="lead mb-0 text-left font-weight-bold">Price: £{{ membership.price }}<small>/month</small></p>
-                                    </div>
-                                </div>
-                            </div>                         
-                            <!-- BUTTONS -->
-                            <div class="col{% if s %}-12 mt-2{% endif %}">
-                                <!-- More details button -->
-                                <a href="{% url 'membership_detail' membership.id %}"
-                                class="btn btn-outline-black rounded-0 mt-5">
-                                    <span class="icon">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </span>
-                                    <span class="text-uppercase">View details</span>
-                                </a>
-                                {% if user.is_authenticated %}
-                                    {% if membership.membership_type == current_membership %}
-                                        <small>This is your current membership</small>
+
+                            <!-- ADD TO SHOPPING BAG FORM -->
+                            <form class="form" action="{% url 'select_membership' membership.id %}" method="POST">
+                                {% csrf_token %}
+                                <!-- BUTTONS -->
+                                <div class="col{% if s %}-12 mt-2{% endif %}">
+                                    <!-- More details button -->
+                                    <a href="{% url 'membership_detail' membership.id %}"
+                                    class="btn btn-outline-black rounded-0 mt-5">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </span>
+                                        <span class="text-uppercase">View details</span>
+                                    </a>
+                                    {% if user.is_authenticated %}
+                                        {% if membership.membership_type == current_membership %}
+                                            <span class="mt-5">
+                                                <small>This is your current membership</small>
+                                            </span>
+                                        {% else %}
+                                            <input type="submit" class="btn btn-black rounded-0 text-uppercase" value="Select membership">
+                                            <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"
+                                            />
+                                        {% endif %}
                                     {% else %}
-                                        <form method="POST" action="{% url 'select_membership' membership.id %}">
-                                        {% csrf_token %} 
-                                            <button class="btn btn-black rounded-0 text-uppercase mt-5">Select</button>
-                                            <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"
-                                            />
-                                        </form>
+                                        <input type="submit" class="btn btn-black rounded-0 text-uppercase" value="Select membership">
+                                        <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"
+                                        />
                                     {% endif %}
-                                {% else %}
-                                    <form method="POST" action="{% url 'select_membership' membership.id %}">
-                                        {% csrf_token %} 
-                                            <button class="btn btn-warning">Select</button>
-                                            <input type="hidden" name="membership_type" value="{{ membership.membership_type }}"
-                                            />
-                                        </form>
-                                {% endif %}
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     {% endfor %}

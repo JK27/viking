@@ -1,90 +1,90 @@
 [
-{
-  "pk": "1",
-  "model": "shop.category",
-  "fields": {
-    "name": "backpacks",
-    "friendly_name": "Backpacks"
+  {
+    "pk": "1",
+    "model": "shop.category",
+    "fields": {
+      "name": "backpacks",
+      "friendly_name": "Backpacks"
+    }
+  },
+  {
+    "pk": "2",
+    "model": "shop.category",
+    "fields": {
+      "name": "bags",
+      "friendly_name": "Bags"
+    }
+  },
+  {
+    "pk": "6",
+    "model": "shop.category",
+    "fields": {
+      "name": "socks",
+      "friendly_name": "Socks"
+    }
+  },
+  {
+    "pk": "7",
+    "model": "shop.category",
+    "fields": {
+      "name": "balls",
+      "friendly_name": "Balls"
+    }
+  },
+  {
+    "pk": "9",
+    "model": "shop.category",
+    "fields": {
+      "name": "water_bottles",
+      "friendly_name": "Water Bottles"
+    }
+  },
+  {
+    "pk": "13",
+    "model": "shop.category",
+    "fields": {
+      "name": "vests",
+      "friendly_name": "Vests"
+    }
+  },
+  {
+    "pk": "14",
+    "model": "shop.category",
+    "fields": {
+      "name": "long_sleeves",
+      "friendly_name": "Long Sleeves"
+    }
+  },
+  {
+    "pk": "15",
+    "model": "shop.category",
+    "fields": {
+      "name": "shorts",
+      "friendly_name": "Shorts"
+    }
+  },
+  {
+    "pk": "19",
+    "model": "shop.category",
+    "fields": {
+      "name": "track_bottoms",
+      "friendly_name": "Track Bottoms"
+    }
+  },
+  {
+    "pk": "21",
+    "model": "shop.category",
+    "fields": {
+      "name": "tshirts",
+      "friendly_name": "T-shirts"
+    }
+  },
+  {
+    "pk": "23",
+    "model": "shop.category",
+    "fields": {
+      "name": "trainers",
+      "friendly_name": "Trainers"
+    }
   }
-},
-{
-  "pk": "2",
-  "model": "shop.category",
-  "fields": {
-    "name": "bags",
-    "friendly_name": "Bags"
-  }
-},
-{
-  "pk": "6",
-  "model": "shop.category",
-  "fields": {
-    "name": "socks",
-    "friendly_name": "Socks"
-  }
-},
-{
-  "pk": "7",
-  "model": "shop.category",
-  "fields": {
-    "name": "balls",
-    "friendly_name": "Balls"
-  }
-},
-{
-  "pk": "9",
-  "model": "shop.category",
-  "fields": {
-    "name": "water_bottles",
-    "friendly_name": "Water Bottles"
-  }
-},
-{
-  "pk": "13",
-  "model": "shop.category",
-  "fields": {
-    "name": "vests",
-    "friendly_name": "Vests"
-  }
-},
-{
-  "pk": "14",
-  "model": "shop.category",
-  "fields": {
-    "name": "long_sleeves",
-    "friendly_name": "Long Sleeves"
-  }
-},
-{
-  "pk": "15",
-  "model": "shop.category",
-  "fields": {
-    "name": "shorts",
-    "friendly_name": "Shorts"
-  }
-},
-{
-  "pk": "19",
-  "model": "shop.category",
-  "fields": {
-    "name": "track_bottoms",
-    "friendly_name": "Track Bottoms"
-  }
-},
-{
-  "pk": "21",
-  "model": "shop.category",
-  "fields": {
-    "name": "tshirts",
-    "friendly_name": "T-shirts"
-  }
-},
-{
-  "pk": "23",
-  "model": "shop.category",
-  "fields": {
-    "name": "trainers",
-    "friendly_name": "Trainers"
-  }
-}
 ]

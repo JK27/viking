@@ -9,7 +9,7 @@ class MembershipAdmin(admin.ModelAdmin):
 
     list_display = (
         'id', 'category', 'membership_type',
-        'price', 'stripe_plan_id',
+        'friendly_name', 'price',
     )
 
     ordering = ('id',)
