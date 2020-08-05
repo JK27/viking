@@ -5,6 +5,7 @@ from shop.models import Product
 
 # ------------------------------------- VIEW SHOPPING BAG
 def view_shoppingbag(request):
+    """ Displays shopping bag contents page. """
     return render(request, 'shoppingbag/shoppingbag.html')
 
 
@@ -19,7 +20,8 @@ def add_to_shoppingbag(request, item_id):
     size = None
     if 'product_size' in request.POST:
         size = request.POST['product_size']
-    # Keeps shopping bag contents while session lasts. If not session, it creates one
+    # Keeps shopping bag contents while session lasts.
+    # If not session, it creates one
     shoppingbag = request.session.get('shoppingbag', {})
 
     # If product has sizes...

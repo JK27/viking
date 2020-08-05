@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'checkout',
     'profiles',
     'memberships',
+    'membershipsbag',
 
     # Allauth
     'allauth',
@@ -94,6 +95,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 # Allows access to shopping bag contents from any template
                 'shoppingbag.contexts.shoppingbag_contents',
+                'membershipsbag.contexts.membershipsbag_contents',
             ],
             'builtins': [
                 # Give access to everything needed from

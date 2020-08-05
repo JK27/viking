@@ -38,7 +38,7 @@ class Membership(models.Model):
     short_description = models.TextField(null=True)
     full_description = models.TextField(null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    stripe_plan_id = models.CharField(max_length=40)
+    stripe_plan_id = models.CharField(max_length=40, null=True, blank=True)
     slug = models.SlugField()
 
     def __str__(self):
@@ -58,20 +58,20 @@ class UserMembership(models.Model):
 
     def get_user_membership(self):
         return self.user.membership
+####################################################################
+    # def post_save_usermembership_create(sender, instance, created,
+    #                                     *args, **kwargs):
+    #     user_membership, created = UserMembership.objects.get_or_create(
+    #         user=instance)
 
-    def post_save_usermembership_create(sender, instance, created,
-                                        *args, **kwargs):
-        user_membership, created = UserMembership.objects.get_or_create(
-            user=instance)
+    #     if user_membership.stripe_customer_id is None or user_membership.stripe_customer_id == '':
+    #         new_customer_id = stripe.Customer.create(email=instance.email)
+    #         user_membership.stripe_customer_id = new_customer_id['id']
+    #         user_membership.membership = Membership.objects.get()
+    #         user_membership.save()
 
-        if user_membership.stripe_customer_id is None or user_membership.stripe_customer_id == '':
-            new_customer_id = stripe.Customer.create(email=instance.email)
-            user_membership.stripe_customer_id = new_customer_id['id']
-            user_membership.membership = Membership.objects.get()
-            user_membership.save()
-
-    post_save.connect(post_save_usermembership_create,
-                      sender=settings.AUTH_USER_MODEL)
+    # post_save.connect(post_save_usermembership_create,
+    #                   sender=settings.AUTH_USER_MODEL)
 
 
 # ------------------------------------------ SUBSCRIPTIONS

@@ -44,7 +44,7 @@
     "fields": {
       "membership_type": "standard-off-peak",
       "friendly_name": "Standard Off-peak membership",
-      "category": "1",
+      "category": "2",
       "short_description": "Access to gym. \nAccess to all classess.",
       "full_description": "Access only on weekdays between 9 am and 5 pm, and weekends at any time within the opening hours. \nGives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available.",
       "price": "30.00",

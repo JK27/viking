@@ -8,7 +8,8 @@ def shoppingbag_contents(request):
     shoppingbag_items = []      # Empty list for items to live in
     total = 0           # Total amount initiates at 0
     product_count = 0   # Product count initiates at 0
-    shoppingbag = request.session.get('shoppingbag', {})  # Keeps bag contents during session.
+    # Keeps bag contents during session.
+    shoppingbag = request.session.get('shoppingbag', {})
 
     # For each item in the shopping bag...
     for item_id, item_data in shoppingbag.items():

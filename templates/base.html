@@ -67,7 +67,7 @@
                                 <a class="navbar-link p-2 d-md-inline-block" href="{% url 'account_login' %}"><strong>Log in</strong></a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="navbar-link p-2 d-md-inline-block" href="{% url 'account_signup' %}"><strong>Register</strong></a>
+                                <a class="navbar-link p-2 d-md-inline-block" href="{% url 'memberships' %}"><strong>Register</strong></a>
                             </li>
                             {% endif %}
                             <!-- Shop dropdown -->
@@ -120,7 +120,6 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     {% include 'includes/mobile-top-header.html' %}
-                    {% include 'includes/shop-nav.html' %}
                 </nav>
             </div>
         </header>

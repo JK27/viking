@@ -85,26 +85,6 @@ def membership_detail(request, membership_id):
     return render(request, 'memberships/membership_detail.html', context)
 
 
-# ------------------------------------- VIEW SELECTED MEMBERSHIP
-def view_selected_membership(request):
-    return render(request, 'memberships/view_selected_membership.html')
-
-
-# ------------------------------------- SELECT MEMBERSHIP
-def select_membership(request, item_id):
-    """ Selects membership """
-
-    membership = get_object_or_404(Membership, pk=item_id)
-    request.session['membership'] = membership
-    return render(request, 'memberships/membership_payment.html')
-
-
-
-
-
-
-
-
 ############################################################
 # ------------------------------------- SELECT MEMBERSHIP
 # def select_membership(request, **kwargs):
