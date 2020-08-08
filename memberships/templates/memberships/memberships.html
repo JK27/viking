@@ -49,7 +49,7 @@
                                 <!-- Hidden quantity input field -->
                                 <input class="form-control qty_input" type="hidden" name="quantity" value="1"  data-item_id="{{ membership.id }}" id="id_qty_{{ membership.id }}">
                                 <!-- BUTTONS -->
-                                <div class="col{% if s %}-12 mt-2{% endif %}">
+                                <div class="col">
                                     <!-- More details button -->
                                     <a href="{% url 'membership_detail' membership.id %}"
                                     class="btn btn-outline-black rounded-0 mt-5">
@@ -68,12 +68,12 @@
                                             <!-- Select membership button -->
                                             <input type="submit" class="btn btn-black rounded-0 text-uppercase" value="Select membership">
                                             <!-- Redicrect user to same page once membership is selected -->
-                                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                            <input type="hidden" name="redirect_url" value="{% url 'view_membershipsbag' %}">
                                         {% endif %}
                                     {% else %}
                                         <input type="submit" class="btn btn-black rounded-0 text-uppercase" value="Select membership">
                                         <!-- Redicrect user to same page once membership is selected -->
-                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                        <input type="hidden" name="redirect_url" value="{% url 'view_membershipsbag' %}">
                                     {% endif %}
                                 </div>
                             </form>

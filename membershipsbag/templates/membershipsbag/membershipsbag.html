@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Your selected membership</h2>
+                <h2 class="logo-font mb-4">Review your selected membership</h2>
                 <hr>
             </div>
         </div>
@@ -56,18 +56,18 @@
                             <!-- Checkout buttons -->
                             <tr>
                                 <td colspan="5" class="text-right">
-                                    <a href="{% url 'memberships' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                                    <span class="icon">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="text-uppercase">Back to memberships</span>
-                                    </a>
-                                    <a href="#" class="btn btn-black rounded-0 btn-lg">
-                                    <span class="text-uppercase">Secure Checkout</span>
-                                    <span class="icon">
-                                        <i class="fas fa-lock"></i>
-                                    </span>
-                                    </a>
+                                    <a href="{% url 'memberships' %}" class="btn btn-outline-black rounded-0 back-btn">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                        <span class="text-uppercase back-btn">Back to memberships list</span>
+                                        </a>
+                                        <a href="#" class="btn btn-black rounded-0">
+                                        <span class="text-uppercase">Secure Checkout</span>
+                                        <span class="icon">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                        </a>
                                 </td>
                             </tr>
                         </table>
@@ -79,15 +79,10 @@
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
-                        <span class="text-uppercase">Back to memberships</span>
+                        <span class="text-uppercase">Back to memberships list</span>
                     </a>
                 {% endif %}
             </div>
         </div>
     </div>
-</div>
-
-
-
-
 {% endblock %}

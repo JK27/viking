@@ -18,7 +18,6 @@ def membershipsbag_contents(request):
             'membership': membership,
         })
 
-
     context = {
         'membershipsbag_items': membershipsbag_items,
         'total': total,
