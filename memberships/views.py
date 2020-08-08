@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
-from .models import Membership, Category, UserMembership, Subscription
+from .models import Membership, Category, UserMembership
 
 import stripe
 
@@ -18,13 +18,13 @@ def get_user_membership(request):
 
 
 # ------------------------------------------ GET USER SUBSCRIPTION
-def get_user_subscription(request):
-    user_subscription_qs = Subscription.objects.filter(
-        user_membership=get_user_membership(request))
-    if user_subscription_qs.exists():
-        user_subscription = user_subscription_qs.first()
-        return user_subscription
-    return None
+# def get_user_subscription(request):
+#     user_subscription_qs = Subscription.objects.filter(
+#         user_membership=get_user_membership(request))
+#     if user_subscription_qs.exists():
+#         user_subscription = user_subscription_qs.first()
+#         return user_subscription
+#     return None
 
 
 # ------------------------------------------ GET SELECTED MEMBERSHIP

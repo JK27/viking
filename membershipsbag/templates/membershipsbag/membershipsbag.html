@@ -30,8 +30,8 @@
                         <table class="table table-sm table-borderless">
                             <thead class="text-black">
                                 <tr>
-                                    <th scope="col">membership Info</th>
                                     <th scope="col"></th>
+                                    <th scope="col">Membership Details</th>
                                     <th scope="col">Price</th>
                                 </tr>
                             </thead>
@@ -39,18 +39,23 @@
                                 <tr>
                                     <!-- Bag Item info -->
                                     <td class="py-3">
-                                        <p class="my-0"><strong>{{ item.membership.membership_type }}</strong></p>
+                                        <p class="my-0"><strong>{{ item.membership.friendly_name }}</strong></p>
+                                    </td>
+                                    <!-- Membership description -->
+                                    <td class="py-3">
+                                        <p class="my-0">{{ item.membership.full_description|linebreaks }}</p>
                                     </td>
                                     <!-- Membership price -->
                                     <td class="py-3">
-                                        <p class="my-0">£{{ item.membership.price }} <small>/month</small></p>
+                                        <p class="my-0"><strong>£{{ item.membership.price }}</strong><small> /month</small></p>
                                     </td>
                                 </tr>
                             {% endfor %}
                             <!-- Bag total -->
                             <tr>
                                 <td colspan="5" class="pt-5 text-right">
-                                    <h6><strong>Bag Total: £{{ total|floatformat:2 }}</strong></h6>
+                                    <h6><strong>Total payment now: £{{ total|floatformat:2 }}</strong></h6>
+                                    <small>This payment is for the first month of your membership.</small>
                                 </td>
                             </tr>
                             <!-- Checkout buttons -->

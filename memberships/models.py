@@ -7,6 +7,8 @@ from profiles.models import UserProfile
 
 from datetime import datetime
 import stripe
+from django_countries.fields import CountryField
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -38,7 +40,7 @@ class Membership(models.Model):
     short_description = models.TextField(null=True)
     full_description = models.TextField(null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    stripe_plan_id = models.CharField(max_length=40, null=True, blank=True)
+    stripe_price_id = models.CharField(max_length=40, null=True, blank=True)
     slug = models.SlugField()
 
     def __str__(self):
@@ -52,12 +54,37 @@ class UserMembership(models.Model):
     stripe_customer_id = models.CharField(max_length=40, default='')
     membership = models.ForeignKey(
         Membership, on_delete=models.SET_NULL, null=True)
+    ##########################################
+    stripe_subscription_id = models.CharField(max_length=40)
+    active = models.BooleanField(default=True)
+    full_name = models.CharField(max_length=50, null=False, blank=False)
+    email = models.EmailField(max_length=254, null=False, blank=False)
+    phone_number = models.CharField(max_length=20, null=False, blank=False)
+    country = CountryField(blank_label='Country *', null=False, blank=False)
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+    town_or_city = models.CharField(max_length=40, null=False, blank=False)
+    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    county = models.CharField(max_length=80, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)  # Sets order date and time
 
     def __str__(self):
         return self.user.username
 
     def get_user_membership(self):
         return self.user.membership
+
+    @property
+    def get_created_date(self):
+        subscription = stripe.Subscription.retrieve(
+            self.stripe_subscription_id)
+        return datetime.fromtimestamp(subscription.created)
+
+    @property
+    def get_next_billing_date(self):
+        subscription = stripe.Subscription.retrieve(
+            self.stripe_subscription_id)
+        return datetime.fromtimestamp(subscription.current_period_end)
 ####################################################################
     # def post_save_usermembership_create(sender, instance, created,
     #                                     *args, **kwargs):
@@ -75,26 +102,38 @@ class UserMembership(models.Model):
 
 
 # ------------------------------------------ SUBSCRIPTIONS
-class Subscription(models.Model):
-    user_membership = models.ForeignKey(
-        UserMembership, on_delete=models.CASCADE)
-    stripe_subscription_id = models.CharField(max_length=40)
-    active = models.BooleanField(default=True)
+# class Subscription(models.Model):
+#     user_membership = models.ForeignKey(
+#         UserMembership, on_delete=models.CASCADE)
+#     stripe_subscription_id = models.CharField(max_length=40)
 
-    def __str__(self):
-        return self.user_membership.user.username
+#     #########################################
+#     active = models.BooleanField(default=True)
+#     full_name = models.CharField(max_length=50, null=False, blank=False)
+#     email = models.EmailField(max_length=254, null=False, blank=False)
+#     phone_number = models.CharField(max_length=20, null=False, blank=False)
+#     country = CountryField(blank_label='Country *', null=False, blank=False)
+#     postcode = models.CharField(max_length=20, null=True, blank=True)
+#     town_or_city = models.CharField(max_length=40, null=False, blank=False)
+#     street_address1 = models.CharField(max_length=80, null=False, blank=False)
+#     street_address2 = models.CharField(max_length=80, null=True, blank=True)
+#     county = models.CharField(max_length=80, null=True, blank=True)
+#     date = models.DateTimeField(auto_now_add=True)  # Sets order date and time
 
-    @property
-    def get_created_date(self):
-        subscription = stripe.Subscription.retrieve(
-            self.stripe_subscription_id)
-        return datetime.fromtimestamp(subscription.created)
+#     def __str__(self):
+#         return self.user_membership.user.username
 
-    @property
-    def get_next_billing_date(self):
-        subscription = stripe.Subscription.retrieve(
-            self.stripe_subscription_id)
-        return datetime.fromtimestamp(subscription.current_period_end)
+#     @property
+#     def get_created_date(self):
+#         subscription = stripe.Subscription.retrieve(
+#             self.stripe_subscription_id)
+#         return datetime.fromtimestamp(subscription.created)
+
+#     @property
+#     def get_next_billing_date(self):
+#         subscription = stripe.Subscription.retrieve(
+#             self.stripe_subscription_id)
+#         return datetime.fromtimestamp(subscription.current_period_end)
 
 
 # --------------------------------------------------- CREATE OR UPDATE PROFILE
