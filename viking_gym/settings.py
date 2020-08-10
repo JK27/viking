@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'profiles',
     'memberships',
     'membershipsbag',
+    'memberships_payment',
 
     # Allauth
     'allauth',
