@@ -17,26 +17,6 @@ def get_user_membership(request):
         return None
 
 
-# ------------------------------------------ GET USER SUBSCRIPTION
-# def get_user_subscription(request):
-#     user_subscription_qs = Subscription.objects.filter(
-#         user_membership=get_user_membership(request))
-#     if user_subscription_qs.exists():
-#         user_subscription = user_subscription_qs.first()
-#         return user_subscription
-#     return None
-
-
-# ------------------------------------------ GET SELECTED MEMBERSHIP
-def get_selected_membership(request):
-    membership_type = request.session['selected_membership_type']
-    selected_membership_qs = Membership.objects.filter(
-        membership_type=membership_type)
-    if selected_membership_qs.exists():
-        return selected_membership_qs.first()
-    return None
-
-
 # ------------------------------------------ MEMBERSHIPS LIST
 def list_memberships(request, category_slug=None):
     memberships = Membership.objects.all()
@@ -83,49 +63,3 @@ def membership_detail(request, membership_id):
     }
 
     return render(request, 'memberships/membership_detail.html', context)
-
-
-############################################################
-# ------------------------------------- SELECT MEMBERSHIP
-# def select_membership(request, **kwargs):
-#     selected_membership_type = request.POST.get('membership_type')
-
-#     user_membership = get_user_membership(request)
-#     user_subscription = get_user_subscription(request)
-
-#     selected_membership_qs = Membership.objects.filter(
-#         membership_type=selected_membership_type
-#     )
-
-#     if selected_membership_qs.exists():
-#         selected_membership = selected_membership_qs.first()
-
-    # Validation
-    # if user_membership.membership == selected_membership:
-    #     if user_subscription is not None:
-    #         messages.info(request, "This is your current membership. Your \
-    #                       next payment is due {}".format('get it from stripe'))
-            # redirect user to page they are coming from
-            # return redirect(request.META.get('HTTP_REFERER'))
-
-    # assign to the session
-    # request.session['selected_membership_type'] = selected_membership.membership_type
-
-    # return render(request, 'memberships/membership_payment.html')
-
-
-# ------------------------------------- PAYMENT
-# @login_required
-# def membership_payment(request):
-#     user_membership = get_user_membership(request)
-
-#     selected_membership = get_selected_membership(request)
-
-#     stripe_public_key = settings.STRIPE_PUBLISHABLE_KEY
-
-#     context = {
-#         'stripe_public_key': stripe_public_key,
-#         'selected_membership': selected_membership
-#     }
-
-#     return render(request, "memberships/membership_payment.html", context)
