@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
-{% block page_title %}Viking Gym - Checkout{% endblock %} 
+{% block page_title %}Viking Gym - Payment{% endblock %} 
 
 <!-- PAGE HEADER -->
 {% block page_header %}
@@ -23,81 +23,86 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Checkout</h2>
+                <h2 class="logo-font mb-4">Payment</h2>
                 <hr>
             </div>
         </div>
 
         <div class="row">
-            <!-- ORDER SUMMARY -->
+            <!-- MEMBERSHIP SUMMARY -->
             <div class="col-12 col-lg-6 order-lg-last mb-5">
-                <p class="text-muted">Order Summary ({{ product_count }})</p>
+                <p class="text-muted">Membership Summary</p>
                 <div class="row">
-                    <div class="col-7 offset-2">
-                        <p class="mb-1 mt-0 text-muted">Item</p>
+                    <div class="col-9">
+                        <p class="mb-1 mt-0">Your membership</p>
                     </div>
                     <div class="col-3 text-right">
-                        <p class="mb-1 mt-0 text-muted">Subtotal</p>
+                        <p class="mb-1 mt-0">Price</p>
                     </div>
                 </div>
                 <hr class="my-0">
-                {% for item in shoppingbag_items %}
-                    <div class="row">
-                        <!-- Item details -->
-                        <div class="col-2 mb-1">
-                            <!-- Item image -->
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                {% if item.product.image %}
-                                    <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                {% endif %}
-                            </a>
-                        </div>
-                        <!-- Item info -->
-                        <div class="col-7">
-                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                            <p class="my-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                            <p class="my-0 small text-muted">Quantity: {{ item.quantity }}</p>
+                {% for item in membershipsbag_items %}
+                    <div class="row mt-3">
+                        <!-- Memberhip info -->
+                        <div class="col-9">
+                            <p class="my-0"><strong>{{ item.membership.friendly_name }}</strong></p>
                         </div>
                         <div class="col-3 text-right">
-                            <p class="my-0"><strong>£{{ item.product.price | calc_subtotal:item.quantity }}</strong></p>
+                            <p class="my-0"><strong>£{{ item.membership.price }}</strong><small>/ month</small></p>
                         </div>
                     </div>
-                    <hr class="my-0">
+                    <div class="row mt-3">
+                        <!-- Memberhip info -->
+                        <div class="col-7">
+                            <p class="my-0">{{ item.membership.full_description | linebreaks }}</p>
+                        </div>
+                    </div>
                 {% endfor %}
-                
+                <hr class="my-0">
                 <!-- Order totals -->
-                <div class="row text-black text-right">
+                <div class="row text-black text-right  mt-3">
                     <div class="col-7 offset-2">
-                        <p class="my-0"><strong>Grand Total:</strong></p>
+                        <p class="my-0"><strong>To pay now:</strong></p>
                     </div>
                     <div class="col-3">
-                        <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
+                        <p class="my-0"><strong>£{{ total | floatformat:2 }}</strong></p>
+                    </div>
+                </div>
+                <div class="row text-black text-right">
+                    <div class="col">
+                        <p class="text-right small">This payment is for the first month of your membership.</p>
                     </div>
                 </div>
             </div>
-            <!-- CHECKOUT FORM -->
+            <!-- PAYMENT FORM -->
             <div class="col-12 col-lg-6">
-                <p class="text-muted">Please fill out the form below to complete your order</p>
-                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                <div>
+                <p class="text-muted px-3">Please fill out the form below with your details.</p>
+                <p class="text-muted px-3">All fields marked with an * are mandatory.</p>
+                </div>
+                <form action="{% url 'payment' %}" method="POST" id="payment-form">
                     {% csrf_token %}
-                    <!-- Personal details fieldset -->
+                    <!-- Name fieldset -->
                     <fieldset class="rounded px-3 mb-5">
-                        <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
-                        {{ order_form.full_name | as_crispy_field }}
-                        {{ order_form.email | as_crispy_field }}
+                        <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Name</p></legend>
+                        {{ subscription_form.first_name | as_crispy_field }}
+                        {{ subscription_form.last_name | as_crispy_field }}
                     </fieldset>
-                    <!-- Delivery details fieldset -->
+                    <!-- Contact details fieldset -->
                     <fieldset class="rounded px-3 mb-5">
-                        <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
-                        {{ order_form.phone_number | as_crispy_field }}
-                        {{ order_form.street_address1 | as_crispy_field }}
-                        {{ order_form.street_address2 | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
-                        {{ order_form.county | as_crispy_field }}
-                        {{ order_form.postcode | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
+                        <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Contact details</p></legend>
+                        {{ subscription_form.email | as_crispy_field }}
+                        {{ subscription_form.phone_number | as_crispy_field }}
+                    </fieldset>
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Address</p></legend>
+                        {{ subscription_form.street_address1 | as_crispy_field }}
+                        {{ subscription_form.street_address2 | as_crispy_field }}
+                        {{ subscription_form.town_or_city | as_crispy_field }}
+                        {{ subscription_form.county | as_crispy_field }}
+                        {{ subscription_form.postcode | as_crispy_field }}
+                        {{ subscription_form.country | as_crispy_field }}
+
                         <!-- Authentication -->
                         <div class="form-check form-check-inline float-right mr-0">
 							{% if user.is_authenticated %}
@@ -124,16 +129,16 @@
                         <input type="hidden" value="{{ client.secret }}" name="client_secret">
                     </fieldset>
                     <div class="submit-button text-right mt-5 mb-2">
-                        <!--Adjust bag link  -->
-						<a href="{% url 'view_shoppingbag' %}" class="btn btn-outline-black rounded-0">
+                        <!-- Back to memberhipbag link  -->
+						<a href="{% url 'view_membershipsbag' %}" class="btn btn-outline-black rounded-0">
 							<span class="icon">
 								<i class="fas fa-chevron-left"></i>
 							</span>
-							<span class="font-weight-bold">Adjust Bag</span>
+							<span class="font-weight-bold">Back to your membership</span>
 						</a>
                         <!-- Submit button -->
 						<button id="submit-button" class="btn btn-black rounded-0">
-							<span class="font-weight-bold">Complete Order</span>
+							<span class="font-weight-bold">Complete Payment</span>
 							<span class="icon">
 								<i class="fas fa-lock"></i>
 							</span>
@@ -143,7 +148,7 @@
 							<span class="icon">
 								<i class="fas fa-exclamation-circle"></i>
 							</span>
-							<span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
+							<span>Your card will be charged <strong>£{{ total|floatformat:2 }}</strong></span>
 						</p>
 					</div>
                 </form>

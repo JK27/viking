@@ -18,6 +18,10 @@ body {
     width: fit-content;
 }
 
+.bg-viking-dark {
+    background-color: #293949;
+}
+
 #shop-nav {
     background-color: aquamarine;
 }

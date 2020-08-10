@@ -32,6 +32,11 @@
     right: .5rem;
 }
 
+#id_country {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
 select,
 select option {
     color: #000000;
