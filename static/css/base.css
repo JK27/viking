@@ -18,6 +18,12 @@ body {
     width: fit-content;
 }
 
+.navbar-brand,
+.navbar-link,
+.nav-link {
+    color: #40c1a6;
+}
+
 .bg-viking-dark {
     background-color: #293949;
 }

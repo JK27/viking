@@ -22,7 +22,7 @@
   background-color: #fefde5 !important;
 }
 
-/* ------------------------------------ CHECKOUT FORM */
+/* ------------------------------------ PAYMENT FORM */
 .stripe-style-input::placeholder {
     color: #aab7c4;
 }
@@ -47,7 +47,7 @@ select option[value=""] {
     color: #aab7c4 !important;
 }
 
-#checkout-form .form-control,
+#payment-form .form-control,
 #card-element {
     color: #000;
     border: 1px solid #000;

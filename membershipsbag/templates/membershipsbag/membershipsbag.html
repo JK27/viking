@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_title %}Viking Gym - memberships bag{% endblock %}
+{% block page_title %}Viking Gym - Selected membership{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -54,7 +54,7 @@
                             <!-- Bag total -->
                             <tr>
                                 <td colspan="5" class="pt-5 text-right">
-                                    <h6><strong>Total payment now: £{{ total|floatformat:2 }}</strong></h6>
+                                    <h6><strong>Total payment now: £{{ membership_total|floatformat:2 }}</strong></h6>
                                     <small>This payment is for the first month of your membership.</small>
                                 </td>
                             </tr>

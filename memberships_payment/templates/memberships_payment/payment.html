@@ -65,7 +65,7 @@
                         <p class="my-0"><strong>To pay now:</strong></p>
                     </div>
                     <div class="col-3">
-                        <p class="my-0"><strong>£{{ total | floatformat:2 }}</strong></p>
+                        <p class="my-0"><strong>£{{ membership_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
                 <div class="row text-black text-right">
@@ -148,7 +148,7 @@
 							<span class="icon">
 								<i class="fas fa-exclamation-circle"></i>
 							</span>
-							<span>Your card will be charged <strong>£{{ total|floatformat:2 }}</strong></span>
+							<span>Your card will be charged <strong>£{{ membership_total|floatformat:2 }}</strong></span>
 						</p>
 					</div>
                 </form>
@@ -169,5 +169,5 @@
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+    <script src="{% static 'memberships_payment/js/stripe_elements.js' %}"></script>
 {% endblock %}

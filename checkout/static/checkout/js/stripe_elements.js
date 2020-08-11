@@ -12,7 +12,8 @@ var stripePublicKey  = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret  = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey );
 var elements = stripe.elements();
-// Style
+
+// STYLE
 var style = {
     base: {
         color: '#000',
@@ -28,6 +29,8 @@ var style = {
         iconColor: '#dc3545'
     }
 };
+
+// CARD ELEMENT
 // Creates card element and send it to field in template
 var card = elements.create('card', {style: style});
 card.mount('#card-element');
@@ -37,6 +40,7 @@ card.mount('#card-element');
     will check for errors */
 card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
+    /* If there is and error, it displays in card-errors div in template */
     if (event.error) {
         var html = `
             <span class="icon" role="alert">
@@ -50,19 +54,19 @@ card.addEventListener('change', function (event) {
     }
 });
 
-// Handle form submit
-var form = document.getElementById('payment-form');
+// HANDLE FORM SUBMIT
+var form = document.getElementById('checkout-form');
 
 form.addEventListener('submit', function(ev) {      // When user clicks submit button...
     ev.preventDefault();                            // ... prevents form from submitting...
     card.update({ 'disabled': true});               // ... instead disables card element...
     $('#submit-button').attr('disabled', true);     // .. and button to avoid multiple submissions...
-    $('#payment-form').fadeToggle(100);
+    $('#checkout-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);          // ... and triggers loading overlay
 
-    // Capture form data and post it to cache_checkout_data view
+    /* Capture form data and post it to cache_payment_data view */
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
-    // From using {% csrf_token %} in the form
+    /* From using {% csrf_token %} in the form */
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
@@ -97,7 +101,7 @@ form.addEventListener('submit', function(ev) {      // When user clicks submit b
                     </span>
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);                         // ... displays error for user...
-                $('#payment-form').fadeToggle(100);
+                $('#checkout-form').fadeToggle(100);
                 $('#loading-overlay').fadeToggle(100);          // ... hides loading overlay...
                 card.update({ 'disabled': false});              // ... re-enables card element...
                 $('#submit-button').attr('disabled', false);    // ... and submit button

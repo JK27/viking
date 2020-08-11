@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'memberships_payment/css/payment.css' %}">
 {% endblock %}
 
-{% block page_title %}Viking Gym - Checkout success!{% endblock %} 
+{% block page_title %}Viking Gym - Payment success!{% endblock %} 
 
 {% block page_header %}
     <div class="container header-container">
@@ -24,63 +24,63 @@
                 <hr>
                 <h2 class="logo-font mb-4">Thank You!</h2>
                 <hr>
-                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+                <p class="text-black">Your subscription information is below. A confirmation email will be sent to <strong>{{ subscription.email }}</strong>.</p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-lg-7">
-                <!-- ORDER CONFIRMATION WRAPPER -->
-                <div class="order-confirmation-wrapper p-2 border">
-                    <!-- ORDER INFO -->
+                <!-- SUBSCRIPTION CONFIRMATION WRAPPER -->
+                <div class="subscription-confirmation-wrapper p-2 border">
+                    <!-- SUBSCRIPTION INFO -->
                     <div class="row">
                         <div class="col">
-                            <small class="text-muted">Order Info:</small>
+                            <small class="text-muted">Subscription Info:</small>
                         </div>
                     </div>
-                    <!-- Order Number -->
+                    <!-- SUBSCRIPTION Number -->
                     <div class="row">
                         <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Order Number</p>
+                            <p class="mb-0 text-black font-weight-bold">Subscription Number</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.order_number }}</p>
+                            <p class="mb-0">{{ subscription.subscription_number }}</p>
                         </div>
                     </div>
-                    <!-- Order Date -->
+                    <!-- SUBSCRIPTION Date -->
                     <div class="row">
                         <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Order Date</p>
+                            <p class="mb-0 text-black font-weight-bold">subscription Date</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.date }}</p>
+                            <p class="mb-0">{{ subscription.date }}</p>
                         </div>
                     </div>
-                    <!-- ORDER DETAILS -->
+                    <!-- SUBSCRIPTION DETAILS -->
                     <div class="row">
                         <div class="col">
-                            <small class="text-muted">Order Details:</small>
+                            <small class="text-muted">Subscription Details:</small>
                         </div>
                     </div>
 
-                    {% for item in order.lineitems.all %}
+                    {% for item in subscription.all %}
                     <div class="row">
                         <!-- Item Details -->
                         <div class="col-12 col-md-4">
                             <p class="small mb-0 text-black font-weight-bold">
-                                {{ item.product.name }}{% if item.product_size %} - Size {{ item.product.size|upper }}{% endif %}
+                                {{ item.membership.name }}
                             </p>
                         </div>
                         <!-- Item price -->
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="small mb-0">{{ item.quantity }} @ £{{ item.product.price }} each</p>
+                            <p class="small mb-0">£{{ item.membership.price }} each</p>
                         </div>
                     </div>
                     {% endfor %}
-                    <!-- DELIVERY INFO -->
+                    <!-- PERSONAL INFO -->
                     <div class="row">
                         <div class="col">
-                            <small class="text-muted">Delivering To:</small>
+                            <small class="text-muted">Your details:</small>
                         </div>
                     </div>
                     <!-- Full name -->
@@ -89,7 +89,10 @@
                             <p class="mb-0 text-black font-weight-bold">Full Name</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.full_name }}</p>
+                            <p class="mb-0">{{ subscription.first_name }}</p>
+                        </div>
+                        <div class="col-12 col-md-8 text-md-right">
+                            <p class="mb-0">{{ subscription.last_name }}</p>
                         </div>
                     </div>
                     <!-- Address 1 -->
@@ -98,28 +101,28 @@
                             <p class="mb-0 text-black font-weight-bold">Address 1</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.street_address1 }}</p>
+                            <p class="mb-0">{{ subscription.street_address1 }}</p>
                         </div>
                     </div>
                     <!-- Address 2 -->
-                    {% if order.street_address2 %}
+                    {% if subscription.street_address2 %}
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Address 2</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.street_address1 }}</p>
+                            <p class="mb-0">{{ subscription.street_address1 }}</p>
                         </div>
                     </div>
                     {% endif %}
                     <!-- County -->
-                    {% if order.county %}
+                    {% if subscription.county %}
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">County</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.county }}</p>
+                            <p class="mb-0">{{ subscription.county }}</p>
                         </div>
                     </div>
                     {% endif %}
@@ -129,17 +132,17 @@
                             <p class="mb-0 text-black font-weight-bold">Town or City</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.town_or_city }}</p>
+                            <p class="mb-0">{{ subscription.town_or_city }}</p>
                         </div>
                     </div>
                     <!-- Postcode -->
-                    {% if order.postcode %}
+                    {% if subscription.postcode %}
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Postal Code</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.postcode }}</p>
+                            <p class="mb-0">{{ subscription.postcode }}</p>
                         </div>
                     </div>
                     {% endif %}
@@ -149,7 +152,7 @@
                             <p class="mb-0 text-black font-weight-bold">Country</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.country }}</p>
+                            <p class="mb-0">{{ subscription.country }}</p>
                         </div>
                     </div>
                     <!-- Phone Number -->
@@ -158,7 +161,7 @@
                             <p class="mb-0 text-black font-weight-bold">Phone Number</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.phone_number }}</p>
+                            <p class="mb-0">{{ subscription.phone_number }}</p>
                         </div>
                     </div>
                     <!-- BLILLING INFO -->
@@ -167,31 +170,13 @@
                             <small class="text-muted">Billing Info:</small>
                         </div>
                     </div>
-                    <!-- Order Total -->
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Order Total</p>
-                        </div>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.order_total }}</p>
-                        </div>
-                    </div>
-                    <!-- Delivery cost -->
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Delivery</p>
-                        </div>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.delivery_cost }}</p>
-                        </div>
-                    </div>
                     <!-- Grand Total -->
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Grand Total</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">£{{ order.grand_total }}</p>
+                            <p class="mb-0">£{{ subscription.total }}</p>
                         </div>
                     </div>
                 </div>

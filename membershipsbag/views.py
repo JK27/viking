@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
-from django.contrib import messages
+from django.shortcuts import render, redirect
 
 
 # ------------------------------------- VIEW MEMBERSHIPS BAG
@@ -22,19 +21,3 @@ def add_to_membershipsbag(request, item_id):
 
     request.session['membershipsbag'] = membershipsbag
     return redirect(redirect_url)
-
-
-# ------------------------------------- REMOVE MEMBERSHIP FROM BAG
-# def remove_from_membershipsbag(request, item_id):
-#     """ Removes membership from bag """
-
-#     try:
-#         membershipsbag = request.session.get('membershipsbag', {})
-#         membershipsbag.pop(item_id)
-
-#         request.session['membershipsbag'] = membershipsbag
-#         return HttpResponse(status=200)
-
-#     except Exception as e:
-#         messages.error(request, f'Error removing item: {e}')
-#         return HttpResponse(status=500)

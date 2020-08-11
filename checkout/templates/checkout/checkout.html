@@ -80,7 +80,7 @@
             <!-- CHECKOUT FORM -->
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Please fill out the form below to complete your order</p>
-                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                     {% csrf_token %}
                     <!-- Personal details fieldset -->
                     <fieldset class="rounded px-3 mb-5">

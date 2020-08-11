@@ -43,14 +43,14 @@ class Subscription(models.Model):
                                 null=False, default=0)
 
     # ------------------------------------------- Custom save method
-    def save(self, *args, **kwargs):
-        """
-        Override the original save method to set the subscription number
-        if it hasn't been set already.
-        """
-        if not self.subscription_number:
-            self.subscription_number = self.subscription_number()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     """
+    #     Override the original save method to set the subscription number
+    #     if it hasn't been set already.
+    #     """
+    #     if not self.subscription_number:
+    #         self.subscription_number = self.subscription_number()
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.subscription_number

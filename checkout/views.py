@@ -88,12 +88,14 @@ def checkout(request):
                             order_line_item.save()
                 # In unlikely event that product doesn't exist...
                 except Product.DoesNotExist:
-                    # ... show error message
+                    # ... show error message...
                     messages.error(request, (
                         "One of the products in your shopping bag wasn't found. \
                         Please call us for assistance!")
                     )
+                    # ... delete the order ...
                     order.delete()
+                    # ... and redirect user to shopping bag.
                     return redirect(reverse('view_shoppingbag'))
 
             request.session['save_info'] = 'save-info' in request.POST
@@ -113,6 +115,7 @@ def checkout(request):
 
         current_shoppingbag = shoppingbag_contents(request)
         grand_total = current_shoppingbag['grand_total']
+        # Stripe total needs to be in £pence
         stripe_total = round(grand_total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
