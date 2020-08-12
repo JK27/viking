@@ -35,7 +35,7 @@ var style = {
 var card = elements.create('card', {style: style});
 card.mount('#card-element');
 
-// Handle realtime validation errors on the card element
+// HANDLE REALTIME VALIDATION ERRORS ON CARD ELEMENT
 /*  Each time there is a change in the card element,
     will check for errors */
 card.addEventListener('change', function (event) {
@@ -60,8 +60,8 @@ var form = document.getElementById('checkout-form');
 form.addEventListener('submit', function(ev) {      // When user clicks submit button...
     ev.preventDefault();                            // ... prevents form from submitting...
     card.update({ 'disabled': true});               // ... instead disables card element...
-    $('#submit-button').attr('disabled', true);     // .. and button to avoid multiple submissions...
-    $('#checkout-form').fadeToggle(100);
+    $('#submit-button').attr('disabled', true);     // ... and button to avoid multiple submissions...
+    $('#checkout-form').fadeToggle(100);            // ... hides form...
     $('#loading-overlay').fadeToggle(100);          // ... and triggers loading overlay
 
     /* Capture form data and post it to cache_payment_data view */

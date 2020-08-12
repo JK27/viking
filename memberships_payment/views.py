@@ -1,13 +1,35 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
 from .forms import SubscriptionForm
-from .models import Subscription
+from .models import Subscription, SubscriptionLineItem
+
 from memberships.models import Membership
 from membershipsbag.contexts import membershipsbag_contents
 
 import stripe
+import json
+
+
+# --------------------------------------------------------- CACHE PAYMENT DATA
+@require_POST
+def cache_payment_data(request):
+    try:
+        # pid is PaymentIntent id
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'membershipsbag': json.dumps(request.session.get('membershipsbag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 # --------------------------------------------------------- PAYMENT
@@ -31,26 +53,28 @@ def payment(request):
             'county': request.POST['county'],
         }
         subscription_form = SubscriptionForm(form_data)
-
         if subscription_form.is_valid():
             subscription = subscription_form.save()
-            # for item_id, quantity in membershipsbag.items():
-            #     try:
-            #         subscription = Subscription(
-            #             quantity=quantity,
-            #         )
-            #         subscription.save()
-            #     # In unlikely event that membership doesn't exist...
-            #     except Membership.DoesNotExist:
-            #         # ... show error message
-            #         messages.error(request, (
-            #             "That membership wasn't found. \
-            #             Please call us for assistance!")
-            #         )
-            #         # ... delete the subscription ...
-            #         subscription.delete()
-            #         # ... and redirect user to memberships bag.
-            #         return redirect(reverse('view_membershipsbag'))
+            for item_id, quantity in membershipsbag.items():
+                try:
+                    membership = Membership.objects.get(id=item_id)
+                    subscription_line_item = SubscriptionLineItem(
+                        subscription=subscription,
+                        membership=membership,
+                        quantity=quantity,
+                    )
+                    subscription_line_item.save()
+                # In unlikely event that membership doesn't exist...
+                except Membership.DoesNotExist:
+                    # ... show error message
+                    messages.error(request, (
+                        "That membership wasn't found. \
+                        Please call us for assistance!")
+                    )
+                    # ... delete the subscription ...
+                    subscription.delete()
+                    # ... and redirect user to memberships bag.
+                    return redirect(reverse('view_membershipsbag'))
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('payment_success',
@@ -99,7 +123,7 @@ def payment_success(request, subscription_number):
     Handle successful payments
     """
 
-    save_info = request.session.get('save_info')
+    # save_info = request.session.get('save_info')
     subscription = get_object_or_404(Subscription,
                                      subscription_number=subscription_number)
 

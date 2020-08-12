@@ -50,7 +50,7 @@
                     <!-- SUBSCRIPTION Date -->
                     <div class="row">
                         <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">subscription Date</p>
+                            <p class="mb-0 text-black font-weight-bold">Subscription Date</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
                             <p class="mb-0">{{ subscription.date }}</p>
@@ -63,17 +63,17 @@
                         </div>
                     </div>
 
-                    {% for item in subscription.all %}
+                    {% for item in subscription.subscriptionlineitems.all %}
                     <div class="row">
                         <!-- Item Details -->
                         <div class="col-12 col-md-4">
-                            <p class="small mb-0 text-black font-weight-bold">
-                                {{ item.membership.name }}
+                            <p class="mb-0 text-black font-weight-bold">
+                                {{ item.membership.friendly_name }}
                             </p>
                         </div>
                         <!-- Item price -->
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="small mb-0">£{{ item.membership.price }} each</p>
+                            <p class="mb-0">£{{ item.membership.price }} each</p>
                         </div>
                     </div>
                     {% endfor %}
@@ -83,13 +83,20 @@
                             <small class="text-muted">Your details:</small>
                         </div>
                     </div>
-                    <!-- Full name -->
+                    <!-- First name -->
                     <div class="row">
                         <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Full Name</p>
+                            <p class="mb-0 text-black font-weight-bold">Fist Name</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
                             <p class="mb-0">{{ subscription.first_name }}</p>
+                        </div>
+
+                    </div>
+                    <!-- Last name -->
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <p class="mb-0 text-black font-weight-bold">Last Name</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
                             <p class="mb-0">{{ subscription.last_name }}</p>
@@ -176,7 +183,7 @@
                             <p class="mb-0 text-black font-weight-bold">Grand Total</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">£{{ subscription.total }}</p>
+                            <p class="mb-0">£{{ subscription.subscription_total }}</p>
                         </div>
                     </div>
                 </div>

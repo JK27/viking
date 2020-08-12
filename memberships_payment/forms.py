@@ -8,7 +8,8 @@ class SubscriptionForm(forms.ModelForm):
         model = Subscription
         fields = ('first_name', 'last_name', 'email', 'phone_number',
                   'street_address1', 'street_address2',
-                  'town_or_city', 'postcode', 'county', 'country',)
+                  'town_or_city', 'postcode', 'county', 'country',
+                  'dd_account_no', 'dd_sortcode',)
 
     # --- Custom __init__ method
     def __init__(self, *args, **kwargs):
@@ -27,7 +28,9 @@ class SubscriptionForm(forms.ModelForm):
             'street_address2': 'Street Address 2',
             'town_or_city': 'Town or City',
             'postcode': 'Postcode',
-            'county': 'County or Council',
+            'county': 'County, Council or State',
+            'dd_account_no': '12345678',
+            'dd_sortcode': '00-00-00',
         }
 
         # Sets autofocus to first name field

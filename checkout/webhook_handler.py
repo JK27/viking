@@ -25,7 +25,7 @@ class StripeWH_Handler:
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             # Context
-            {'order': order}    
+            {'order': order}
         )
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
@@ -57,7 +57,7 @@ class StripeWH_Handler:
         """
         intent = event.data.object
         pid = intent.id
-        bag = intent.metadata.bag
+        shoppingbag = intent.metadata.shoppingbag
         save_info = intent.metadata.save_info
 
         billing_details = intent.charges.data[0].billing_details
@@ -108,7 +108,7 @@ class StripeWH_Handler:
                     street_address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
                     grand_total=grand_total,
-                    original_bag=bag,
+                    original_shoppingbag=shoppingbag,
                     stripe_pid=pid,
                 )
                 # If order is found it will break out of the loop
@@ -141,10 +141,10 @@ class StripeWH_Handler:
                     street_address1=shipping_details.address.line1,
                     street_address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
-                    original_bag=bag,
+                    original_shoppingbag=shoppingbag,
                     stripe_pid=pid,
                 )
-                for item_id, item_data in json.loads(bag).items():
+                for item_id, item_data in json.loads(shoppingbag).items():
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(

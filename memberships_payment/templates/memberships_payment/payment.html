@@ -3,7 +3,7 @@
 {% load bag_tools %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'memberships_payment/css/payment.css' %}">
 {% endblock %}
 
 {% block page_title %}Viking Gym - Payment{% endblock %} 
@@ -94,6 +94,7 @@
                         {{ subscription_form.email | as_crispy_field }}
                         {{ subscription_form.phone_number | as_crispy_field }}
                     </fieldset>
+                    <!-- Address fieldset -->
                     <fieldset class="rounded px-3 mb-5">
                         <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Address</p></legend>
                         {{ subscription_form.street_address1 | as_crispy_field }}
@@ -117,6 +118,12 @@
                                 </label>
 							{% endif %}
 						</div>
+                    </fieldset>
+                    <!-- Direct Debit fieldset -->
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Direct Debit details</p></legend>
+                        {{ subscription_form.dd_account_no | as_crispy_field }}
+                        {{ subscription_form.dd_sortcode | as_crispy_field }}
                     </fieldset>
                     <!-- Payment fieldset -->
                     <fieldset class="px-3">
