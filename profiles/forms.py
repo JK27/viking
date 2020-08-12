@@ -6,6 +6,7 @@ from .models import UserProfile
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
+        # Render all fields except user
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
@@ -15,19 +16,22 @@ class UserProfileForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'default_phone_number': 'Phone Number',
-            'default_postcode': 'Postal Code',
-            'default_town_or_city': 'Town or City',
-            'default_street_address1': 'Street Address 1',
-            'default_street_address2': 'Street Address 2',
-            'default_county': 'County, State or Locality',
+            'profile_first_name': 'First Name',
+            'profile_last_name': 'Last Name',
+            'profile_email': 'Email',
+            'profile_phone_number': 'Phone Number',
+            'profile_postcode': 'Postal Code',
+            'profile_town_or_city': 'Town or City',
+            'profile_street_address1': 'Street Address 1',
+            'profile_street_address2': 'Street Address 2',
+            'profile_county': 'County, State or Locality',
         }
 
         # Sets autofocus to phone no field
-        self.fields['default_phone_number'].widget.attrs['autofocus'] = True
+        self.fields['profile_phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            # If field is not default_country ...
-            if field != 'default_country':
+            # If field is not profile_country ...
+            if field != 'profile_country':
                 # ... and if field is required...
                 if self.fields[field].required:
                     # ... adds a star to placeholder

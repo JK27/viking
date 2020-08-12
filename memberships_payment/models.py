@@ -1,9 +1,10 @@
 from django.db import models
 from django.db.models import Sum
 
-from memberships.models import Membership
-
 from django_countries.fields import CountryField
+
+from memberships.models import Membership
+from profiles.models import UserProfile
 
 
 # --------------------------------------------------------- SUBSCRIPTION
@@ -22,6 +23,9 @@ class Subscription(models.Model):
     subscription_number = models.CharField(max_length=6,
                                            default=create_subscription_number,
                                            null=False, editable=False)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,  # Allows anonymous users to purchase
+                                     related_name='subscriptions')
     first_name = models.CharField(max_length=50, null=False, blank=False,
                                   default="")
     last_name = models.CharField(max_length=50, null=False, blank=False,

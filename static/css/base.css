@@ -58,7 +58,7 @@ a.category-badge > span.badge:hover {
     color: #ffffff !important;
 }
 
-/* ------------------------------------ Allauth forms */
+/* ------------------------------------ ALLAUTH FORMS */
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */
     color: #6c757d; /* text-secondary */
