@@ -45,6 +45,12 @@ class Subscription(models.Model):
                                              null=False, default=0)
     dd_account_no = models.CharField(max_length=8, null=False, blank=False)
     dd_sortcode = models.CharField(max_length=8, null=False, blank=False)
+    # Original bag that created the order
+    original_membershipsbag = models.TextField(null=False, blank=False,
+                                               default='')
+    # PaymentIntent id
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False,
+                                  default='')
 
     # ------------------------------------------- Custom save method
     def save(self, *args, **kwargs):

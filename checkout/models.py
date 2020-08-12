@@ -28,8 +28,10 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)  # Sets order date and time
     grand_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
-    original_bag = models.TextField(null=False, blank=False,
-                                    default='')  # Bag that created order
+    # Original bag that created the order
+    original_shoppingbag = models.TextField(null=False, blank=False,
+                                            default='')
+    # PaymentIntent id
     stripe_pid = models.CharField(max_length=254, null=False, blank=False,
                                   default='')
 

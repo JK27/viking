@@ -61,13 +61,12 @@ class StripeWH_Handler:
         save_info = intent.metadata.save_info
 
         billing_details = intent.charges.data[0].billing_details
-        shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)
 
         # Clean data in the shipping details
-        for field, value in shipping_details.address.items():
+        for field, value in billing_details.address.items():
             if value == "":                   # Replace empty fields with None
-                shipping_details.address[field] = None
+                billing_details.address[field] = None
 
         # Update profile information if save_info was checked
         profile = None      # Allows anonymous users to check out
@@ -79,13 +78,13 @@ class StripeWH_Handler:
             # ... and if save info was selected...
             if save_info:
                 # ... add info to their profile
-                profile.default_phone_number = shipping_details.phone,
-                profile.default_country = shipping_details.address.country,
-                profile.default_postcode = shipping_details.address.postal_code,
-                profile.default_town_or_city = shipping_details.address.city,
-                profile.default_street_address1 = shipping_details.address.line1,
-                profile.default_street_address2 = shipping_details.address.line2,
-                profile.default_county = shipping_details.address.state,
+                profile.default_phone_number = billing_details.phone,
+                profile.default_country = billing_details.address.country,
+                profile.default_postcode = billing_details.address.postal_code,
+                profile.default_town_or_city = billing_details.address.city,
+                profile.default_street_address1 = billing_details.address.line1,
+                profile.default_street_address2 = billing_details.address.line2,
+                profile.default_county = billing_details.address.state,
                 profile.save()
 
         order_exists = False
@@ -98,15 +97,15 @@ class StripeWH_Handler:
             try:
                 order = Order.objects.get(
                     # looks up field to make exact match but case insensitive
-                    full_name__iexact=shipping_details.name,
+                    full_name__iexact=billing_details.name,
                     email__iexact=billing_details.email,
-                    phone_number__iexact=shipping_details.phone,
-                    country__iexact=shipping_details.address.country,
-                    postcode__iexact=shipping_details.address.postal_code,
-                    town_or_city__iexact=shipping_details.address.city,
-                    street_address1__iexact=shipping_details.address.line1,
-                    street_address2__iexact=shipping_details.address.line2,
-                    county__iexact=shipping_details.address.state,
+                    phone_number__iexact=billing_details.phone,
+                    country__iexact=billing_details.address.country,
+                    postcode__iexact=billing_details.address.postal_code,
+                    town_or_city__iexact=billing_details.address.city,
+                    street_address1__iexact=billing_details.address.line1,
+                    street_address2__iexact=billing_details.address.line2,
+                    county__iexact=billing_details.address.state,
                     grand_total=grand_total,
                     original_shoppingbag=shoppingbag,
                     stripe_pid=pid,
@@ -131,16 +130,16 @@ class StripeWH_Handler:
             # ... it will create the order
             try:
                 order = Order.objects.create(
-                    full_name=shipping_details.name,
+                    full_name=billing_details.name,
                     user_profile=profile,
                     email=billing_details.email,
-                    phone_number=shipping_details.phone,
-                    country=shipping_details.address.country,
-                    postcode=shipping_details.address.postal_code,
-                    town_or_city=shipping_details.address.city,
-                    street_address1=shipping_details.address.line1,
-                    street_address2=shipping_details.address.line2,
-                    county=shipping_details.address.state,
+                    phone_number=billing_details.phone,
+                    country=billing_details.address.country,
+                    postcode=billing_details.address.postal_code,
+                    town_or_city=billing_details.address.city,
+                    street_address1=billing_details.address.line1,
+                    street_address2=billing_details.address.line2,
+                    county=billing_details.address.state,
                     original_shoppingbag=shoppingbag,
                     stripe_pid=pid,
                 )

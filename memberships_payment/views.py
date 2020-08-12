@@ -54,7 +54,12 @@ def payment(request):
         }
         subscription_form = SubscriptionForm(form_data)
         if subscription_form.is_valid():
-            subscription = subscription_form.save()
+            # Commit=False prevents multiple save events
+            subscription = subscription_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            subscription.stripe_pid = pid
+            subscription.original_membershipsbag = json.dumps(membershipsbag)
+            subscription.save()
             for item_id, quantity in membershipsbag.items():
                 try:
                     membership = Membership.objects.get(id=item_id)
