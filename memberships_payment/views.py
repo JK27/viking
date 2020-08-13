@@ -7,6 +7,8 @@ from .forms import SubscriptionForm
 from .models import Subscription, SubscriptionLineItem
 
 from memberships.models import Membership
+from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
 from membershipsbag.contexts import membershipsbag_contents
 
 import stripe
@@ -128,9 +130,34 @@ def payment_success(request, subscription_number):
     Handle successful payments
     """
 
-    # save_info = request.session.get('save_info')
+    save_info = request.session.get('save_info')
     subscription = get_object_or_404(Subscription,
                                      subscription_number=subscription_number)
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        # Attach the user's profile to the subscription
+        subscription.user_profile = profile
+        subscription.save()
+
+        if save_info:
+            profile_data = {
+                'profile_first_name': subscription.first_name,
+                'profile_last_name': subscription.last_name,
+                'profile_email': subscription.email,
+                'profile_phone_number': subscription.phone_number,
+                'profile_country': subscription.country,
+                'profile_postcode': subscription.postcode,
+                'profile_town_or_city': subscription.town_or_city,
+                'profile_street_address1': subscription.street_address1,
+                'profile_street_address2': subscription.street_address2,
+                'profile_county': subscription.county,
+            }
+            user_profile_form = UserProfileForm(profile_data,
+                                                instance=profile)
+            # ... and if form is valid, then save the form...
+            if user_profile_form.is_valid():
+                user_profile_form.save()
 
     messages.success(request, f'Your membership has been successfully processed! \
         Your membership number is {subscription_number}. A confirmation \

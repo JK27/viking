@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block page_title %}Viking Gym - Member Profile{% endblock %}
+
 <!-- Page header -->
 {% block page_header %}
     <div class="container header-container">
@@ -21,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">{{ profile }}</h2>
+                <h2 class="logo-font mb-4">{{ user_profile.profile_first_name }}</h2>
                 <hr>
             </div>
         </div>
