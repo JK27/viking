@@ -1,0 +1,18 @@
+Hello {{ order.full_name }}!
+
+This is a confirmation of your membership at Viking Gym. Your membership information is below:
+
+Subscription Number: {{ subscription.subscription_number }}
+Joining Date: {{ subscription.date }}
+
+Monthly Total: £{{ subscription.subscription_total }}
+
+We've got your phone number on file as {{ subscription.phone_number }}.
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for joining in!
+
+Sincerely,
+
+Viking Gym

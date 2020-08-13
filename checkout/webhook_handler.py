@@ -63,7 +63,7 @@ class StripeWH_Handler:
         billing_details = intent.charges.data[0].billing_details
         grand_total = round(intent.charges.data[0].amount / 100, 2)
 
-        # Clean data in the shipping details
+        # Clean data in the billing details
         for field, value in billing_details.address.items():
             if value == "":                   # Replace empty fields with None
                 billing_details.address[field] = None
@@ -78,13 +78,13 @@ class StripeWH_Handler:
             # ... and if save info was selected...
             if save_info:
                 # ... add info to their profile
-                profile.default_phone_number = billing_details.phone,
-                profile.default_country = billing_details.address.country,
-                profile.default_postcode = billing_details.address.postal_code,
-                profile.default_town_or_city = billing_details.address.city,
-                profile.default_street_address1 = billing_details.address.line1,
-                profile.default_street_address2 = billing_details.address.line2,
-                profile.default_county = billing_details.address.state,
+                profile.profile_phone_number = billing_details.phone,
+                profile.profile_country = billing_details.address.country,
+                profile.profile_postcode = billing_details.address.postal_code,
+                profile.profile_town_or_city = billing_details.address.city,
+                profile.profile_street_address1 = billing_details.address.line1,
+                profile.profile_street_address2 = billing_details.address.line2,
+                profile.profile_county = billing_details.address.state,
                 profile.save()
 
         order_exists = False
