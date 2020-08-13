@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (render, redirect, reverse,
+                              get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -53,6 +54,8 @@ def payment(request):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
+            'dd_account_no': request.POST['dd_account_no'],
+            'dd_sortcode': request.POST['dd_sortcode'],
         }
         subscription_form = SubscriptionForm(form_data)
         if subscription_form.is_valid():

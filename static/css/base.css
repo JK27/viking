@@ -9,6 +9,10 @@ body {
     /* position: relative; */
 }
 
+.mt-auto {
+    margin-top: auto!important;
+}
+
 /* ------------------------------------ TOP MENU */
 .brand-font {
     text-transform: uppercase;

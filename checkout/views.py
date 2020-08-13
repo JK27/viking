@@ -7,8 +7,6 @@ from .forms import OrderForm
 from .models import OrderLineItem, Order
 
 from shop.models import Product
-from profiles.models import UserProfile
-
 from shoppingbag.contexts import shoppingbag_contents
 
 import stripe

@@ -19,5 +19,4 @@ def update_on_delete(sender, instance, **kwargs):
     """
     Update subscription total on lineitem delete
     """
-    print('delete signal received')
     instance.subscription.update_total()
