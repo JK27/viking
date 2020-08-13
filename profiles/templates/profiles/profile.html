@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">{{ user_profile.profile_first_name }}</h2>
+                <h2 class="logo-font mb-4"></h2>
                 <hr>
             </div>
         </div>
@@ -42,31 +42,23 @@
                         <thead>
                             <tr>
                                 <th>Subscription Number</th>
+                                <th>Membership</th>
                                 <th>Joining date</th>
-                                <th>Description</th>
-                                <th>Order Total</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for subscription in subscriptions %}
                                 <tr>
+                                    <td>{{ subscription.subscription_number }}
+                                    </td>
                                     <td>
-                                        <a href="#"
-                                        title="{{ subscription.subscription_number }}">
-                                            {{ subscription.subscription_number }}
-                                        </a>
+                                        {% for item in subscription.subscriptionlineitems.all %}
+                                            {{ item.membership.friendly_name }}
+                                        {% endfor %}
                                     </td>
                                     <td>{{ subscription.date }}</td>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            {% for item in subscription.subscriptionlineitems.all %}
-                                                <li class="small">
-                                                    {{ item.membership.friendly_name }}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </td>
-                                    <td>£{{ subscription.subscription_total }}</td>
+                                    <td>£{{ subscription.subscription_total }}<small>/month</small></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

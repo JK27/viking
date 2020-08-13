@@ -111,7 +111,24 @@ def payment(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        subscription_form = SubscriptionForm()
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                subscription_form = SubscriptionForm(initial={
+                    'first_name': profile.user.get_first_name(),
+                    'last_name': profile.user.get_last_name(),
+                    'email': profile.user.get_email(),
+                    'phone_number': profile.user.get_phone_number(),
+                    'street_address1': profile.user.get_street_address1(),
+                    'street_address2': profile.user.get_street_address2(),
+                    'town_or_city': profile.user.get_town_or_city(),
+                    'postcode': profile.user.get_postcode(),
+                    'county': profile.user.get_county(),
+                })
+            except UserProfile.DoesNotExist:
+                subscription_form = SubscriptionForm()
+        else:
+            subscription_form = SubscriptionForm()
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
