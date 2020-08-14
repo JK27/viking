@@ -3,19 +3,19 @@
     <ul class="nav nav-pills w-auto mx-auto">
         <!-- All memberships -->
         <li class="nav-item dropdown">
-            <a class="nav-link" id="all-memberships-link"  href="{% url 'memberships' %}?category=full,off-peak,weekdays" role="button" aria-haspopup="true" aria-expanded="false">All memberships</a>
+            <a class="nav-link category-link" id="all-memberships-link"  href="{% url 'memberships' %}?category=full,off-peak,weekdays" role="button" aria-haspopup="true" aria-expanded="false">All memberships</a>
         </li>
         <!-- Full memberships -->
         <li class="nav-item dropdown">
-            <a class="nav-link" id="full-memberships-link"  href="{% url 'memberships' %}?category=full" role="button" aria-haspopup="true" aria-expanded="false">Full memberships</a>
+            <a class="nav-link category-link" id="full-memberships-link"  href="{% url 'memberships' %}?category=full" role="button" aria-haspopup="true" aria-expanded="false">Full memberships</a>
         </li>
         <!-- Off-peak memberships -->
         <li class="nav-item dropdown">
-            <a class="nav-link" id="off-peak-memberships-link"  href="{% url 'memberships' %}?category=off-peak" role="button" aria-haspopup="true" aria-expanded="false">Off-peak memberships</a>
+            <a class="nav-link category-link" id="off-peak-memberships-link"  href="{% url 'memberships' %}?category=off-peak" role="button" aria-haspopup="true" aria-expanded="false">Off-peak memberships</a>
         </li>
         <!-- Weekdays memberships -->
         <li class="nav-item dropdown">
-            <a class="nav-link" id="weekdays-memberships-link"  href="{% url 'memberships' %}?category=weekdays" role="button" aria-haspopup="true" aria-expanded="false">Weekdays memberships</a>
+            <a class="nav-link category-link" id="weekdays-memberships-link"  href="{% url 'memberships' %}?category=weekdays" role="button" aria-haspopup="true" aria-expanded="false">Weekdays memberships</a>
         </li>
     </ul>
 </div>

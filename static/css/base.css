@@ -4,13 +4,12 @@ html {
 
 body {
     font-family: 'Oswald', sans-serif;
-    height: calc(100vh - 100px);
-    /* min-height: 100vh; */
-    /* position: relative; */
+    height: calc(100vh - 70px);
+    color: #293949;
 }
 
-.mt-auto {
-    margin-top: auto!important;
+.logo-font {
+    text-align: center;
 }
 
 /* ------------------------------------ TOP MENU */
@@ -20,25 +19,57 @@ body {
 
 .navbar-brand {
     width: fit-content;
+    font-size: 1.75rem;
 }
 
+.topmenu-list {
+    font-size: 1.25rem;
+}
+
+#shopdropdown-menu a,
 .navbar-brand,
 .navbar-link,
-.nav-link {
+.nav-link,
+.social-link {
     color: #40c1a6;
 }
+
+.navbar-brand:hover,
+.social-link:hover {
+    text-decoration: none;
+    color: #40c1a6;
+}
+
+#shopdropdown-menu a:hover,
+.navbar-link:hover,
+.nav-link:hover {
+    text-decoration: none;
+    color: #293949;
+    background-color: #40c1a6;
+}
+
 
 .bg-viking-dark {
     background-color: #293949;
 }
 
-#shop-nav {
-    background-color: aquamarine;
+#shopdropdown-menu {
+    background-color: #293949;
+    margin: 0;
+    border: 0;
 }
 
-#all-products-link:active,
-.show > #all-products-link {
-    background-color: #283444 !important;
+#search-bar-icon {
+    color: #40c1a6;
+}
+
+.social-icon {
+    color: #40c1a6;
+}
+
+#search-bar,
+#search-bar-btn {
+    border-color: #40c1a6 !important;
 }
 
 /* ------------------------------------ CAROUSEL */
@@ -57,12 +88,51 @@ body {
     z-index: -1;
 }
 
+/* ------------------------------------ SHOP/MEMBERSHIPS NAV */
+.category-link {
+    color: #293949;
+    font-size: 1.25rem;
+}
+
+.category-dropdown-menu {
+    background-color: #40c1a6;
+    margin-top: 0;
+    border: 0;
+}
+
+.category-dropdown:active,
+.show > .category-link {
+    background-color: #40c1a6 !important;
+    color: #293949 !important;
+}
+
+.category-dropdown-menu a:hover {
+    background-color: #293949;
+    color: #40c1a6;
+}
+
+a.category-badge span{
+    color: #293949;
+    font-size: 1.25rem;
+}
+
 a.category-badge > span.badge:hover {
-    background: #212529 !important;
-    color: #ffffff !important;
+    background: #293949 !important;
+    color: #40c1a6 !important;
+}
+
+.border-dark {
+    border-color: red !important;
 }
 
 /* ------------------------------------ ALLAUTH FORMS */
+.allauth-form-inner-content {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */
     color: #6c757d; /* text-secondary */
@@ -228,6 +298,10 @@ a.category-badge > span.badge:hover {
     overflow-y: auto;
 }
 
+/* ------------------------------------ FOOTER*/
+footer {
+    color: #40c1a6;
+}
 
 /* ------------------------------------ MEDIA QUERIES */
 /* Slightly larger container on xl screens */

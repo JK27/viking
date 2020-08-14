@@ -29,7 +29,7 @@
                 <h2 class="brand-font">Shop</h2>
                 {% for c in current_categories %}
                     <a class="category-badge text-decoration-none" href="{% url 'shop' %}?category={{ c.name }}">
-                        <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+                        <span class="p-2 mt-2 badge badge-white text-black border">{{ c.friendly_name }}</span>
                     </a>
                 {% endfor %}
                 <hr class="w-50 mb-1">
@@ -87,13 +87,13 @@
                                 </a>
                                 {% endif %}
                                 <!-- Product name -->
-                                <div class="card-body pb-0">
+                                <div class="card-body">
                                     <p class="mb-0 text-left font-weight-bold">{{ product.name }}</p>
                                 </div>
                                 <!-- Card footer -->
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
                                             {% if product.category %}
                                             <p class="small mt-1 mb-0">
@@ -102,12 +102,10 @@
                                                 </a>
                                             </p>
                                             {% endif %}
-                                            {% if request.user.is_superuser %}
-                                                <small class="ml-3">
-                                                    <a href="#">Edit</a> | 
-                                                    <a class="text-danger" href="#">Delete</a>
-                                                </small>
-                                            {% endif %}
+                                        </div>
+                                        <div class="col-6">
+                                            <!-- Add to bag button -->
+                                            <input type="submit" class="btn btn-black rounded-0 text-uppercase" value="Add to Bag">
                                         </div>
                                     </div>
                                 </div>
