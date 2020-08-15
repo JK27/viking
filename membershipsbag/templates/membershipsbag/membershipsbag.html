@@ -12,7 +12,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="overlay"></div>
     <div class="container mb-2">
         <!-- Memberships bag heading -->
         <div class="row">
@@ -28,7 +27,7 @@
                 {% if membershipsbag_items %}
                     <div class="table-responsive rounded d-none d-md-block">
                         <table class="table table-sm table-borderless">
-                            <thead>
+                            <thead class="bag-thead">
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Membership Details</th>
@@ -54,21 +53,21 @@
                             <!-- Bag total -->
                             <tr>
                                 <td colspan="5" class="pt-5 text-right">
-                                    <h6><strong>Total payment now: £{{ membership_total|floatformat:2 }}</strong></h6>
+                                    <h4><strong>Total payment now: £{{ membership_total|floatformat:2 }}</strong></h4>
                                     <small>This payment is for the first month of your membership.</small>
                                 </td>
                             </tr>
                             <!-- Checkout buttons -->
                             <tr>
                                 <td colspan="5" class="text-right">
-                                    <a href="{% url 'memberships' %}" class="btn btn-outline-dark back-btn">
+                                    <a href="{% url 'memberships' %}" class="btn btn-outline-dark">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
-                                        <span class="text-uppercase back-btn">Back to memberships list</span>
+                                        <span class="text-uppercase">Back to memberships list</span>
                                         </a>
                                         <a href="{% url 'payment' %}" class="btn btn-cyan">
-                                        <span class="text-uppercase">Secure Checkout</span>
+                                        <span class="text-uppercase">Go to payment</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
                                         </span>

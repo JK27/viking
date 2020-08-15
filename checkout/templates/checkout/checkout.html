@@ -18,7 +18,6 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -31,13 +30,13 @@
         <div class="row">
             <!-- ORDER SUMMARY -->
             <div class="col-12 col-lg-6 order-lg-last mb-5">
-                <p class="text-muted">Order Summary ({{ product_count }})</p>
+                <p class="bag-thead">Order Summary ({{ product_count }})</p>
                 <div class="row">
                     <div class="col-7 offset-2">
-                        <p class="mb-1 mt-0 text-muted">Item</p>
+                        <p class="mb-1 mt-0 bag-thead">Item</p>
                     </div>
                     <div class="col-3 text-right">
-                        <p class="mb-1 mt-0 text-muted">Subtotal</p>
+                        <p class="mb-1 mt-0 bag-thead">Subtotal</p>
                     </div>
                 </div>
                 <hr class="my-0">
@@ -70,27 +69,27 @@
                 <!-- Order totals -->
                 <div class="row text-right">
                     <div class="col-7 offset-2">
-                        <p class="my-0"><strong>Grand Total:</strong></p>
+                        <h5 class="my-0"><strong>Grand Total:</strong></h5>
                     </div>
                     <div class="col-3">
-                        <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
+                        <h5 class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></h5>
                     </div>
                 </div>
             </div>
             <!-- CHECKOUT FORM -->
             <div class="col-12 col-lg-6">
-                <p class="text-muted">Please fill out the form below to complete your order</p>
+                <p class="bag-thead pl-3">Please fill out the form below to complete your order</p>
                 <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                     {% csrf_token %}
                     <!-- Personal details fieldset -->
                     <fieldset class="rounded px-3 mb-5">
-                        <legend class="fieldset-label small px-2 w-auto">Details</legend>
+                        <legend class="fieldset-label px-2 w-auto">Details</legend>
                         {{ order_form.full_name | as_crispy_field }}
                         {{ order_form.email | as_crispy_field }}
                     </fieldset>
                     <!-- Delivery details fieldset -->
                     <fieldset class="rounded px-3 mb-5">
-                        <legend class="fieldset-label small px-2 w-auto">Delivery</legend>
+                        <legend class="fieldset-label px-2 w-auto">Delivery</legend>
                         {{ order_form.phone_number | as_crispy_field }}
                         {{ order_form.street_address1 | as_crispy_field }}
                         {{ order_form.street_address2 | as_crispy_field }}
@@ -115,7 +114,7 @@
                     </fieldset>
                     <!-- Payment fieldset -->
                     <fieldset class="px-3">
-                        <legend class="fieldset-label small px-2 w-auto">Payment</legend>
+                        <legend class="fieldset-label px-2 w-auto">Payment</legend>
                         <!-- A Stripe card element will go here -->
                         <div class="mb-3" id="card-element"></div>
                         <!-- Used to display form errors -->
@@ -135,7 +134,7 @@
 						<button id="submit-button" class="btn btn-cyan">
 							<span class="font-weight-bold">Complete Order</span>
 							<span class="icon">
-								<i class="fas fa-lock"></i>
+								<i class="fas fa-check"></i>
 							</span>
 						</button>
                         <!-- Card charge notification -->

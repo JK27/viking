@@ -76,16 +76,16 @@ body {
     height: 32rem;
 }
 
-/* ------------------------------------ OVERLAY */
-.overlay {
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: #ffffff;
-    z-index: -1;
+
+/* ------------------------------------ FOOTER*/
+footer {
+    color: #40c1a6;
 }
+
+.social-icon {
+    color: #40c1a6;
+}
+
 
 /* ------------------------------------ SHOP/MEMBERSHIPS NAV */
 .category-link {
@@ -145,68 +145,6 @@ a.category-badge > span.badge:hover {
     color: #40c1a6 !important;
 }
 
-/* ------------------------------------ ALLAUTH FORMS */
-.allauth-form-inner-content {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
-}
-
-.allauth-form-inner-content p {
-    margin-top: 1.5rem; /* mt-4 */
-    color: #6c757d; /* text-secondary */
-} 
-
-.allauth-form-inner-content input {
-    border-color: #000000;
-    border-radius: 0;
-}
-
-/* Hide all labels execpt remember me checkbox on login page */
-.allauth-form-inner-content label:not([for='id_remember']){
-    display: none;
-}
-
-.allauth-form-inner-content input::placeholder {
-    color: #aab7c4;
-}
-
-.allauth-form-inner-content button,
-.allauth-form-inner-content input[type='submit'] {
-	/* btn */
-	display: inline-block;
-    font-weight: 400;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #000;
-    border: 1px solid #000;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0;
-
-    /* standard bootstrap btn transitions */
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
-.allauth-form-inner-content button:hover,
-.allauth-form-inner-content input[type='submit']:hover {	
-	color: #fff;
-    background-color: #222;
-    border-color: #222;
-}
-
-.allauth-form-inner-content a {
-	color: #17a2b8; /* text-info */
-}
-
-
 /* ------------------------------------ ICONS */
 
 .icon {
@@ -233,6 +171,9 @@ a.category-badge > span.badge:hover {
 .update-link,
 .remove-item {
     cursor: pointer;
+}
+
+.fa-arrow-up {
     color: #40c1a6;
 }
 
@@ -251,7 +192,7 @@ a.category-badge > span.badge:hover {
     border: 3px solid #293949;
 }
 
-/* Dark buttons */
+/* ---------------- Dark buttons */
 .btn-outline-dark {
     background: #293949;
     color: #40c1a6 !important;
@@ -264,6 +205,25 @@ a.category-badge > span.badge:hover {
     background: #293949;
     color: #40c1a6 !important;
     border: 3px solid #40c1a6;
+}
+
+/* ------------------------------------ QUANTITY INPUT */
+.qty_input {
+    border: 4px solid #293949; 
+}
+
+.update-link {
+    color: #40c1a6 !important;
+}
+
+/* ------------------------------------ SHOPPING/MEMBERSHIPS BAG */
+.bag-thead {
+    font-size: 1.25rem;
+}
+
+/* ------------------------------------ CHECKOUT/PAYMENT FORMS */
+legend {
+    font-size: 1rem;
 }
 
 /* ------------------------------------ MESSAGE CONTAINER */
@@ -334,15 +294,67 @@ a.category-badge > span.badge:hover {
     overflow-y: auto;
 }
 
-/* ------------------------------------ FOOTER*/
-footer {
-    color: #40c1a6;
+
+/* ------------------------------------ ALLAUTH FORMS */
+.allauth-form-inner-content {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 }
 
-.social-icon {
-    color: #40c1a6;
+.allauth-form-inner-content p {
+    margin-top: 1.5rem; /* mt-4 */
+    color: #6c757d; /* text-secondary */
+} 
+
+.allauth-form-inner-content input {
+    border-color: #000000;
+    border-radius: 0;
 }
 
+/* Hide all labels execpt remember me checkbox on login page */
+.allauth-form-inner-content label:not([for='id_remember']){
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+	/* btn */
+	display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #000;
+    border: 1px solid #000;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {	
+	color: #fff;
+    background-color: #222;
+    border-color: #222;
+}
+
+.allauth-form-inner-content a {
+	color: #17a2b8; /* text-info */
+}
 
 /* ------------------------------------ MEDIA QUERIES */
 /* Slightly larger container on xl screens */

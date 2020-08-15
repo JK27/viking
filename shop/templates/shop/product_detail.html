@@ -47,7 +47,7 @@
                 <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
                 {% if product.category %}
                     <p class="small mt-1 mb-0">
-                        <a class="text-muted" href="{% url 'shop' %}?category={{ product.category.name }}">
+                        <a class="text-muted card-category-link" href="{% url 'shop' %}?category={{ product.category.name }}">
                             <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                         </a>
                     </p>
@@ -81,7 +81,7 @@
                                     <!-- Minus button -->
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <button class="decrement-qty btn btn-cyan" 
+                                            <button class="decrement-qty btn btn-outline-dark" 
                                                 data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
                                                 <span class="icon">
                                                     <i class="fas fa-minus"></i>
@@ -89,10 +89,10 @@
                                             </button>
                                         </div>
                                         <!-- Quantity input field -->
-                                        <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="10" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                        <input class="form-control qty_input h-100" type="number" name="quantity" value="1" min="1" max="10" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                         <!-- Plus button -->
                                         <div class="input-group-append">
-                                            <button class="increment-qty btn btn-cyan"
+                                            <button class="increment-qty btn btn-outline-dark"
                                                 data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
                                                 <span class="icon">
                                                     <i class="fas fa-plus"></i>

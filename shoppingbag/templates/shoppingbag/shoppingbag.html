@@ -13,7 +13,6 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
     <div class="container mb-2">
         <!-- Shopping bag heading -->
         <div class="row">
@@ -31,7 +30,7 @@
                         <!-- Bag total -->
                         <div class="row">
                             <div class="col">
-                                {% include "shoppingbag/shoppingbag_total.html" %}
+                                <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
                             </div>
                         </div>
                         <!-- Checkout buttons -->
@@ -74,7 +73,7 @@
                     <!-- SHOPPING BAG TABLE -->
                     <div class="table-responsive rounded d-none d-md-block">
                         <table class="table table-sm table-borderless">
-                            <thead>
+                            <thead class="bag-thead">
                                 <tr>
                                     <th scope="col">Product Info</th>
                                     <th scope="col"></th>
@@ -104,14 +103,14 @@
                                     </td>
                                     <!-- Subtotal -->
                                     <td class="py-3">
-                                        <p class="my-0"><strong>£{{ item.product.price | calc_subtotal:item.quantity }}</strong></p>
+                                        <p class="my-0 text-right"><strong>£{{ item.product.price | calc_subtotal:item.quantity }}</strong></p>
                                     </td>
                                 </tr>
                             {% endfor %}
                             <!-- Bag total -->
                             <tr>
-                                <td colspan="5" class="pt-5 text-right">
-                                    {% include "shoppingbag/shoppingbag_total.html" %}
+                                <td colspan="5" class="pt-3 text-right">
+                                    <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
                                 </td>
                             </tr>
                             <!-- Checkout buttons -->
