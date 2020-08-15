@@ -13,30 +13,37 @@ body {
 }
 
 /* ------------------------------------ TOP MENU */
+
+.bg-viking-dark {
+    background-color: #293949;
+}
+
 .brand-font {
     text-transform: uppercase;
 }
 
+/* ---------------- Navbar */
 .navbar-brand {
     width: fit-content;
     font-size: 1.75rem;
+}
+
+.navbar-brand:hover,
+.social-link:hover {
+    text-decoration: none;
+    color: #40c1a6;
 }
 
 .topmenu-list {
     font-size: 1.25rem;
 }
 
+/* ---------------- Shop dropdown menu */
 #shopdropdown-menu a,
 .navbar-brand,
 .navbar-link,
 .nav-link,
 .social-link {
-    color: #40c1a6;
-}
-
-.navbar-brand:hover,
-.social-link:hover {
-    text-decoration: none;
     color: #40c1a6;
 }
 
@@ -48,22 +55,14 @@ body {
     background-color: #40c1a6;
 }
 
-
-.bg-viking-dark {
-    background-color: #293949;
-}
-
 #shopdropdown-menu {
     background-color: #293949;
     margin: 0;
     border: 0;
 }
 
+/* ---------------- Search bar */
 #search-bar-icon {
-    color: #40c1a6;
-}
-
-.social-icon {
     color: #40c1a6;
 }
 
@@ -112,17 +111,38 @@ body {
 }
 
 a.category-badge span{
-    color: #293949;
     font-size: 1.25rem;
+    background: #293949 !important;
+    color: #40c1a6 !important;
+    border: 3px solid #293949;
 }
 
 a.category-badge > span.badge:hover {
     background: #293949 !important;
     color: #40c1a6 !important;
+    border: 3px solid #40c1a6;
 }
 
-.border-dark {
-    border-color: red !important;
+.shop-home-link,
+.card-category-link {
+    color: #293949 !important;
+}
+
+.shop-home-link:hover,
+.card-category-link:hover {
+    text-decoration: none !important;
+    color: #40c1a6 !important;
+}
+
+/* ------------------------------------ SORT-SELECTOR */
+#sort-selector {
+    background-color: #40c1a6;
+    border: 3px solid #293949;
+}
+
+#sort-selector option:focus-within {
+    background-color: #293949 !important;
+    color: #40c1a6 !important;
 }
 
 /* ------------------------------------ ALLAUTH FORMS */
@@ -198,36 +218,52 @@ a.category-badge > span.badge:hover {
 }
 
 /* ------------------------------------ BUTTONS */
+
+/* ---------------- Back to top button */
 .btt-button {
     height: 42px;
     width: 42px;
     position: fixed;
     bottom: 10px;
     right: 10px;
+    border: 3px solid #40c1a6;
 }
 
 .btt-link,
 .update-link,
 .remove-item {
     cursor: pointer;
+    color: #40c1a6;
 }
 
-.btn-black {
-    background: black;
-    color: white;
+/* ---------------- Cyan buttons */
+.btn-cyan {
+    background: #40c1a6;
+    color: #293949;
+    border: 3px solid #293949;
 }
 
-.btn-outline-black {
-    background: white;
-    color: black !important;
-    border: 1px solid black;
+.btn-cyan:hover,
+.btn-cyan:active,
+.btn-cyan:focus {
+    background: #293949;
+    color: #40c1a6 !important;
+    border: 3px solid #293949;
 }
 
-.btn-outline-black:hover,
-.btn-outline-black:active,
-.btn-outline-black:focus {
-    background: black;
-    color: white !important;
+/* Dark buttons */
+.btn-outline-dark {
+    background: #293949;
+    color: #40c1a6 !important;
+    border: 3px solid #293949;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:active,
+.btn-outline-dark:focus {
+    background: #293949;
+    color: #40c1a6 !important;
+    border: 3px solid #40c1a6;
 }
 
 /* ------------------------------------ MESSAGE CONTAINER */
@@ -302,6 +338,11 @@ a.category-badge > span.badge:hover {
 footer {
     color: #40c1a6;
 }
+
+.social-icon {
+    color: #40c1a6;
+}
+
 
 /* ------------------------------------ MEDIA QUERIES */
 /* Slightly larger container on xl screens */

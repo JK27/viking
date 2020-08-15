@@ -1,4 +1,4 @@
-<div class="toast custom-toast rounded-0 border-top-0" data-autohide="false">
+<div class="toast custom-toast border-top-0" data-autohide="false">
     <div class="arrow-up arrow-success"></div>
     <div class="w-100 toast-capper bg-success"></div>
     <!-- TOAST HEADER -->
@@ -19,7 +19,7 @@
         <!-- SHOPPING BAG NOTIFICATION -->
         {% if grand_total and not on_profile_page %}
             <!-- Product count -->
-            <p class="logo-font bg-white text-black py-1">Your shopping bag ({{ product_count }})</p>
+            <p class="logo-font bg-white py-1">Your shopping bag ({{ product_count }})</p>
             <!-- Shopping bag items -->
             <div class="bag-notification wrapper">
                 {% for item in shoppingbag_items %}
@@ -44,11 +44,11 @@
             <div class="row">
                 <div class="col">
                     <!-- Bag total -->
-                    <strong><p class="mt-3 mb-1 text-black">
+                    <strong><p class="mt-3 mb-1">
                         Total: <span class="float-right">£{{ total|floatformat:2 }}</span>
                     </p></strong>
                     <!-- Checkout button -->
-                    <a href="{% url 'view_shoppingbag' %}" class="btn btn-black btn-block rounded-0">
+                    <a href="{% url 'view_shoppingbag' %}" class="btn btn-cyan btn-block">
                         <span class="text-uppercase">Go To Secure Checkout</span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>

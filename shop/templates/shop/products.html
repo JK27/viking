@@ -13,7 +13,7 @@
 
 {% block content %}
     <!-- SHOP NAV -->
-    <div class="row bg-white">
+    <div class="row bg-white pt-3">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#shop-nav" aria-controls="shop-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
                 <h2 class="brand-font">Shop</h2>
                 {% for c in current_categories %}
                     <a class="category-badge text-decoration-none" href="{% url 'shop' %}?category={{ c.name }}">
-                        <span class="p-2 mt-2 badge badge-white text-black border">{{ c.friendly_name }}</span>
+                        <span class="p-2 mt-2 badge badge-white">{{ c.friendly_name }}</span>
                     </a>
                 {% endfor %}
                 <hr class="w-50 mb-1">
@@ -39,7 +39,7 @@
                     <!-- Sort select box -->
                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
                         <div class="sort-select-wrapper w-50">
-                            <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                            <select id="sort-selector" class="custom-select custom-select-sm py-0">
                                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>
                                 Sort by...</option>
                                 <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
@@ -63,7 +63,7 @@
                     <div class="col-12 col-md-6 order-md-first">
                         <p class="text-muted mt-3 text-center text-md-left">
                             {% if search_term or current_categories or current_sorting != 'None_None' %}
-                                <span class="small"><a href="{% url 'shop' %}">Shop Home</a> | </span>
+                                <span><a href="{% url 'shop' %}" class="shop-home-link"><i class="fas fa-store-alt pr-2"></i>Shop Home</a> | </span>
                             {% endif %}
                             {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                         </p>
@@ -73,7 +73,7 @@
                     <!-- PRODUCT CARDS -->
                     {% for product in products %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card h-100 border-0">
+                            <div class="card h-100 border-1">
                                 <!-- Product image with link to product details-->
                                 {% if product.image %}
                                 <a href="{% url 'product_detail' product.id %}">
@@ -84,6 +84,7 @@
                                     <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
+                                <hr class="w-100 m-0">
                                 <!-- Product name -->
                                 <div class="card-body">
                                     <p class="mb-0 text-left font-weight-bold">{{ product.name }}</p>
@@ -95,7 +96,7 @@
                                             <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
                                             {% if product.category %}
                                             <p class="small mt-1 mb-0">
-                                                <a class="text-muted" href="{% url 'shop' %}?category={{ product.category.name }}">
+                                                <a class="text-muted card-category-link" href="{% url 'shop' %}?category={{ product.category.name }}">
                                                     <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                                                 </a>
                                             </p>
@@ -103,10 +104,7 @@
                                         </div>
                                         <div class="col-6">
                                             {% if product.has_sizes %}
-                                                <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-black">
-                                                    <!-- <span class="icon">
-                                                        <i class="fas fa-chevron-right"></i>
-                                                    </span> -->
+                                                <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-dark">
                                                     <span class="text-uppercase">Details</span>
                                                 </a>
                                             {% else %}
@@ -114,7 +112,7 @@
                                                 {% csrf_token %}
                                                     <input class="form-control qty_input" type="hidden" name="quantity" value="1" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                                     <!-- Add to bag button -->
-                                                    <input type="submit" class="btn btn-black text-uppercase" value="Add to Bag">
+                                                    <input type="submit" class="btn btn-cyan text-uppercase" value="Add to Bag">
                                                     <!-- Redicrect user to same page once item has been added to bag -->
                                                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                                 </form>
@@ -126,22 +124,22 @@
                         </div>
                         <!-- HR COUNTER -->
                         {% if forloop.counter|divisibleby:1 %}
-                            <div class="col-12 d-sm-none mb-5">
+                            <div class="col-12 d-sm-none my-2">
                                 <hr>
                             </div>
                         {% endif %}                        
                         {% if forloop.counter|divisibleby:2 %}
-                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none my-2">
                                 <hr>
                             </div>
                         {% endif %}
                         {% if forloop.counter|divisibleby:3 %}
-                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                            <div class="col-12 d-none d-lg-block d-xl-none my-2">
                                 <hr>
                             </div>
                         {% endif %}
                         {% if forloop.counter|divisibleby:4 %}
-                            <div class="col-12 d-none d-xl-block mb-5">
+                            <div class="col-12 d-none d-xl-block my-2">
                                 <hr>
                             </div>
                         {% endif %}
@@ -151,9 +149,9 @@
         </div>
     </div>
     <!-- BACK TO TOP BUTTON -->
-    <div class="btt-button shadow-sm rounded-0 border border-black">
+    <div class="btt-button shadow-sm rounded">
         <a class="btt-link d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+            <i class="fas fa-arrow-up mx-auto my-auto"></i>
         </a>	
     </div>
 {% endblock %}

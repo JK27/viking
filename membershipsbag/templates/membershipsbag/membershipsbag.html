@@ -28,7 +28,7 @@
                 {% if membershipsbag_items %}
                     <div class="table-responsive rounded d-none d-md-block">
                         <table class="table table-sm table-borderless">
-                            <thead class="text-black">
+                            <thead>
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Membership Details</th>
@@ -61,13 +61,13 @@
                             <!-- Checkout buttons -->
                             <tr>
                                 <td colspan="5" class="text-right">
-                                    <a href="{% url 'memberships' %}" class="btn btn-outline-black rounded-0 back-btn">
+                                    <a href="{% url 'memberships' %}" class="btn btn-outline-dark back-btn">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
                                         <span class="text-uppercase back-btn">Back to memberships list</span>
                                         </a>
-                                        <a href="{% url 'payment' %}" class="btn btn-black rounded-0">
+                                        <a href="{% url 'payment' %}" class="btn btn-cyan">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
@@ -80,7 +80,7 @@
                 {% else %}
                     <!-- Empty bag message and keep memberships link -->
                     <p class="lead mb-5">You haven't selected any memberships.</p>
-                    <a href="{% url 'memberships' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                    <a href="{% url 'memberships' %}" class="btn btn-outline-dark btn-lg">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
