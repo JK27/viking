@@ -1,8 +1,8 @@
 <!doctype html>
 <div class="navbar-collapse collapse" id="shop-nav">
-    <ul class="nav nav-pills w-auto mx-auto">
+    <ul class="navbar-nav nav-pills w-auto mx-auto">
         <!-- All products -->
-        <li class="nav-item dropdown category-dropdown">
+        <li class="nav-item dropdown category-dropdown d-none d-lg-block">
             <a class="nav-link category-link" id="all-products-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-tags pr-1"></i>All products</a>
             <div class="dropdown-menu category-dropdown-menu" aria-labelledby="all-products-link">
                 <a class="dropdown-item" href="{% url 'shop' %}?sort=price&direction=asc">By price</a>
@@ -13,7 +13,7 @@
             </div>
         </li>
         <!-- Footwear -->
-        <li class="nav-item dropdown category-dropdown">
+        <li class="nav-item dropdown category-dropdown d-none d-lg-block">
             <a class="nav-link category-link" id="shoes-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-socks pr-1"></i>Footwear</a>
             <div class="dropdown-menu category-dropdown-menu" aria-labelledby="shoes-link">
                 <a class="dropdown-item" href="{% url 'shop' %}?category=trainers">Trainers</a>
@@ -23,7 +23,7 @@
             </div>
         </li>
         <!-- Clothing -->
-        <li class="nav-item dropdown category-dropdown">
+        <li class="nav-item dropdown category-dropdown d-none d-lg-block">
             <a class="nav-link category-link" id="clothing-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-tshirt pr-1"></i>Clothing</a>
             <div class="dropdown-menu category-dropdown-menu" aria-labelledby="clothing-link">
                 <a class="dropdown-item" href="{% url 'shop' %}?category=vests,tshirts">Vests and T-shirts</a>
@@ -34,7 +34,7 @@
             </div>
         </li>
         <!-- Accessories -->
-        <li class="nav-item dropdown category-dropdown">
+        <li class="nav-item dropdown category-dropdown d-none d-lg-block">
             <a class="nav-link category-link" id="accessories-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-futbol pr-1" ></i>Accessories</a>
             <div class="dropdown-menu category-dropdown-menu" aria-labelledby="accessories-link">
                 <a class="dropdown-item" href="{% url 'shop' %}?category=backpacks,bags">Backpacks and Bags</a>

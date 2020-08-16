@@ -1,0 +1,19 @@
+<!doctype html>
+<div class="navbar-collapse collapse" id="mobile-menu">
+    <ul class="navbar-nav w-auto mx-auto">
+        <!-- Home -->
+        <li class="nav-item d-block d-md-none">
+            <a class="font-weight-bold nav-link text-black mr-5" href="{% url 'home' %}" id="home-link">
+               Home
+            </a>
+        </li>
+        <!-- Memberships -->
+        <li class="nav-item dropdown">
+            <a class="font-weight-bold nav-link text-black mr-5" id="all-memberships-link"  href="{% url 'memberships' %}" role="button" aria-haspopup="true" aria-expanded="false">Memberships</a>
+        </li>
+        <!-- Shop -->
+        <li class="nav-item dropdown">
+            <a class="font-weight-bold nav-link text-black mr-5" id="full-memberships-link"  href="{% url 'shop' %}" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+        </li>
+    </ul>
+</div>
