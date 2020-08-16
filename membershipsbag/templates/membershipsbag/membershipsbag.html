@@ -38,7 +38,7 @@
                                 <tr>
                                     <!-- Bag Item info -->
                                     <td class="py-3">
-                                        <p class="my-0"><strong>{{ item.membership.friendly_name }}</strong></p>
+                                        <p class="my-0 bag-thead"><strong>{{ item.membership.friendly_name }}</strong></p>
                                     </td>
                                     <!-- Membership description -->
                                     <td class="py-3">
@@ -53,8 +53,8 @@
                             <!-- Bag total -->
                             <tr>
                                 <td colspan="5" class="pt-5 text-right">
-                                    <h4><strong>Total payment now: £{{ membership_total|floatformat:2 }}</strong></h4>
-                                    <small>This payment is for the first month of your membership.</small>
+                                    <h4><strong>Total payment now *: £{{ membership_total|floatformat:2 }}</strong></h4>
+                                    <small>* This payment is for the first month of your membership.</small>
                                 </td>
                             </tr>
                             <!-- Checkout buttons -->
@@ -69,7 +69,7 @@
                                         <a href="{% url 'payment' %}" class="btn btn-cyan">
                                         <span class="text-uppercase">Go to payment</span>
                                         <span class="icon">
-                                            <i class="fas fa-lock"></i>
+                                            <i class="fas fa-chevron-right"></i>
                                         </span>
                                         </a>
                                 </td>

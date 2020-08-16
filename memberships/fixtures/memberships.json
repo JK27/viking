@@ -4,7 +4,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "standard-full",
-      "friendly_name": "Standard Full membership",
+      "friendly_name": "Standard Full Membership",
       "category": "1",
       "short_description": "Access to gym. \nAccess to all classess.",
       "full_description": "Access at any time within the opening hours. \nGives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available.",
@@ -17,7 +17,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "hero-full",
-      "friendly_name": "Hero Full membership",
+      "friendly_name": "Hero Full Membership",
       "category": "1",
       "short_description": "Access at any time within the opening hours. \nAccess to gym. \nAccess to all classess. \nMonthly personal training session and body assessment.",
       "full_description": "Gives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available. \nOne monthly session with one of our personal trainers including body assessment.",
@@ -30,7 +30,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "legend-full",
-      "friendly_name": "Legend Full membership",
+      "friendly_name": "Legend Full Membership",
       "category": "1",
       "short_description": "Access at any time within the opening hours. \nAccess to gym. \nAccess to all classess. \nMonthly personal training session and body assessment. \nExcersise tracking belt and phone app.",
       "full_description": "Gives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available. \nOne monthly session with one of our personal trainers including body assessment. \nHire of excercise tracking belt to monitor physical activity, heart rate, calories and time and duration of exercise. The phone app includes data review, built-in challenges and personal goals.",
@@ -43,7 +43,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "standard-off-peak",
-      "friendly_name": "Standard Off-peak membership",
+      "friendly_name": "Standard Off-Peak Membership",
       "category": "2",
       "short_description": "Access to gym. \nAccess to all classess.",
       "full_description": "Access only on weekdays between 9 am and 5 pm, and weekends at any time within the opening hours. \nGives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available.",
@@ -56,7 +56,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "hero-off-peak",
-      "friendly_name": "Hero Off-peak membership",
+      "friendly_name": "Hero Off-Peak Membership",
       "category": "2",
       "short_description": "Access to gym. \nAccess to all classess. \nMonthly personal training session and body assessment.",
       "full_description": "Access only on weekdays between 9 am and 5 pm, and weekends at any time within the opening hours. \nGives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available. \nOne monthly session with one of our personal trainers including body assessment.",
@@ -69,7 +69,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "legend-off-peak",
-      "friendly_name": "Legend Off-peak membership",
+      "friendly_name": "Legend Off-Peak Membership",
       "category": "2",
       "short_description": "Access only on weekdays between 9 am and 5 pm, and weekends at any time within the opening hours. \nAccess to gym. \nAccess to all classess. \nMonthly personal training session and body assessment. \nExcersise tracking belt and phone app.",
       "full_description": "Gives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available. \nOne monthly session with one of our personal trainers including body assessment. \nHire of excercise tracking belt to monitor physical activity, heart rate, calories and time and duration of exercise. The phone app includes data review, built-in challenges and personal goals.",
@@ -82,7 +82,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "standard-weekdays",
-      "friendly_name": "Standard Weekdays membership",
+      "friendly_name": "Standard Weekdays Membership",
       "category": "3",
       "short_description": "Access to gym. \nAccess to all classess.",
       "full_description": "Access only on weekdays between 9 am and 5 pm. No access at weekends. \nGives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available.",
@@ -95,7 +95,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "hero-weekdays",
-      "friendly_name": "Hero Weekdays membership",
+      "friendly_name": "Hero Weekdays Membership",
       "category": "3",
       "short_description": "Access only on weekdays between 9 am and 5 pm. No access at weekends. \nMonthly personal training session and body assessment.",
       "full_description": "Access only on weekdays between 9 am and 5 pm and weekends at any time within the opening hours. \nGives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available. \nOne monthly session with one of our personal trainers including body assessment.",
@@ -108,7 +108,7 @@
     "model": "memberships.membership",
     "fields": {
       "membership_type": "legend-weekdays",
-      "friendly_name": "Legend weekdays membership",
+      "friendly_name": "Legend Weekdays Membership",
       "category": "3",
       "short_description": "Access to gym. \nAccess to all classess. \nMonthly personal training session and body assessment. \nExcersise tracking belt and phone app.",
       "full_description": "Access only on weekdays between 9 am and 5 pm. No access at weekends. \nGives access to all gym facilities and equipment. \nAccess to all clases is also included (subject to availability). Pre-booking of classes is recommended due to limited number of spaces available. \nOne monthly session with one of our personal trainers including body assessment. \nHire of excercise tracking belt to monitor physical activity, heart rate, calories and time and duration of exercise. The phone app includes data review, built-in challenges and personal goals.",

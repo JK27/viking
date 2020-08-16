@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <div class="container h-100 mt-5">
+{% block page_header %}
+    <div class="container header-container">
         <div class="row">
-            <div class="col-12">
-                <div class="allauth-form-inner-content">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container h-100 mt-5"> -->
+        <!-- <div class="row"> -->
+            <!-- <div class="col-12"> -->
+                <div class="allauth-form-inner-content h-100">
                     {% block inner_content %}
                     {% endblock %}
                 </div>
-            </div>
-        </div>
-    </div>
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </div> -->
 {% endblock %}

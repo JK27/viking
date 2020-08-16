@@ -82,15 +82,16 @@
                         </li>
                         <!-- Shopping bag -->
                         <li class="list-inline-item">
-                            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_shoppingbag' %}">
+                            <a class="{% if grand_total %}font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_shoppingbag' %}">
                                 <div class="text-center">
-                                    <!-- <div><i class="fas fa-shopping-bag"></i></div> -->
+                                    
                                     <p class="my-0">
                                         {% if grand_total %}
                                             £{{ grand_total|floatformat:2 }}
                                         {% else %}
                                             £0.00
                                         {% endif %}
+                                        <span class="icon"><i class="fas fa-shopping-bag"></i></span>
                                     </p>
                                 </div>
                             </a>
@@ -163,15 +164,21 @@
                         <h4 class="header-text">Social media</h4>
                         <ul class="list-unstyled">
                             <li>
-                                <i class="fab fa-twitter fa-lg social-icon pr-2"></i>
+                                <span class="icon">
+                                    <i class="fab fa-twitter fa-lg social-icon pr-2"></i>
+                                </span>
                                 <a href="https://twitter.com/" class="header-text social-link"> @viking_gym</a>
                             </li>
                             <li>
-                                <i class="fab fa-facebook-square fa-lg social-icon pr-2"></i>
+                                <span class="icon">
+                                    <i class="fab fa-facebook-square fa-lg social-icon pr-2"></i>
+                                </span>
                                 <a href="https://www.facebook.com/" class="header-text social-link"> /viking_gym</a>
                             </li>
                             <li>
-                                <i class="fab fa-instagram fa-lg social-icon pr-2"></i>
+                                <span class="icon">
+                                    <i class="fab fa-instagram fa-lg social-icon pr-2"></i>
+                                </span>
                                 <a href="" class="header-text social-link"> @viking_gym</a>
                             </li>
                         </ul>
