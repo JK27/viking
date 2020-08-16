@@ -22,6 +22,15 @@ body {
     text-transform: uppercase;
 }
 
+/* ---------------- Custom toggler */
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(64,193,166,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: #40c1a6;
+} 
+
 /* ---------------- Navbar */
 .navbar-brand {
     width: fit-content;
@@ -135,6 +144,8 @@ a.category-badge span{
     background: #293949 !important;
     color: #40c1a6 !important;
     border: 3px solid #293949;
+    padding: 8px;
+    margin-top: 8px;
 }
 
 a.category-badge > span.badge:hover {
@@ -420,5 +431,17 @@ legend {
     .btn-cyan {
         padding: .375rem .375rem;
         font-size: .75rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .btt-button {
+        height: 24px;
+        width: 24px;
+    }
+
+    a.category-badge span {
+        font-size: 1rem;
+        padding: 4px;
     }
 }

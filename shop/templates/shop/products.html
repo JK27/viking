@@ -13,8 +13,8 @@
 
 {% block content %}
     <!-- SHOP NAV -->
-    <div class="row bg-white pt-3 d-none d-lg-block">
-        <nav class="navbar navbar-expand-lg navbar-light w-100">
+    <div class="row pt-3 d-none d-lg-block">
+        <nav class="navbar navbar-expand-lg w-100">
             {% include 'shop/includes/shop-nav.html' %}
         </nav>
     </div>
@@ -24,7 +24,7 @@
                 <h2 class="brand-font">Shop</h2>
                 {% for c in current_categories %}
                     <a class="category-badge text-decoration-none" href="{% url 'shop' %}?category={{ c.name }}">
-                        <span class="p-2 mt-2 badge badge-white">{{ c.friendly_name }}</span>
+                        <span class="badge">{{ c.friendly_name }}</span>
                     </a>
                 {% endfor %}
                 <hr class="w-50 mb-1">
@@ -34,33 +34,13 @@
             <div class="product-container col-10 offset-1">
                 <div class="row mt-1 mb-2">
                     <!-- Sort select box -->
-                    <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                        <div class="sort-select-wrapper w-50">
-                            <select id="sort-selector" class="custom-select custom-select-sm py-0">
-                                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>
-                                Sort by...</option>
-                                <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
-                                Price (low to high)</option>
-                                <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>
-                                Price (high to low)</option>
-                                <option value="brand_asc" {% if current_sorting == 'brand_asc' %}selected{% endif %}>
-                                Brand (A-Z)</option>
-                                <option value="brand_desc" {% if current_sorting == 'brand_desc' %}selected{% endif %}>
-                                Brand (Z-A</option>
-                                <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>
-                                Name (A-Z)</option>
-                                <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>
-                                Name (Z-A)</option>
-                                <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
-                                <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
-                            </select>
-                        </div>
-                        </div>
+                    {% include 'shop/includes/sort-select-box.html'%}
+                    
                     <!-- Product count and search results -->
                     <div class="col-12 col-md-6 order-md-first">
                         <p class="text-muted mt-3 text-center text-md-left">
                             {% if search_term or current_categories or current_sorting != 'None_None' %}
-                                <span><a href="{% url 'shop' %}" class="shop-home-link"><i class="fas fa-store-alt pr-2"></i>Shop Home</a> | </span>
+                                <span><a href="{% url 'shop' %}" class="shop-home-link"><i class="fas fa-store-alt pr-2 d-none d-md-inline"></i>Shop Home</a> | </span>
                             {% endif %}
                             {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                         </p>
