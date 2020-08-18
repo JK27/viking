@@ -211,7 +211,7 @@ a.category-badge > span.badge:hover {
 /* ---------------- Cyan buttons */
 .btn-cyan {
     background: #40c1a6;
-    color: #293949;
+    color: #293949 !important;
     border: 3px solid #293949;
 }
 

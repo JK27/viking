@@ -1,6 +1,9 @@
 from django.db import models
 from django.db.models import Sum
 
+from allauth.account.forms import SignupForm
+from django import forms
+
 from django_countries.fields import CountryField
 
 from memberships.models import Membership
@@ -24,7 +27,7 @@ class Subscription(models.Model):
                                            default=create_subscription_number,
                                            null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True,  # Allows anonymous users to purchase
+                                     null=True,  # Allows anonymous users to purchase
                                      related_name='subscriptions')
     first_name = models.CharField(max_length=50, null=False, blank=False,
                                   default="")

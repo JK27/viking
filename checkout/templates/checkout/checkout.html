@@ -28,8 +28,11 @@
         </div>
 
         <div class="row">
-            <!-- ORDER SUMMARY -->
+            
+            
             <div class="col-12 col-lg-6 order-lg-last mb-5">
+                <!-- SHOP ORDER SUMMARY -->
+                {% if shoppingbag_itmes %}
                 <p class="bag-thead">Order Summary ({{ product_count }})</p>
                 <div class="row">
                     <div class="col-7 offset-2">
@@ -75,8 +78,59 @@
                         <h5 class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></h5>
                     </div>
                 </div>
+            
+                {% endif %}
+<!-- ######################################################## -->
+                <!-- MEMBERSHIP SUMMARY -->
+                {% if membershipsbag_items %}
+                <p class="text-muted">Membership Summary</p>
+                    <div class="row">
+                        <div class="col-9">
+                            <p class="mb-1 mt-0">Your membership</p>
+                        </div>
+                        <div class="col-3 text-right">
+                            <p class="mb-1 mt-0">Price</p>
+                        </div>
+                    </div>
+                    <hr class="my-0">
+                    {% for item in membershipsbag_items %}
+                        <div class="row mt-3">
+                            <!-- Memberhip info -->
+                            <div class="col-9">
+                                <p class="my-0"><strong>{{ item.membership.friendly_name }}</strong></p>
+                            </div>
+                            <div class="col-3 text-right">
+                                <p class="my-0"><strong>£{{ item.membership.price }}</strong><small>/ month</small></p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- Memberhip info -->
+                            <div class="col-7">
+                                <p class="my-0">{{ item.membership.full_description | linebreaks }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <hr class="my-0">
+                    <!-- Order totals -->
+                    <div class="row text-right  mt-3">
+                        <div class="col-7 offset-2">
+                            <p class="my-0"><strong>To pay now:</strong></p>
+                        </div>
+                        <div class="col-3">
+                            <p class="my-0"><strong>£{{ membership_total | floatformat:2 }}</strong></p>
+                        </div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col">
+                            <p class="text-right small">This payment is for the first month of your membership.</p>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
-            <!-- CHECKOUT FORM -->
+
+
+
+            <!-- SHOP CHECKOUT FORM -->
             <div class="col-12 col-lg-6">
                 <p class="bag-thead pl-3">Please fill out the form below to complete your order</p>
                 <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
@@ -147,6 +201,8 @@
 					</div>
                 </form>
             </div>
+
+
         </div>
     </div>
     <!-- LOADING SPINNER -->
