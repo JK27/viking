@@ -119,14 +119,14 @@ SITE_ID = 1
 ACCOUNT_FORMS = {
     'signup': 'memberships_payment.forms.SubscriptionForm',
 }
+
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/profile'
 
 WSGI_APPLICATION = 'viking_gym.wsgi.application'
 

@@ -329,13 +329,14 @@ legend {
 /* ----------------------------------------- ALLAUTH FORMS */
 .allauth-form-inner-content {
     width: 100%;
+    min-height: 75%;
     max-width: 330px;
     padding: 15px;
     margin: auto;
 }
 
 .allauth-form-inner-content input {
-    border-color: #000000;
+    border-color: #293949;
     border-radius: 0;
 }
 
@@ -347,35 +348,6 @@ legend {
 .allauth-form-inner-content input::placeholder {
     color: #aab7c4;
 }
-
-/* .allauth-form-inner-content button,
-.allauth-form-inner-content input[type='submit'] { */
-	/* btn */
-	/* display: inline-block;
-    font-weight: 400;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #000;
-    border: 1px solid #000;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0;  */
-
-    /* standard bootstrap btn transitions */
-    /* transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
-.allauth-form-inner-content button:hover,
-.allauth-form-inner-content input[type='submit']:hover {	
-	color: #fff;
-    background-color: #222;
-    border-color: #222; */
 
 .allauth-form-inner-content a {
 	color: #40c1a6; 

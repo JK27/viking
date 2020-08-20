@@ -115,15 +115,15 @@ def payment(request):
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 subscription_form = SubscriptionForm(initial={
-                    'first_name': profile.user.get_first_name(),
-                    'last_name': profile.user.get_last_name(),
-                    'email': profile.user.get_email(),
-                    'phone_number': profile.user.get_phone_number(),
-                    'street_address1': profile.user.get_street_address1(),
-                    'street_address2': profile.user.get_street_address2(),
-                    'town_or_city': profile.user.get_town_or_city(),
-                    'postcode': profile.user.get_postcode(),
-                    'county': profile.user.get_county(),
+                    'first_name': profile.user.first_name,
+                    'last_name': profile.user.last_name,
+                    'email': profile.user.email,
+                    'phone_number': profile.profile_phone_number,
+                    'street_address1': profile.profile_street_address1,
+                    'street_address2': profile.profile_street_address2,
+                    'town_or_city': profile.profile_town_or_city,
+                    'postcode': profile.profile_postcode,
+                    'county': profile.profile_county,
                 })
             except UserProfile.DoesNotExist:
                 subscription_form = SubscriptionForm()
