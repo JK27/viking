@@ -1,9 +1,6 @@
 from django.db import models
 from django.db.models import Sum
 
-from allauth.account.forms import SignupForm
-from django import forms
-
 from django_countries.fields import CountryField
 
 from memberships.models import Membership

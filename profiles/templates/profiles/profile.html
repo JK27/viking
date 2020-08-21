@@ -17,11 +17,11 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container profile-container">
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4"> {{ user.first_name }} {{ user.last_name }} Profile</h2>
+                <h2 class="logo-font mb-4"> {{ user.userprofile.profile_first_name }} {{ user.userprofile.profile_last_name}}'s Profile</h2>
                 <hr>
             </div>
         </div>
@@ -36,35 +36,62 @@
                 </form>
             </div> -->
             <div class="col-12 col-lg-6">
-                <p class="text-muted">Your Personal Information</p>
+                <h5 class="mb-5"><strong>Your Personal Information</strong></h5>
                 <div class="container-fluid p-0">
-                    <div class="row">
+                    <div class="row pt-1">
                         <div class="col-6">
-                            <p class="lead mb-0 text-left text-muted">First name: <strong>{{ user.first_name }}</strong></p>
+                            <p class="mb-0 text-left"><strong>First name: </strong>{{ user.userprofile.profile_first_name }}</p>
                         </div>
                         <div class="col-6">
-                            <p class="lead mb-0 text-left text-muted">Last name: <strong>{{ user.last_name }}</strong></p>
+                            <p class="mb-0 text-left"><strong>Last name: </strong>{{ user.userprofile.profile_last_name }}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pt-1">
                         <div class="col-12">
-                            <p class="lead mb-0 text-left text-muted">Email address: <strong>{{ user.email }}</strong></p>
+                            <p class="mb-0 text-left"><strong>Email address: </strong>{{ user.email }}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pt-1">
                         <div class="col-6">
-                            <p class="lead mb-0 text-left text-muted">Username: <strong>{{ user.username }}</strong></p>
+                            <p class="mb-0 text-left"><strong>Username: </strong>{{ user.username }}</p>
                         </div>
                         <div class="col-6">
-                            <p class="lead mb-0 text-left text-muted">Phone number: <strong>{{ user.phone_number }}</strong></p>
+                            <p class="mb-0 text-left"><strong>Phone number: </strong>{{ user.userprofile.profile_phone_number }}</p>
+                        </div>
+                    </div>
+                    <div class="row pt-1">
+                        <div class="col-12">
+                            <p class="mb-0 text-left"><strong>Address address: </strong>{{ user.userprofile.profile_street_address1 }} 
+                            {% if user.userprofile.profile_street_address2 != None %}{{ user.userprofile.profile_street_address2 }}
+                            {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row pt-1">
+                        <div class="col-6">
+                            <p class="mb-0 text-left"><strong>Town or City: </strong>{{ user.userprofile.profile_town_or_city }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="mb-0 text-left"><strong>Postcode: </strong>{{ user.userprofile.profile_postcode }}</p>
+                        </div>
+                    </div>
+                    <div class="row pt-1">
+                        <div class="col-6">
+                            <p class="mb-0 text-left"><strong>County, Council or State: </strong>
+                            {% if user.userprofile.profile_county != None %} {{ user.userprofile.profile_county }}
+                            {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p class="mb-0 text-left"><strong>Country: </strong>{{ user.userprofile.profile_country.name }}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- MEMBERSHIP SUMMARY -->
             <div class="col-12 col-lg-6">
-                <p class="text-muted">Your Membeship Information</p>
-                <div class="order-history table-responsive">
+                <h5 class="mb-5"><strong>Your Membeship Information</strong></h5>
+                <div class="membership-info table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>

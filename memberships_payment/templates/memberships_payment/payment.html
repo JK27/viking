@@ -81,6 +81,49 @@
                 </div>
                 <form action="{% url 'payment' %}" method="POST" id="payment-form">
                     {% csrf_token %}
+                    <!-- Name fieldset -->
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Name</p></legend>
+                        {{ subscription_form.first_name | as_crispy_field }}
+                        {{ subscription_form.last_name | as_crispy_field }}
+                    </fieldset>
+                    <!-- Contact details fieldset -->
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Contact details</p></legend>
+                        {{ subscription_form.email | as_crispy_field }}
+                        {{ subscription_form.phone_number | as_crispy_field }}
+                    </fieldset>
+                    <!-- Address fieldset -->
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Address</p></legend>
+                        {{ subscription_form.street_address1 | as_crispy_field }}
+                        {{ subscription_form.street_address2 | as_crispy_field }}
+                        {{ subscription_form.town_or_city | as_crispy_field }}
+                        {{ subscription_form.county | as_crispy_field }}
+                        {{ subscription_form.postcode | as_crispy_field }}
+                        {{ subscription_form.country | as_crispy_field }}
+
+                        <!-- Authentication -->
+                        <div class="form-check form-check-inline float-right mr-0">
+							{% if user.is_authenticated %}
+                                <!-- Save delivery info to profile -->
+								<!-- <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label> -->
+                                <input class="form-check-input ml-2 mr-0" type="hidden" id="id-save-info" name="save-info" checked>
+							{% else %}
+                                <!-- Log in / sign up links -->
+								<label class="form-check-label" for="id-save-info">
+                                    <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
+                                    <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
+                                </label>
+							{% endif %}
+						</div>
+                    </fieldset>
+                    <!-- Direct Debit fieldset -->
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Direct Debit details</p></legend>
+                        {{ subscription_form.dd_account_no | as_crispy_field }}
+                        {{ subscription_form.dd_sortcode | as_crispy_field }}
+                    </fieldset>
 
                     <!-- Payment fieldset -->
                     <fieldset class="px-3">

@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mb-2">
+    <div class="container mb-2 bag-container">
         <!-- Memberships bag heading -->
         <div class="row">
             <div class="col">
@@ -62,14 +62,14 @@
                                 <td colspan="5" class="text-right">
                                     <a href="{% url 'memberships' %}" class="btn btn-outline-dark">
                                         <span class="icon">
-                                            <i class="fas fa-chevron-left"></i>
+                                            <i class="fas fa-angle-double-left"></i>
                                         </span>
                                         <span class="text-uppercase">Back to memberships list</span>
                                         </a>
                                         <a href="{% url 'account_signup' %}" class="btn btn-cyan">
                                         <span class="text-uppercase">Go to payment</span>
                                         <span class="icon">
-                                            <i class="fas fa-chevron-right"></i>
+                                            <i class="fas fa-angle-double-right"></i>
                                         </span>
                                         </a>
                                 </td>
@@ -81,7 +81,7 @@
                     <p class="lead mb-5">You haven't selected any memberships.</p>
                     <a href="{% url 'memberships' %}" class="btn btn-outline-dark btn-lg">
                         <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-angle-double-left"></i>
                         </span>
                         <span class="text-uppercase">Back to memberships list</span>
                     </a>

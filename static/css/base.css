@@ -186,6 +186,12 @@ a.category-badge > span.badge:hover {
     width: 1.5rem;
 }
 
+/* ----------------------------------------- BAG CONTAINER */
+.bag-container,
+.profile-container {
+    min-height: 80%;
+}
+
 /* ----------------------------------------- BUTTONS */
 
 /* ---------------- Back to top button */

@@ -18,7 +18,11 @@
   {% csrf_token %}
   {{ form|crispy }}
   <input type="hidden" name="{{ redirect_field_name }}" value="{% url 'payment' %}" />
-  <button class="btn btn-cyan" type="submit">{% trans "Sign Up" %} &raquo;</button>
+  <button class="btn btn-cyan" type="submit">{% trans "Sign Up" %}
+    <span class="icon">
+        <i class="fas fa-angle-double-right"></i>
+    </span>
+  </button>
 </form>
 
 {% endblock %}
