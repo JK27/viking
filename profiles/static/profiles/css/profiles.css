@@ -1,21 +1,21 @@
-.membership-info {
+.order-history {
     max-height: 416px; /* of profile form + submit button */
     overflow-y: auto;
 }
 
 #profile-update-form .form-control {
-    color: #000;
+    color: #293949;
 }
 
 #profile-update-form input::placeholder {
     color: #aab7c4;
 }
 
-#id_default_country,
-#id_default_country option:not(:first-child) {
-    color: #000;
+#id_profile_country,
+#id_profile_country option:not(:first-child) {
+    color: #293949;
 }
 
-#id_default_country option:first-child {
+#id_profile_country option:first-child {
     color: #aab7c4;
 }

@@ -24,11 +24,11 @@ class UserProfileForm(forms.ModelForm):
             'profile_town_or_city': 'Town or City',
             'profile_street_address1': 'Street Address 1',
             'profile_street_address2': 'Street Address 2',
-            'profile_county': 'County, State or Locality',
+            'profile_county': 'County, Council or State',
         }
 
         # Sets autofocus to phone no field
-        self.fields['profile_phone_number'].widget.attrs['autofocus'] = True
+        self.fields['profile_first_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
             # If field is not profile_country ...
             if field != 'profile_country':

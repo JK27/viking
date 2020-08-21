@@ -205,7 +205,7 @@ a.category-badge > span.badge:hover {
 }
 
 .btt-link,
-.update-link,
+.update-info-link,
 .remove-item {
     cursor: pointer;
 }
@@ -249,8 +249,14 @@ a.category-badge > span.badge:hover {
     border: 4px solid #293949; 
 }
 
-.update-link {
+.update-info-link {
     color: #40c1a6 !important;
+    text-decoration: none;
+}
+
+.update-info-link:hover {
+    color: #293949 !important;
+    text-decoration: none;
 }
 
 /* ----------------------------------------- SHOPPING/MEMBERSHIPS BAG */

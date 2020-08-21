@@ -22,16 +22,16 @@ def profile(request):
         else:
             messages.error(request, 'Failed to update your profile. \
                            Please ensure the form is correct.')
-    else:
-        form = UserProfileForm(instance=profile)
-        subscriptions = profile.subscriptions.all()
+    # else:
+    form = UserProfileForm(instance=profile)
+    subscriptions = profile.subscriptions.all()
 
-        template = 'profiles/profile.html'
-        context = {
-            'form': form,
-            'subscriptions': subscriptions,
-            'on_profile_page': True,
-        }
+    template = 'profiles/profile.html'
+    context = {
+        'form': form,
+        'subscriptions': subscriptions,
+        'on_profile_page': True,
+    }
 
     return render(request, template, context)
 

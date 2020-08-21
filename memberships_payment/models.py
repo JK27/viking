@@ -23,9 +23,8 @@ class Subscription(models.Model):
     subscription_number = models.CharField(max_length=6,
                                            default=create_subscription_number,
                                            null=False, editable=False)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True,  # Allows anonymous users to purchase
-                                     related_name='subscriptions')
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE,
+                                     null=False, related_name='subscriptions')
     first_name = models.CharField(max_length=50, null=False, blank=False,
                                   default="")
     last_name = models.CharField(max_length=50, null=False, blank=False,
