@@ -157,7 +157,7 @@
                             <p class="mb-0 font-weight-bold">Country</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ subscription.country }}</p>
+                            <p class="mb-0">{{ subscription.country.name }}</p>
                         </div>
                     </div>
                     <!-- Phone Number -->
@@ -178,7 +178,7 @@
                     <!-- Grand Total -->
                     <div class="row">
                         <div class="col-12 col-md-4">
-                            <p class="mb-0 font-weight-bold">Grand Total</p>
+                            <p class="mb-0 font-weight-bold">Amount payed today</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
                             <p class="mb-0">£{{ subscription.subscription_total }}</p>
@@ -194,9 +194,9 @@
                 <!-- Back to profile button -->
                 <a href="{% url 'profile' %}" class="btn btn-cyan my-2">
 					<span class="icon mr-2">
-						<i class="fas fa-angle-left"></i>
+						<i class="fas fa-angle-double-left"></i>
 					</span>
-					<span class="text-uppercase">Back to profile</span>
+					<span class="text-uppercase">Back to your profile</span>
 				</a>
             {% else %}
                 <!-- Link to latest deals -->

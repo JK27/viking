@@ -31,99 +31,51 @@
             <div class="col-12 col-lg-6 order-lg-last mb-5">
                 <!-- SHOP ORDER SUMMARY -->
                 {% if shoppingbag_itmes %}
-                <p class="bag-thead">Order Summary ({{ product_count }})</p>
-                <div class="row">
-                    <div class="col-7 offset-2">
-                        <p class="mb-1 mt-0 bag-thead">Item</p>
-                    </div>
-                    <div class="col-3 text-right">
-                        <p class="mb-1 mt-0 bag-thead">Subtotal</p>
-                    </div>
-                </div>
-                <hr class="my-0">
-                {% for item in shoppingbag_items %}
+                    <p class="bag-thead">Order Summary ({{ product_count }})</p>
                     <div class="row">
-                        <!-- Item details -->
-                        <div class="col-2 mb-1">
-                            <!-- Item image -->
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                {% if item.product.image %}
-                                    <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                {% endif %}
-                            </a>
-                        </div>
-                        <!-- Item info -->
-                        <div class="col-7">
-                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                            <p class="my-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                            <p class="my-0 small text-muted">Quantity: {{ item.quantity }}</p>
+                        <div class="col-7 offset-2">
+                            <p class="mb-1 mt-0 bag-thead">Item</p>
                         </div>
                         <div class="col-3 text-right">
-                            <p class="my-0"><strong>£{{ item.product.price | calc_subtotal:item.quantity }}</strong></p>
+                            <p class="mb-1 mt-0 bag-thead">Subtotal</p>
                         </div>
                     </div>
                     <hr class="my-0">
-                {% endfor %}
-                
-                <!-- Order totals -->
-                <div class="row text-right">
-                    <div class="col-7 offset-2">
-                        <h5 class="my-0"><strong>Grand Total:</strong></h5>
-                    </div>
-                    <div class="col-3">
-                        <h5 class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></h5>
-                    </div>
-                </div>
-            
-                {% endif %}
-<!-- ######################################################## -->
-                <!-- MEMBERSHIP SUMMARY -->
-                {% if membershipsbag_items %}
-                <p class="text-muted">Membership Summary</p>
-                    <div class="row">
-                        <div class="col-9">
-                            <p class="mb-1 mt-0">Your membership</p>
-                        </div>
-                        <div class="col-3 text-right">
-                            <p class="mb-1 mt-0">Price</p>
-                        </div>
-                    </div>
-                    <hr class="my-0">
-                    {% for item in membershipsbag_items %}
-                        <div class="row mt-3">
-                            <!-- Memberhip info -->
-                            <div class="col-9">
-                                <p class="my-0"><strong>{{ item.membership.friendly_name }}</strong></p>
+                    {% for item in shoppingbag_items %}
+                        <div class="row">
+                            <!-- Item details -->
+                            <div class="col-2 mb-1">
+                                <!-- Item image -->
+                                <a href="{% url 'product_detail' item.product.id %}">
+                                    {% if item.product.image %}
+                                        <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
+                                    {% else %}
+                                        <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <!-- Item info -->
+                            <div class="col-7">
+                                <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                <p class="my-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                <p class="my-0 small text-muted">Quantity: {{ item.quantity }}</p>
                             </div>
                             <div class="col-3 text-right">
-                                <p class="my-0"><strong>£{{ item.membership.price }}</strong><small>/ month</small></p>
+                                <p class="my-0"><strong>£{{ item.product.price | calc_subtotal:item.quantity }}</strong></p>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <!-- Memberhip info -->
-                            <div class="col-7">
-                                <p class="my-0">{{ item.membership.full_description | linebreaks }}</p>
-                            </div>
-                        </div>
+                        <hr class="my-0">
                     {% endfor %}
-                    <hr class="my-0">
                     <!-- Order totals -->
-                    <div class="row text-right  mt-3">
+                    <div class="row text-right">
                         <div class="col-7 offset-2">
-                            <p class="my-0"><strong>To pay now:</strong></p>
+                            <h5 class="my-0"><strong>Grand Total:</strong></h5>
                         </div>
                         <div class="col-3">
-                            <p class="my-0"><strong>£{{ membership_total | floatformat:2 }}</strong></p>
+                            <h5 class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></h5>
                         </div>
                     </div>
-                    <div class="row text-right">
-                        <div class="col">
-                            <p class="text-right small">This payment is for the first month of your membership.</p>
-                        </div>
-                    </div>
-                {% endif %}
+                {% endif %}               
             </div>
             <!-- CHECKOUT FORM -->
             <div class="col-12 col-lg-6">
@@ -146,20 +98,21 @@
                         {{ order_form.county | as_crispy_field }}
                         {{ order_form.postcode | as_crispy_field }}
                         {{ order_form.country | as_crispy_field }}
+                        
                         <!-- Authentication -->
-                        <div class="form-check form-check-inline float-right mr-0">
-							{% if user.is_authenticated %}
+                        <!-- <div class="form-check form-check-inline float-right mr-0">
+							{% if user.is_authenticated %} -->
                                 <!-- Save delivery info to profile -->
-								<label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
+								<!-- <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
                                 <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
-							{% else %}
+							{% else %} -->
                                 <!-- Log in / sign up links -->
-								<label class="form-check-label" for="id-save-info">
+								<!-- <label class="form-check-label" for="id-save-info">
                                     <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
                                     <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
                                 </label>
-							{% endif %}
-						</div>
+							{% endif %} -->
+						<!-- </div> -->
                     </fieldset>
                     <!-- Payment fieldset -->
                     <fieldset class="px-3">

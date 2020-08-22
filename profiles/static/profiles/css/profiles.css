@@ -1,6 +1,20 @@
 .order-history {
-    max-height: 416px; /* of profile form + submit button */
+    max-height: 416px;
     overflow-y: auto;
+}
+
+thead {
+    color: #293949;
+}
+
+.summary-link {
+    color: #40c1a6 !important;
+    text-decoration: none;
+}
+
+.summary-link:hover {
+    color: #293949 !important;
+    text-decoration: none;
 }
 
 #profile-update-form .form-control {

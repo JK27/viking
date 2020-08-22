@@ -6,6 +6,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 
 from memberships_payment.models import Subscription
+from checkout.models import Order
 
 
 # --------------------------------------------------------- PROFILE
@@ -18,37 +19,58 @@ def profile(request):
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated succesfully.')
+            messages.success(request, 'Your profile has been updated.')
         else:
             messages.error(request, 'Failed to update your profile. \
                            Please ensure the form is correct.')
-    # else:
-    form = UserProfileForm(instance=profile)
+    else:
+        form = UserProfileForm(instance=profile)
     subscriptions = profile.subscriptions.all()
+    orders = profile.orders.all()
 
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'subscriptions': subscriptions,
+        'orders': orders,
         'on_profile_page': True,
     }
 
     return render(request, template, context)
 
 
-# --------------------------------------------------------- ORDER HISTORY
+# --------------------------------------------------------- USER SUBSCRIPTION
 def user_subscription(request, subscription_number):
     subscription = get_object_or_404(Subscription,
                                      subscription_number=subscription_number)
 
     messages.info(request, (
-        f'This is a past confirmation for order number {subscription_number}.'
-        'A confirmation email was sent on the order date.'
+        f'This is a past confirmation for your membership \
+        with subscription number {subscription_number}.'
+        ' A confirmation email was sent on the order date.'
     ))
 
     template = 'memberships_payment/payment_success.html'
     context = {
         'subscription': subscription,
+        'from_profile': True,
+    }
+
+    return render(request, template, context)
+
+
+# --------------------------------------------------------- ORDER HISTORY
+def order_history(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+
+    messages.info(request, (
+        f'This is a past confirmation for order number {order_number}.'
+        ' A confirmation email was sent on the order date.'
+    ))
+
+    template = 'checkout/checkout_success.html'
+    context = {
+        'order': order,
         'from_profile': True,
     }
 

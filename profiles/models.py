@@ -16,24 +16,24 @@ class UserProfile(models.Model):
     # ... only one profile can be attached to one user
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # All these fields come from Subscription model. All fields are optional
-    profile_first_name = models.CharField(max_length=50, null=False,
-                                          blank=False, default="")
-    profile_last_name = models.CharField(max_length=50, null=False,
-                                         blank=False, default="")
-    profile_email = models.EmailField(max_length=254, null=False, blank=False,
+    profile_first_name = models.CharField(max_length=50, null=True,
+                                          blank=True, default="")
+    profile_last_name = models.CharField(max_length=50, null=True,
+                                         blank=True, default="")
+    profile_email = models.EmailField(max_length=254, null=True, blank=True,
                                       default="")
-    profile_phone_number = models.CharField(max_length=20, null=False,
-                                            blank=False, default="")
-    profile_street_address1 = models.CharField(max_length=80, null=False,
-                                               blank=False, default="")
+    profile_phone_number = models.CharField(max_length=20, null=True,
+                                            blank=True, default="")
+    profile_street_address1 = models.CharField(max_length=80, null=True,
+                                               blank=True, default="")
     profile_street_address2 = models.CharField(max_length=80, null=True,
                                                blank=True)
-    profile_town_or_city = models.CharField(max_length=40, null=False,
-                                            blank=False, default="")
-    profile_postcode = models.CharField(max_length=20, null=False, blank=False)
+    profile_town_or_city = models.CharField(max_length=40, null=True,
+                                            blank=True, default="")
+    profile_postcode = models.CharField(max_length=20, null=True, blank=True)
     profile_county = models.CharField(max_length=80, null=True, blank=True)
-    profile_country = CountryField(blank_label='Country', null=False,
-                                   blank=False)
+    profile_country = CountryField(blank_label='Country', null=True,
+                                   blank=True)
 
     def __str__(self):
         return self.user.username

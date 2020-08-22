@@ -68,24 +68,10 @@ class StripeWH_Handler:
             if value == "":                   # Replace empty fields with None
                 billing_details.address[field] = None
 
-        # Update profile information if save_info was checked
-        profile = None      # Allows anonymous users to check out
+        profile = None
         username = intent.metadata.username
-        # If user is not anonymous, user is authenticated...
         if username != 'AnonymousUser':
-            # ... get their profile using their username...
             profile = UserProfile.objects.get(user__username=username)
-            # ... and if save info was selected...
-            if save_info:
-                # ... add info to their profile
-                profile.profile_phone_number = billing_details.phone,
-                profile.profile_country = billing_details.address.country,
-                profile.profile_postcode = billing_details.address.postal_code,
-                profile.profile_town_or_city = billing_details.address.city,
-                profile.profile_street_address1 = billing_details.address.line1,
-                profile.profile_street_address2 = billing_details.address.line2,
-                profile.profile_county = billing_details.address.state,
-                profile.save()
 
         order_exists = False
         attempt = 1

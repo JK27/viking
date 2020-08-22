@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4"> {{ user.userprofile.profile_first_name }} {{ user.userprofile.profile_last_name}}'s Profile</h2>
+                <h2 class="logo-font mb-4"> {{ user.userprofile.profile_first_name }} {{ user.userprofile.profile_last_name}}'s profile</h2>
                 <hr>
             </div>
         </div>
@@ -32,11 +32,17 @@
             <div class="col-12 col-lg-6">
                 <div class="row">
                     <div class="col-6">
-                        <h5 class="mb-5"><strong>Your Personal Information</strong></h5>
+                        <h5 class="mb-5"><strong>Your personal information</strong></h5>
                     </div>
                     <!-- Profile update form collapsable link -->
                     <div class="col-6">
-                        <a class="update-info-link text-right" data-toggle="collapse" href="#profile-update-form" role="button" aria-expanded="false" aria-controls="profile-update-form"><small>Update Personal Information</small></a>
+                        <a class="update-info-link text-right" data-toggle="collapse" href="#profile-update-form" role="button" aria-expanded="false" aria-controls="profile-update-form" onclick="showForm()">
+                            <small>Update Personal Information
+                                <span>
+                                    <i class="fas fa-user-edit"></i>
+                                </span>
+                            </small>
+                        </a>
                     </div>
                 </div>
                 <div class="container-fluid p-0">
@@ -63,7 +69,7 @@
                     </div>
                     <div class="row pt-1">
                         <div class="col-12">
-                            <p class="mb-0 text-left"><strong>Address address: </strong>{{ user.userprofile.profile_street_address1 }} 
+                            <p class="mb-0 text-left"><strong>Address: </strong>{{ user.userprofile.profile_street_address1 }} 
                             {% if user.userprofile.profile_street_address2 != None %}{{ user.userprofile.profile_street_address2 }}
                             {% endif %}
                             </p>
@@ -71,7 +77,7 @@
                     </div>
                     <div class="row pt-1">
                         <div class="col-6">
-                            <p class="mb-0 text-left"><strong>Town or City: </strong>{{ user.userprofile.profile_town_or_city }}</p>
+                            <p class="mb-0 text-left"><strong>Town or city: </strong>{{ user.userprofile.profile_town_or_city }}</p>
                         </div>
                         <div class="col-6">
                             <p class="mb-0 text-left"><strong>Postcode: </strong>{{ user.userprofile.profile_postcode }}</p>
@@ -79,7 +85,7 @@
                     </div>
                     <div class="row pt-1">
                         <div class="col-6">
-                            <p class="mb-0 text-left"><strong>County, Council or State: </strong>
+                            <p class="mb-0 text-left"><strong>County, council or state: </strong>
                             {% if user.userprofile.profile_county != None %} {{ user.userprofile.profile_county }}
                             {% endif %}
                             </p>
@@ -88,33 +94,79 @@
                             <p class="mb-0 text-left"><strong>Country: </strong>{{ user.userprofile.profile_country.name }}</p>
                         </div>
                     </div>
+                    <hr class="mt-5">
+                    <div class="row pt-1">
+                        <!-- MEMBERSHIP SUMMARY -->
+                        <div class="col-12">
+                            <h5 class="mb-5"><strong>Your membeship information</strong></h5>
+                            <div class="membership-info table-responsive">
+                                <table class="table table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>Subscription number</th>
+                                            <th>Membership</th>
+                                            <th>Joining date</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for subscription in subscriptions %}
+                                            <tr>
+                                                <td>
+                                                 <a href="{% url 'user_subscription' subscription.subscription_number %}" title="{{ subscription.subscription_number }}" class="summary-link">
+                                                 {{ subscription.subscription_number }}</a>
+                                                </td>
+                                                <td>
+                                                    {% for item in subscription.subscriptionlineitems.all %}
+                                                        {{ item.membership.friendly_name }}
+                                                    {% endfor %}
+                                                </td>
+                                                <td>{{ subscription.date }}</td>
+                                                <td>£{{ subscription.subscription_total }}<small>/month</small></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <!-- MEMBERSHIP SUMMARY -->
+            
+            <!-- ORDERS SUMMARY -->
             <div class="col-12 col-lg-6">
-                <h5 class="mb-5"><strong>Your Membeship Information</strong></h5>
-                <div class="membership-info table-responsive">
+                <h5 class="mb-5"><strong>Your orders history</strong></h5>
+                <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
-                                <th>Subscription Number</th>
-                                <th>Membership</th>
-                                <th>Joining date</th>
-                                <th>Price</th>
+                                <th>Order number</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Order total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for subscription in subscriptions %}
+                            {% for order in orders %}
                                 <tr>
-                                    <td>{{ subscription.subscription_number }}
-                                    </td>
                                     <td>
-                                        {% for item in subscription.subscriptionlineitems.all %}
-                                            {{ item.membership.friendly_name }}
-                                        {% endfor %}
+                                        <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}" class="summary-link">{{ order.order_number|truncatechars:6 }}</a>
                                     </td>
-                                    <td>{{ subscription.date }}</td>
-                                    <td>£{{ subscription.subscription_total }}<small>/month</small></td>
+                                    <td class="small">{{ order.date }}</td>
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            {% for item in order.lineitems.all %}
+                                                <li class="small">
+                                                    {% if item.product.has_sizes %}
+                                                        Size {{ item.product.size|upper }}
+                                                    {% endif %}
+                                                    {{ item.product.name }} x{{ item.quantity }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td>£{{ order.grand_total }}<small>/month</small></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -123,53 +175,57 @@
             </div>
         </div>
         <!-- UPDATE PROFILE FORM -->
-        <div class="row">
-            <div class="col-12">
+        <div class="row form-row">
+            <div class="col-12 mb-3">
                 <form class="collapse mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-4">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">First name</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">First name *</p></legend>
                             {{ form.profile_first_name | as_crispy_field }}
                         </div>
                         <div class="col-4">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Last name</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Last name *</p></legend>
                             {{ form.profile_last_name | as_crispy_field }}
                         </div>
                         <div class="col-4">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Phone number</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Phone number *</p></legend>
                             {{ form.profile_phone_number | as_crispy_field }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Address</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Address *</p></legend>
                             {{ form.profile_street_address1 | as_crispy_field }}
                         </div>
                         <div class="col-6">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Address (continuation)</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Address (continuation)</p></legend>
                             {{ form.profile_street_address2 | as_crispy_field }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-3">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Town or city</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Town or city *</p></legend>
                             {{ form.profile_town_or_city | as_crispy_field }}
                         </div>
                         <div class="col-3">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Postcode</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Postcode *</p></legend>
                             {{ form.profile_postcode | as_crispy_field }}
                         </div>
                         <div class="col-3">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">County, council or state</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">County, council or state</p></legend>
                             {{ form.profile_county | as_crispy_field }}
                         </div>
                         <div class="col-3">
-                            <legend class="fieldset-label text-muted px-2 w-auto"><p class="small mb-0">Country</p></legend>
+                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Country *</p></legend>
                             {{ form.profile_country | as_crispy_field }}
                         </div>
                     </div>
-                    <button class="btn btn-cyan text-uppercase float-right">Update Information</button>
+                    <button class="btn btn-cyan text-uppercase float-right">Update your information
+                        <span>
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -180,4 +236,13 @@
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+
+    <!-- SCROLL TO UPDATE INFO FORM-->
+    <script type="text/javascript">
+        $(".update-info-link").click(function() {
+        $('html,body').animate({
+            scrollTop: $(".form-row").offset().top},
+            'slow');
+        });
+	</script>
 {% endblock %}
