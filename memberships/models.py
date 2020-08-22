@@ -45,15 +45,3 @@ class Membership(models.Model):
 
     def __str__(self):
         return self.membership_type
-
-
-# ------------------------------------------ USER MEMBERSHIPS
-class UserMembership(models.Model):
-
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    membership = models.ForeignKey(
-        Membership, on_delete=models.SET_NULL, null=True)
-
-    def __str__(self):
-        return self.user.username

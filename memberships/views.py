@@ -3,18 +3,9 @@ from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
-from .models import Membership, Category, UserMembership
+from .models import Membership, Category
 
 import stripe
-
-
-# ------------------------------------------ GET USER MEMBERSHIP
-def get_user_membership(request):
-    user_membership_qs = UserMembership.objects.filter(user=request.user)
-    if user_membership_qs.exists():
-        return user_membership_qs.first()
-    else:
-        return None
 
 
 # ------------------------------------------ MEMBERSHIPS LIST
@@ -23,7 +14,6 @@ def list_memberships(request, category_slug=None):
     categories = None
 
     if request.user.is_authenticated:
-        current_membership = get_user_membership(request)
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
@@ -33,7 +23,6 @@ def list_memberships(request, category_slug=None):
         context = {
             "memberships": memberships,
             'current_categories': categories,
-            'current_membership': str(current_membership.membership)
         }
 
         return render(request, "memberships/memberships.html", context)

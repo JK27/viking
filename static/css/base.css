@@ -177,7 +177,6 @@ a.category-badge > span.badge:hover {
 }
 
 /* ----------------------------------------- ICONS */
-
 .icon {
     align-items: center;
     display: inline-flex;
@@ -311,11 +310,6 @@ legend {
     margin: auto;
 }
 
-.allauth-form-inner-content input {
-    border-color: #293949;
-    border-radius: 0;
-}
-
 /* Hide all labels execpt remember me checkbox on login page */
 .allauth-form-inner-content label:not([for='id_remember']){
     display: none;
@@ -327,6 +321,16 @@ legend {
 
 .allauth-form-inner-content a {
 	color: #40c1a6; 
+}
+
+.secondaryAction {
+    color: #40c1a6 !important;
+    text-decoration: none;
+}
+
+.secondaryAction:hover {
+    color: #293949 !important;
+    text-decoration: none;
 }
 
 /* ----------------------------------------- MEDIA QUERIES */

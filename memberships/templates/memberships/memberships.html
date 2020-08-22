@@ -50,29 +50,27 @@
                                 <input class="form-control qty_input" type="hidden" name="quantity" value="1"  data-item_id="{{ membership.id }}" id="id_qty_{{ membership.id }}">
                                 <!-- BUTTONS -->
                                 <div class="col">
-                                    <!-- More details button -->
-                                    <a href="{% url 'membership_detail' membership.id %}"
-                                    class="btn btn-outline-dark">
-                                        <span class="icon">
-                                            <i class="fas fa-chevron-right"></i>
-                                        </span>
-                                        <span class="text-uppercase">View details</span>
-                                    </a>
                                     {% if user.is_authenticated %}
-                                        {% if membership.membership_type == current_membership %}
-                                            <!-- Current membership message -->
-                                            <span class="mt-5">
-                                                <small>This is your current membership</small>
+                                        <!-- More details button -->
+                                        <a href="{% url 'membership_detail' membership.id %}"
+                                        class="btn btn-outline-dark w-100">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
                                             </span>
-                                        {% else %}
-                                            <!-- Select membership button -->
-                                            <input type="submit" class="btn btn-cyan text-uppercase" value="Select membership">
-                                            <!-- Redicrect user to same page once membership is selected -->
-                                            <input type="hidden" name="redirect_url" value="{% url 'view_membershipsbag' %}">
-                                        {% endif %}
+                                            <span class="text-uppercase">View details</span>
+                                        </a>
                                     {% else %}
+                                        <!-- More details button -->
+                                        <a href="{% url 'membership_detail' membership.id %}"
+                                        class="btn btn-outline-dark">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                            <span class="text-uppercase">View details</span>
+                                        </a>
+                                        <!-- Select membership button -->
                                         <input type="submit" class="btn btn-cyan text-uppercase" value="Select membership">
-                                        <!-- Redicrect user to same page once membership is selected -->
+                                        <!-- Redicrect user to membershipsbag -->
                                         <input type="hidden" name="redirect_url" value="{% url 'view_membershipsbag' %}">
                                     {% endif %}
                                 </div>

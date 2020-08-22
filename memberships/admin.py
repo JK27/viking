@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Membership, UserMembership
+from .models import Category, Membership
 
 
 # ------------------------------------- MEMBERSHIP ADMIN
@@ -27,18 +27,5 @@ class CategoryAdmin(admin.ModelAdmin):
     ordering = ('id',)
 
 
-# ------------------------------------- USER MEMEBERSHIP ADMIN
-class UserMembershipAdmin(admin.ModelAdmin):
-
-    readonly_fields = ('id',)
-
-    list_display = ('id', 'user', 'membership',)
-
-    fields = ('user', 'membership',)
-
-    ordering = ('id',)
-
-
 admin.site.register(Membership, MembershipAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(UserMembership, UserMembershipAdmin)

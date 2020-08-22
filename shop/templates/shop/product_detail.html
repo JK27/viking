@@ -63,16 +63,30 @@
                     <!-- Product size selector -->
                         {% with product.has_sizes as s %}
                             {% if s %}
-                                <div class="col-12">
-                                    <p><strong>Size:</strong></p>
-                                    <select class="form-control w-50" name="product_size" id="id_product_size">
-                                        <option value="xs">XS</option>
-                                        <option value="s">S</option>
-                                        <option value="m" selected>M</option>
-                                        <option value="l">L</option>
-                                        <option value="xl">XL</option>
-                                    </select>
-                                </div>
+                                {% if product.category.name == 'trainers' %}
+                                    <div class="col-12">
+                                        <p><strong>Size:</strong></p>
+                                        <select class="form-control w-50" name="product_size" id="id_trainer_size">
+                                            <option value="5">UK 5 / EUR 38 / US 7</option>
+                                            <option value="6">UK 6 / EUR 39 / US 8</option>
+                                            <option value="7" selected>UK 7 / EUR 40 / US 9</option>
+                                            <option value="8">UK 8 / EUR 41 / US 10</option>
+                                            <option value="9">UK 9 / EUR 42 / US 11</option>
+                                            <option value="10">UK 10 / EUR 43 / US 12</option>
+                                        </select>
+                                    </div>
+                                {% else %}
+                                    <div class="col-12">
+                                        <p><strong>Size:</strong></p>
+                                        <select class="form-control w-50" name="product_size" id="id_product_size">
+                                            <option value="xs">XS</option>
+                                            <option value="s">S</option>
+                                            <option value="m" selected>M</option>
+                                            <option value="l">L</option>
+                                            <option value="xl">XL</option>
+                                        </select>
+                                    </div>
+                                {% endif %}
                             {% endif %}
                             <!-- Quantity input -->
                             <div class="col-12">
@@ -107,7 +121,7 @@
                                 <!-- Keep Shopping button -->
                                 <a href="{% url 'shop' %}" class="btn btn-outline-dark mt-5">
                                     <span class="icon">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fas fa-angle-double-left"></i>
                                     </span>
                                     <span class="text-uppercase">Keep Shopping</span>
                                 </a>

@@ -26,25 +26,25 @@ class Subscription(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
                                      related_name='subscriptions')
-    first_name = models.CharField(max_length=50, null=False, blank=False,
+    first_name = models.CharField(max_length=30, null=False, blank=False,
                                   default="")
-    last_name = models.CharField(max_length=50, null=False, blank=False,
+    last_name = models.CharField(max_length=30, null=False, blank=False,
                                  default="")
-    email = models.EmailField(max_length=254, null=False, blank=False,
+    email = models.EmailField(max_length=80, null=False, blank=False,
                               default="")
     phone_number = models.CharField(max_length=20, null=False, blank=False,
                                     default="")
     street_address1 = models.CharField(max_length=80, null=False,
                                        blank=False, default="")
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
-    town_or_city = models.CharField(max_length=40, null=False, blank=False,
+    town_or_city = models.CharField(max_length=50, null=False, blank=False,
                                     default="")
-    postcode = models.CharField(max_length=20, null=True, blank=True)
-    county = models.CharField(max_length=80, null=True, blank=True)
+    postcode = models.CharField(max_length=10, null=True, blank=True)
+    county = models.CharField(max_length=30, null=True, blank=True)
     country = CountryField(blank_label='Country *', null=False, blank=False)
     # Sets Subscription date and time
     date = models.DateField(auto_now_add=True)
-    subscription_total = models.DecimalField(max_digits=10,
+    subscription_total = models.DecimalField(max_digits=5,
                                              decimal_places=2,
                                              null=False, default=0)
     dd_account_no = models.CharField(max_length=8, null=False, blank=False)
