@@ -7,7 +7,7 @@ Order Date: {{ order.date }}
 
 Grand Total: £{{ order.grand_total }}
 
-Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.
+Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country.name }}.
 
 We've got your phone number on file as {{ order.phone_number }}.
 

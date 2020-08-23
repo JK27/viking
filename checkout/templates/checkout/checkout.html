@@ -26,10 +26,9 @@
                 <hr>
             </div>
         </div>
-
         <div class="row">
             <div class="col-12 col-lg-6 order-lg-last mb-5">
-                <!-- SHOP ORDER SUMMARY -->
+                <!-- ORDER SUMMARY -->
                 {% if shoppingbag_itmes %}
                     <p class="bag-thead">Order Summary ({{ product_count }})</p>
                     <div class="row">
@@ -79,7 +78,8 @@
             </div>
             <!-- CHECKOUT FORM -->
             <div class="col-12 col-lg-6">
-                <p class="bag-thead pl-3">Please fill out the form below to complete your order</p>
+                <p class="pl-3">Please fill out the form below to complete your order</p>
+                <p class="pl-3">All fields marked with an * are mandatory.</p>
                 <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                     {% csrf_token %}
                     <!-- Personal details fieldset -->

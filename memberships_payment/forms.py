@@ -48,7 +48,7 @@ class SubscriptionForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 # Sets placeholder values to dict above
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            # Adds CSS class for styling
+            # # Adds CSS class for styling
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
-            # Removes field labels
+            # # Removes field labels
             self.fields[field].label = False

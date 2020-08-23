@@ -39,7 +39,7 @@
 
 select,
 select option {
-    color: #000000;
+    color: #293949;
 }
 
 select:invalid,
@@ -61,7 +61,8 @@ select option[value=""] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #40c1a6;
+    background: #293949;
+    color: #40c1a6;
     z-index: 9999;
 }
 

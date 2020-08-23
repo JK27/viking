@@ -16,8 +16,8 @@ var elements = stripe.elements();
 // STYLE
 var style = {
     base: {
-        color: '#000',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        color: '#293949',
+        fontFamily: '"Oswald", Oswald, sans-serif',
         fontSmoothing: 'antialiased',
         fontSize: '16px',
         '::placeholder': {
@@ -65,13 +65,11 @@ form.addEventListener('submit', function(ev) {      // When user clicks submit b
     $('#loading-overlay').fadeToggle(100);          // ... and triggers loading overlay
 
     /* Capture form data and post it to cache_payment_data view */
-    var saveInfo = Boolean($('#id-save-info').attr('checked'));
     /* From using {% csrf_token %} in the form */
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
-        'save_info': saveInfo,
     };
     var url = '/checkout/cache_checkout_data/';
 

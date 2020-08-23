@@ -23,7 +23,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'shoppingbag': json.dumps(request.session.get('shoppingbag', {})),
-            'save_info': request.POST.get('save_info'),
+            # 'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
         return HttpResponse(status=200)
@@ -97,7 +97,7 @@ def checkout(request):
                     # ... and redirect user to shopping bag.
                     return redirect(reverse('view_shoppingbag'))
 
-            request.session['save_info'] = 'save-info' in request.POST
+            # request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
         # If form is not valid, display error message
@@ -109,13 +109,14 @@ def checkout(request):
         shoppingbag = request.session.get('shoppingbag', {})
         if not shoppingbag:
             messages.error(request,
-                           "There's nothing in your shopping bag at the moment")
+                           "There is nothing in your shopping bag \
+                               at the moment")
             return redirect(reverse('shop'))
 
         current_shoppingbag = shoppingbag_contents(request)
         grand_total = current_shoppingbag['grand_total']
-        # Stripe total needs to be in £pence
-        stripe_total = round(grand_total * 100)
+
+        stripe_total = round(grand_total * 100)  # Stripe works in £pence
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,

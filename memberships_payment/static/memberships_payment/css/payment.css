@@ -22,7 +22,7 @@
   background-color: #fefde5 !important;
 }
 
-/* ------------------------------------ PAYMENT FORM */
+/* ------------------------------------ CHECKOUT FORM */
 .stripe-style-input::placeholder {
     color: #aab7c4;
 }
@@ -39,18 +39,12 @@
 
 select,
 select option {
-    color: #000000;
+    color: #293949;
 }
 
 select:invalid,
 select option[value=""] {
     color: #aab7c4 !important;
-}
-
-#payment-form .form-control,
-#card-element {
-    color: #000;
-    border: 1px solid #000;
 }
 
 /* ------------------------------------ LOADING SPINNER */
@@ -71,4 +65,5 @@ select option[value=""] {
     justify-content: center;
     margin: 0;
     height: 100%;
+    color: #293949;
 }

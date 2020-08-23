@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .webhooks import webhook
+# from .webhooks import webhook
 
 urlpatterns = [
     path('', views.payment, name='payment'),
@@ -8,5 +8,5 @@ urlpatterns = [
          name='payment_success'),
     path('cache_payment_data/', views.cache_payment_data,
          name="cache_payment_data"),
-    path('wh/', webhook, name='webhook'),
+    # path('wh/', webhook, name='webhook'),
 ]

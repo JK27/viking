@@ -323,12 +323,12 @@ legend {
 	color: #40c1a6; 
 }
 
-.secondaryAction {
+.allauth-link {
     color: #40c1a6 !important;
     text-decoration: none;
 }
 
-.secondaryAction:hover {
+.allauth-link:hover {
     color: #293949 !important;
     text-decoration: none;
 }
