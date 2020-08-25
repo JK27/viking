@@ -13,7 +13,7 @@ from profiles.models import UserProfile
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False,
                                     editable=False)  # Automatically generated
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE,
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
                                      related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
@@ -43,6 +43,15 @@ class Order(models.Model):
         """
         return uuid.uuid4().hex.upper()
 
+    # ------------------------------------------- Update total method
+    def update_total(self):
+        """
+        Update grand total each time a line item is added,
+        accounting for delivery costs.
+        """
+        self.grand_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.save()
+
     # ------------------------------------------- Custom save method
     def save(self, *args, **kwargs):
         """
@@ -52,15 +61,6 @@ class Order(models.Model):
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
-
-    # ------------------------------------------- Update total method
-    def update_total(self):
-        """
-        Update grand total each time a line item is added,
-        accounting for delivery costs.
-        """
-        self.grand_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
-        self.save()
 
     def __str__(self):
         return self.order_number
@@ -73,8 +73,7 @@ class OrderLineItem(models.Model):
                               related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False,
                                 on_delete=models.CASCADE)
-    product_size = models.CharField(max_length=2, null=True,
-                                    blank=True)    # XS, S, M, L, XL
+    product_size = models.CharField(max_length=2, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
                                          null=False, blank=False,

@@ -8,6 +8,8 @@ from .forms import OrderForm
 from .models import OrderLineItem, Order
 
 from shop.models import Product
+from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
 from shoppingbag.contexts import shoppingbag_contents
 
 import stripe
@@ -23,7 +25,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'shoppingbag': json.dumps(request.session.get('shoppingbag', {})),
-            # 'save_info': request.POST.get('save_info'),
+            'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
         return HttpResponse(status=200)
@@ -97,7 +99,8 @@ def checkout(request):
                     # ... and redirect user to shopping bag.
                     return redirect(reverse('view_shoppingbag'))
 
-            # request.session['save_info'] = 'save-info' in request.POST
+            # Save the info to the user's profile if all is well
+            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
         # If form is not valid, display error message
@@ -123,7 +126,25 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        order_form = OrderForm()
+        # Attempt to prefill the form with any info the user maintains in their profile
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    # 'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.profile_phone_number,
+                    'country': profile.profile_country,
+                    'postcode': profile.profile_postcode,
+                    'town_or_city': profile.profile_town_or_city,
+                    'street_address1': profile.profile_street_address1,
+                    'street_address2': profile.profile_street_address2,
+                    'county': profile.profile_county,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
@@ -144,8 +165,28 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    #   save_info = request.session.get('save_info')
+    save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        # Attach the user's profile to the order
+        order.user_profile = profile
+        order.save()
+        # Save the user's info
+        if save_info:
+            profile_data = {
+                'profile_phone_number': order.phone_number,
+                'profile_country': order.country,
+                'profile_postcode': order.postcode,
+                'profile_town_or_city': order.town_or_city,
+                'profile_street_address1': order.street_address1,
+                'profile_street_address2': order.street_address2,
+                'profile_county': order.county,
+            }
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            if user_profile_form.is_valid():
+                user_profile_form.save()
 
     # ... then display success message
     messages.success(request, f'Order successfully processed! \

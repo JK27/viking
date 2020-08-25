@@ -5,7 +5,7 @@ This is a confirmation of your membership at Viking Gym. Your membership informa
 Subscription Number: {{ subscription.subscription_number }}
 Joining Date: {{ subscription.date }}
 
-Monthly Total: £{{ subscription.subscription_total }}
+Monthly Total: £{{ subscription.subscription_total|floatformat:2 }}
 
 You can now log in to check your profile and browse our shop items at exclusive prices.
 
