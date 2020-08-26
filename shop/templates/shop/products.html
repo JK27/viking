@@ -89,7 +89,7 @@
                                                 {% csrf_token %}
                                                     <input class="form-control qty_input" type="hidden" name="quantity" value="1" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                                     <!-- Add to bag button -->
-                                                    <input type="submit" class="btn btn-cyan text-uppercase" value="Add to Bag">
+                                                    <input type="submit" class="btn btn-cyan text-uppercase add-to-bag-btn" value="Add to Bag">
                                                     <!-- Redicrect user to same page once item has been added to bag -->
                                                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                                 </form>

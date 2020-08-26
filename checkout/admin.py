@@ -16,7 +16,8 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderLineItemAdminInline,)
 
     # --- Fields calculated automatically by models
-    readonly_fields = ('order_number', 'date', 'grand_total',)
+    readonly_fields = ('order_number', 'date', 'grand_total',
+                       'original_shoppingbag', 'stripe_pid')
 
     # --- Specifies order of fields to match model
     fields = ('order_number', 'date', 'user_profile', 'full_name',

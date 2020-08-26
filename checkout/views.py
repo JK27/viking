@@ -58,8 +58,10 @@ def checkout(request):
         if order_form.is_valid():
             # Commit=False prevents multiple save events
             order = order_form.save(commit=False)
+            print(request.POST.get('client_secret'))
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
+            print(pid)
             order.original_shoppingbag = json.dumps(shoppingbag)
             order.save()
             # Iterate through each shopping bag item to create a line item

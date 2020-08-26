@@ -243,6 +243,11 @@ a.category-badge > span.badge:hover {
     border: 3px solid #40c1a6;
 }
 
+/* ---------------- ADD TO BAG BUTTON */
+.add-to-bag-btn {
+    line-height: 1.5rem;
+}
+
 /* ----------------------------------------- QUANTITY INPUT */
 .qty_input {
     border: 4px solid #293949; 

@@ -9,7 +9,8 @@
     slicing off the quotations which are first and last characters.
 */
 var stripePublicKey  = $('#id_stripe_public_key').text().slice(1, -1);
-var clientSecret  = $('#id_client_secret').text().slice(1, -1);
+var clientSecret = $('#id_client_secret').text().slice(1, -1);
+console.log(clientSecret);
 var stripe = Stripe(stripePublicKey );
 var elements = stripe.elements();
 
@@ -32,7 +33,9 @@ var style = {
 
 // CARD ELEMENT
 // Creates card element and send it to field in template
-var card = elements.create('card', {style: style});
+var card = elements.create('card', {
+    hidePostalCode: true,
+    style: style});
 card.mount('#card-element');
 
 // HANDLE REALTIME VALIDATION ERRORS ON CARD ELEMENT
@@ -84,6 +87,7 @@ form.addEventListener('submit', function(ev) {      // When user clicks submit b
                     address:{
                         line1: $.trim(form.street_address1.value),
                         line2: $.trim(form.street_address2.value),
+                        postal_code: $.trim(form.postcode.value),
                         city: $.trim(form.town_or_city.value),
                         country: $.trim(form.country.value),
                         state: $.trim(form.county.value),
