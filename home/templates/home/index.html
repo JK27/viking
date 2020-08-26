@@ -25,42 +25,30 @@
         <!-- Carousel slide 1 -->
 		<div class="carousel-item active">
             <!-- Background image -->
-			<img src="/media/colourful-kettle-bells.jpg" class="d-block w-100" alt="...">
+			<img src="/media/colourful-kettle-bells.jpg" class="d-block w-100">
             <!-- Carousel caption -->
 			<div class="container">
-				<div class="carousel-caption text-left">
-					<h1>Example headline.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
-						at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+				<div class="carousel-caption carousel-caption-centered text-right caption-dark">
+					<h1>Sign up in just a few minutes and start right away!</h1>
+					<h4>Our memberships are designed to fit to your needs. Come at any time with our Full memberships or choose an Off-peak membership for a more quiet experience. You decide.</h4>
+					<p><a class="btn btn-lg btn-cyan text-uppercase" href="{% url 'memberships' %}" role="button">Sign up now
+                        <span class="icon">
+                                <i class="fas fa-angle-double-right"></i>
+                            </span>
+                    </a></p>
 				</div>
 			</div>
 		</div>
         <!-- Carousel slide 2 -->
 		<div class="carousel-item">
             <!-- Background image -->
-			<img src="/media/gloves-weights.jpg" class="d-block w-100" alt="...">
-            <!-- Carousel caption -->
-			<div class="container">
-				<div class="carousel-caption">
-					<h1>Another example headline.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
-						at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-				</div>
-			</div>
-		</div>
-        <!-- Carousel slide 3 -->
-		<div class="carousel-item">
-            <!-- Background image -->
 			<img src="/media/treadmill.jpg" class="d-block w-100" alt="...">
             <!-- Carousel caption -->
 			<div class="container">
-				<div class="carousel-caption text-right">
-					<h1>One more for good measure.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
-						at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+				<div class="carousel-caption text-center caption-white">
+					<h1>Gear up!</h1>
+					<h4>Get all you need for your training session and more from our shop. Order online and collect at the gym in a maximum of 48 hours.</h4>
+					<p><a class="btn btn-lg btn-cyan text-uppercase" href="{% url 'shop' %}" role="button">Browse our shop</a></p>
 				</div>
 			</div>
 		</div>

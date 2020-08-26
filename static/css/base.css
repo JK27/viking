@@ -85,10 +85,21 @@ body {
     height: 32rem;
 }
 
-.carousel-caption {
+.carousel-caption-centered {
     bottom: 15%;
 }
 
+.caption-dark {
+    color: #293949
+}
+
+.caption-cyan {
+    color: #40c1a6;
+}
+
+.caption-white {
+    color: #ffffff;
+}
 
 /* ----------------------------------------- FOOTER*/
 footer {
