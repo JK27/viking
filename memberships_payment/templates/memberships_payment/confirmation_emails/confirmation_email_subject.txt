@@ -1,1 +1,0 @@
-Viking Gym Confirmation for Subscription Number {{ subscription.subscription_number }}

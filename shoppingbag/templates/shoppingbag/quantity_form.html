@@ -1,11 +1,11 @@
 <form class="form update-form" method="POST" action="{% url 'adjust_shoppingbag' item.item_id %}">
     {% csrf_token %}
-    <div class="form-group">
+    <div class="form-group form-cotrol-select rounded">
         <!-- INPUT GROUP -->
         <div class="input-group">
             <!-- Decrement button -->
             <div class="input-group-prepend">
-                <button class="decrement-qty btn btn-sm btn-outline-dark" 
+                <button class="decrement-qty btn btn-sm" 
                     data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                     <span>
                         <i class="fas fa-minus fa-sm"></i>
@@ -18,7 +18,7 @@
                 data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
             <!-- Increment button -->
             <div class="input-group-append">
-                <button class="increment-qty btn btn-sm btn-outline-dark"
+                <button class="increment-qty btn btn-sm"
                     data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                     <span>
                         <i class="fas fa-plus fa-sm"></i>
@@ -32,6 +32,6 @@
     </div>
 </form>
 <!-- UPDATE AND REMOVE LINKS -->
-<a class="update-info-link"><small>Update</small></a>
+<a class="update-info-link"><small>Update quantity</small></a>
 <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"
-   data-product_size="{{ item.size }}"><small>Remove</small></a>
+   data-product_size="{{ item.size }}"><small>Remove item</small></a>

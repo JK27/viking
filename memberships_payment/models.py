@@ -20,7 +20,7 @@ class Subscription(models.Model):
         new_subscription_number = 'VG000' + str(new_subscription_int)
         return new_subscription_number
 
-    subscription_number = models.CharField(max_length=6,
+    subscription_number = models.CharField(max_length=10,
                                            default=create_subscription_number,
                                            null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,

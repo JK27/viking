@@ -26,50 +26,6 @@
         <div class="row">
             <div class="col">
                 {% if shoppingbag_items %}
-                    <div class="d-block d-md-none">
-                        <!-- Bag total -->
-                        <div class="row">
-                            <div class="col">
-                                <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
-                            </div>
-                        </div>
-                        <!-- Checkout buttons -->
-                        <div class="row">
-                            <div class="col">
-                                {% include "shoppingbag/checkout_buttons.html" %}
-                                <p class="text-muted mb-5">A summary of your bag contents is below</p>
-                            </div>
-                        </div>
-                        {% for item in shoppingbag_items %}
-                            <!-- Bag items summary -->
-                            <div class="row">
-                                <!-- Item image -->
-                                <div class="col-12 col-sm-6 mb-2">
-                                    {% include "shoppingbag/product_image.html" %}
-                                </div>
-                                <!-- Item info -->
-                                <div class="col-12 col-sm-6 mb-2">
-                                    {% include "shoppingbag/product_info.html" %}
-                                </div>
-                                <!-- Item price -->
-                                <div class="col-12 col-sm-6 order-sm-last">
-                                    <p class="my-0">Price Each: £{{ item.product.price }}</p>
-                                    <p><strong>Subtotal: </strong>£{{ item.product.price | calc_subtotal:item.quantity }}</p>
-                                </div>
-                                <!-- Bag quantity form -->
-                                <div class="col-12 col-sm-6">
-                                    {% include "shoppingbag/quantity_form.html" %}
-                                </div>
-                            </div>
-                            <div class="row"><div class="col"><hr></div></div>
-                        {% endfor %}
-                        <!-- Back to top button -->
-                        <div class="btt-button shadow-sm">
-                            <a class="btt-link d-flex h-100">
-                                <i class="fas fa-arrow-up mx-auto my-auto"></i>
-                            </a>	
-                        </div>
-                    </div>
                     <!-- SHOPPING BAG TABLE -->
                     <div class="table-responsive rounded d-none d-md-block">
                         <table class="table table-sm table-borderless">

@@ -55,7 +55,7 @@ select option[value=""] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #40c1a6;
+    background: #293949;
     z-index: 9999;
 }
 
@@ -65,5 +65,4 @@ select option[value=""] {
     justify-content: center;
     margin: 0;
     height: 100%;
-    color: #293949;
 }

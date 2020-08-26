@@ -20,6 +20,7 @@
         {% if grand_total and not on_profile_page %}
             <!-- Product count -->
             <p class="logo-font bg-white py-1">Your shopping bag ({{ product_count }})</p>
+            <hr class="my-0">
             <!-- Shopping bag items -->
             <div class="bag-notification wrapper">
                 {% for item in shoppingbag_items %}
@@ -39,6 +40,7 @@
                             <p class="my-0 small text-muted">Quantity: {{ item.quantity }}</p>
                         </div>
                     </div>
+                    <hr class="my-0">
                 {% endfor %}
             </div>
             <div class="row">
