@@ -419,6 +419,35 @@ legend {
 }
 
 @media (max-width: 575px) {
+    .footer-content {
+        text-align: center;
+    }
+
+    .main-carousel-inner {
+        height: 200px;
+    }
+
+    .carousel-caption-centered {
+        bottom: 50%;
+    }
+
+    .small-slide {
+        background-color: #40c1a6;
+        height: 24rem;
+    }
+
+    .small-carousel-inner {
+        height: 150px;
+    }
+
+    .small-carousel-caption {
+        bottom: 65%;
+    }
+
+    .carousel-btn:hover {
+        text-decoration: none;
+    }
+
     .btt-button {
         height: 24px;
         width: 24px;

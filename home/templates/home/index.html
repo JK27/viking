@@ -13,25 +13,26 @@
 
 {% block content %}
 <!-- *** CAROUSEL *** -->
-<div id="myCarousel" class="carousel slide h-100" data-ride="carousel">
+<div id="mainCarousel" class="carousel slide" data-ride="carousel">
     <!-- CAROUSEL INDICATORS -->
 	<ol class="carousel-indicators">
-		<li data-target="#myCarousel" data-slide-to="0" class=""></li>
-		<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-		<li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+		<li data-target="#mainCarousel" data-slide-to="0" class=""></li>
+		<li data-target="#mainCarousel" data-slide-to="1" class=""></li>
+		<li data-target="#mainCarousel" data-slide-to="2" class="active"></li>
 	</ol>
     <!-- CAROUSEL INNER -->
-	<div class="carousel-inner h-100">
+	<div class="carousel-inner main-carousel-inner">
         <!-- Carousel slide 1 -->
 		<div class="carousel-item active">
             <!-- Background image -->
 			<img src="/media/colourful-kettle-bells.jpg" class="d-block w-100">
             <!-- Carousel caption -->
 			<div class="container">
-				<div class="carousel-caption carousel-caption-centered text-right caption-dark">
-					<h1>Sign up in just a few minutes and start right away!</h1>
+				<div class="carousel-caption carousel-caption-centered text-right caption-dark d-none d-md-block">
+                    <!-- Hidden on smaller screens -->
+					<h1>Join in just a few minutes and start right away!</h1>
 					<h4>Our memberships are designed to fit to your needs. Come at any time with our Full memberships or choose an Off-peak membership for a more quiet experience. You decide.</h4>
-					<p><a class="btn btn-lg btn-cyan text-uppercase" href="{% url 'memberships' %}" role="button">Sign up now
+					<p><a class="btn btn-lg btn-cyan text-uppercase carousel-btn" href="{% url 'memberships' %}" role="button">Sign up now
                         <span class="icon">
                                 <i class="fas fa-angle-double-right"></i>
                             </span>
@@ -46,19 +47,60 @@
             <!-- Carousel caption -->
 			<div class="container">
 				<div class="carousel-caption text-center caption-white">
-					<h1>Gear up!</h1>
-					<h4>Get all you need for your training session and more from our shop. Order online and collect at the gym in a maximum of 48 hours.</h4>
+					<h1 class="d-none d-md-block">Gear up!</h1>
+					<h4 class="d-none d-md-block">Get all you need for your training session and more from our shop. Order online and collect at the gym in a maximum of 48 hours.</h4>
 					<p><a class="btn btn-lg btn-cyan text-uppercase" href="{% url 'shop' %}" role="button">Browse our shop</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
     <!-- CAROUSEL CONTROLS -->
-	<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+	<a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
 		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 		<span class="sr-only">Previous</span>
 	</a>
-	<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+	<a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+
+
+
+<!-- SMALL CAROUSEL -->
+<div class="carousel slide d-sm-block d-md-none" id="SmallCarousel" data-ride="carousel">
+    <div class="carousel-inner small-carousel-inner">
+        <!-- Carousel slide 1 -->
+		<div class="carousel-item small-slide active">
+            <!-- Carousel caption -->
+			<div class="container">
+				<div class="carousel-caption small-carousel-caption text-center caption-dark">
+					<h4 class="mb-3">Join in minutes and start right away!</h4>
+					<a class="btn-sm btn-outline-dark text-uppercase carousel-btn" href="{% url 'memberships' %}" role="button">Sign up now
+                        <span class="icon">
+                            <i class="fas fa-angle-double-right"></i>
+                        </span>
+                    </a>
+				</div>
+			</div>
+		</div>
+        <!-- Carousel slide 2 -->
+		<div class="carousel-item small-slide">
+            <!-- Carousel caption -->
+			<div class="container">
+				<div class="carousel-caption small-carousel-caption text-center caption-dark">
+                    <h4 class="mb-3">Get all you need for your training session.</h4>
+					<a class="btn-sm btn-outline-dark text-uppercase carousel-btn" href="{% url 'shop' %}" role="button">Browse our shop</a>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- CAROUSEL CONTROLS -->
+	<a class="carousel-control-prev" href="#SmallCarousel" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#SmallCarousel" role="button" data-slide="next">
 		<span class="carousel-control-next-icon" aria-hidden="true"></span>
 		<span class="sr-only">Next</span>
 	</a>
