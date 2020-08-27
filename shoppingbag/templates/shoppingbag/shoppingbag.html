@@ -27,7 +27,7 @@
             <div class="col">
                 {% if shoppingbag_items %}
                     <!-- SHOPPING BAG TABLE -->
-                    <div class="table-responsive rounded d-none d-md-block">
+                    <div class="table-responsive rounded d-md-block">
                         <table class="table table-sm table-borderless">
                             <thead class="bag-thead">
                                 <tr>
@@ -46,8 +46,11 @@
                                         {% include "shoppingbag/product_image.html" %}
                                     </td>
                                     <!-- Bag Item info -->
-                                    <td class="py-3">
+                                    <td class="d-none d-md-block py-3">
                                         {% include "shoppingbag/product_info.html" %}
+                                    </td>
+                                    <td class="d-md-none py-3">
+                                        {% include "shoppingbag/mobile_product_info.html" %}
                                     </td>
                                     <!-- Bag Item price -->
                                     <td class="py-3">

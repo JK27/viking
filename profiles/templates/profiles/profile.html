@@ -181,43 +181,43 @@
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-4">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">First name *</p></legend>
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">First name *</p></legend>
                             {{ form.profile_first_name | as_crispy_field }}
                         </div>
                         <div class="col-4">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Last name *</p></legend>
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">Last name *</p></legend>
                             {{ form.profile_last_name | as_crispy_field }}
                         </div>
                         <div class="col-4">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Phone number *</p></legend>
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">Phone number *</p></legend>
                             {{ form.profile_phone_number | as_crispy_field }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Address *</p></legend>
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">Address *</p></legend>
                             {{ form.profile_street_address1 | as_crispy_field }}
                         </div>
                         <div class="col-6">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Address (continuation)</p></legend>
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">Address (continuation)</p></legend>
                             {{ form.profile_street_address2 | as_crispy_field }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Town or city *</p></legend>
+                        <div class="col-6 col-md-3">
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">Town or city *</p></legend>
                             {{ form.profile_town_or_city | as_crispy_field }}
                         </div>
-                        <div class="col-3">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Postcode *</p></legend>
+                        <div class="col-6 col-md-3">
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">Postcode *</p></legend>
                             {{ form.profile_postcode | as_crispy_field }}
                         </div>
-                        <div class="col-3">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">County, council or state</p></legend>
+                        <div class="col-6 col-md-3">
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">County or state</p></legend>
                             {{ form.profile_county | as_crispy_field }}
                         </div>
-                        <div class="col-3">
-                            <legend class="fieldset-label text-muted w-auto"><p class="small mb-0">Country *</p></legend>
+                        <div class="col-6 col-md-3">
+                            <legend class="fieldset-label text-muted w-auto pl-1"><p class="small mb-0">Country *</p></legend>
                             {{ form.profile_country | as_crispy_field }}
                         </div>
                     </div>

@@ -81,10 +81,6 @@ body {
 }
 
 /* ----------------------------------------- CAROUSEL */
-.carousel-item {
-    height: 32rem;
-}
-
 .carousel-caption-centered {
     bottom: 15%;
 }
@@ -373,6 +369,10 @@ legend {
   }
 }
 
+.carousel-item {
+    height: 32rem;
+}
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
@@ -388,7 +388,7 @@ legend {
     }
 }
 
-/* pad the top a bit when navbar is collapsed on mobile */
+/* ------------------------------------ MAX WIDTH 991PX */
 @media (max-width: 991px) {
     .header-container {
         padding-top: 50px;
@@ -417,7 +417,7 @@ legend {
         font-size: .75rem;
     }
 }
-
+/* ------------------------------------ MAX WIDTH 575PX */
 @media (max-width: 575px) {
     .footer-content {
         text-align: center;
@@ -456,5 +456,12 @@ legend {
     a.category-badge span {
         font-size: 1rem;
         padding: 4px;
+    }
+}
+
+/* ------------------------------------ MIN WIDTH 575 */
+@media (min-width:576px) {
+    .remove-item {
+        float: right;
     }
 }

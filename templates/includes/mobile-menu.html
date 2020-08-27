@@ -16,20 +16,19 @@
             <!-- Shop dropdown toggle -->
             <a class="dropdown-toggle font-weight-bold nav-link text-black mr-5" href="#" id="shopdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Shop</strong></a>
             <div class="dropdown-menu" aria-labelledby="shopdropdown" id="shopdropdown-menu">
-                        
-                        <!-- Clothing dropdown -->
-                        <a class="dropdown-item" id="clothing-link" href="{% url 'shop' %}?category=vests,tshirts,long_sleeves,shorts,track_bottoms" role="button" aria-haspopup="true" aria-expanded="false">Clothing</a>
+                <!-- Clothing dropdown -->
+                <a class="dropdown-item" id="clothing-link" href="{% url 'shop' %}?category=vests,tshirts,long_sleeves,shorts,track_bottoms" role="button" aria-haspopup="true" aria-expanded="false">Clothing</a>
 
-                        <!-- Footwear dropdown -->
-                        <a class="dropdown-item" id="shoes-link" href="{% url 'shop' %}?category=trainers,socks" role="button" aria-haspopup="true" aria-expanded="false">Footwear</a>
+                <!-- Footwear dropdown -->
+                <a class="dropdown-item" id="shoes-link" href="{% url 'shop' %}?category=trainers,socks" role="button" aria-haspopup="true" aria-expanded="false">Footwear</a>
 
-                        <!-- Accessories dropdown -->
-                        <a class="dropdown-item" id="accessories-link" href="{% url 'shop' %}?category=backpacks,bags,balls,water_bottles" role="button" aria-haspopup="true" aria-expanded="false">Accessories</a>
-                        
-                    <div class="dropdown-divider"></div>
-                        <!-- All products -->
-                        <a class="dropdown-item" href="{% url 'shop' %}">All products</a>
-
+                <!-- Accessories dropdown -->
+                <a class="dropdown-item" id="accessories-link" href="{% url 'shop' %}?category=backpacks,bags,balls,water_bottles" role="button" aria-haspopup="true" aria-expanded="false">Accessories</a>
+                
+                <div class="dropdown-divider"></div>
+                <!-- All products -->
+                <a class="dropdown-item" href="{% url 'shop' %}">All products</a>
+            </div>
         </li>
     </ul>
 </div>

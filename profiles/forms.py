@@ -24,7 +24,7 @@ class UserProfileForm(forms.ModelForm):
             'profile_town_or_city': 'Town or City',
             'profile_street_address1': 'Street Address 1',
             'profile_street_address2': 'Street Address 2',
-            'profile_county': 'County, Council or State',
+            'profile_county': 'County or State',
         }
 
         # Sets autofocus to phone no field
