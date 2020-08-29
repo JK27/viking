@@ -47,7 +47,6 @@ def user_subscription(request, subscription_number):
     messages.info(request, (
         f'This is a past confirmation for your membership \
         with subscription number {subscription_number}.'
-        ' A confirmation email was sent on the order date.'
     ))
 
     template = 'memberships_payment/payment_success.html'

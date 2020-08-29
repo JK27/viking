@@ -24,7 +24,8 @@ def cache_payment_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'membershipsbag': json.dumps(request.session.get('membershipsbag', {})),
+            'membershipsbag':
+            json.dumps(request.session.get('membershipsbag', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
@@ -180,8 +181,7 @@ def payment_success(request, subscription_number):
                 user_profile_form.save()
 
     messages.success(request, f'Your membership has been successfully processed! \
-        Your membership number is {subscription_number}. A confirmation \
-        email will be sent to {subscription.email}.')
+        Your membership number is {subscription_number}.')
 
     # Delete shopping bag from the session as it is no longer needed
     if 'membershipsbag' in request.session:

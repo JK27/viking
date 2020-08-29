@@ -5,7 +5,13 @@
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
-{% block page_title %}Viking Gym - Checkout success!{% endblock %} 
+{% block page_title %}
+    {% if from_profile %}
+        Viking Gym - Ordern summary
+    {% else %}
+        Viking Gym - Checkout success!
+    {% endif %}
+{% endblock %} 
 
 {% block page_header %}
     <div class="container header-container">
@@ -20,17 +26,24 @@
         <!-- CONFIRMATION EMAIL MESSAGE -->
         <div class="row">
             <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">Thank You!</h2>
-                <hr>
-                <p>Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+                {% if from_profile %}
+                    <hr>
+                    <h2 class="logo-font mb-4">Thank You!</h2>
+                    <hr>
+                    <p>Your order information is below. A confirmation was sent to <strong>{{ order.email }}</strong> on {{ order.date }}.</p>
+                {% else %}
+                    <hr>
+                    <h2 class="logo-font mb-4">Thank You!</h2>
+                    <hr>
+                    <p>Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+                {% endif %}
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-7">
+            <div class="col-12 col-lg-9">
                 <!-- ORDER CONFIRMATION WRAPPER -->
-                <div class="order-confirmation-wrapper p-2 border">
+                <div class="order-confirmation-wrapper p-2 border rounded offset-3">
                     <!-- ORDER INFO -->
                     <div class="row">
                         <div class="col">
@@ -72,7 +85,7 @@
                         </div>
                         <!-- Item price -->
                         <div class="col-12 col-md-4 text-md-right">
-                            <p class="mb-0">{{ item.quantity }} @ £{{ item.product.price }} each</p>
+                            <p class="mb-0"><strong>{{ item.quantity }} @ £{{ item.product.price }} each</strong></p>
                         </div>
                     </div>
                     {% endfor %}

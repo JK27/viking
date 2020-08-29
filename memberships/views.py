@@ -1,11 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.contrib import messages
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
 
 from .models import Membership, Category
-
-import stripe
 
 
 # ------------------------------------------ MEMBERSHIPS LIST

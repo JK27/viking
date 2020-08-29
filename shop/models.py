@@ -8,7 +8,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    friendly_name = models.CharField(max_length=254, null=False, blank=True)
 
     def __str__(self):
         return self.name
@@ -28,9 +28,7 @@ class Product(models.Model):
     discounted_price = models.DecimalField(max_digits=6, decimal_places=2,
                                            null=True)
     brand = models.CharField(max_length=20, default="")
-    brand_logo_url = models.URLField(max_length=1024, null=True, blank=True)
     gender = models.CharField(max_length=10, default="Unisex")
-    base_colour = models.CharField(max_length=20, null=True, blank=True)
     has_sizes = models.BooleanField(default=True, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)

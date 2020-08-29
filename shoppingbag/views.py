@@ -63,7 +63,8 @@ def add_to_shoppingbag(request, item_id):
             # ... adds specified quantity of items to shopping bag
             shoppingbag[item_id] = quantity
             # ... and display succes message in toasts
-            messages.success(request, f'Added {product.name} to your shopping bag.')
+            messages.success(request, f'Added {product.name} \
+                to your shopping bag.')
     # Overwrites variable in session with updated version
     request.session['shoppingbag'] = shoppingbag
     return redirect(redirect_url)
@@ -79,7 +80,8 @@ def adjust_shoppingbag(request, item_id):
     size = None
     if 'product_size' in request.POST:
         size = request.POST['product_size']
-    # Keeps shopping bag contents while session lasts. If not session, it creates one
+    # Keeps shopping bag contents while session lasts.
+    # If not session, it creates one
     shoppingbag = request.session.get('shoppingbag', {})
 
     # If product has sizes...
@@ -90,7 +92,8 @@ def adjust_shoppingbag(request, item_id):
             shoppingbag[item_id]['items_by_size'][size] = quantity
             # ... and display succes message in toasts
             messages.success(request, f'Updated size {size.upper()} \
-            {product.name} quantity to {shoppingbag[item_id]["items_by_size"][size]}.')
+            {product.name} quantity to \
+            {shoppingbag[item_id]["items_by_size"][size]}.')
 
         # ... otherwise...
         else:
@@ -116,7 +119,8 @@ def adjust_shoppingbag(request, item_id):
         else:
             # ... removes the item completely
             shoppingbag.pop(item_id)
-            messages.success(request, f'Removed {product.name} from your shopping bag.')
+            messages.success(request, f'Removed {product.name} \
+                from your shopping bag.')
 
     request.session['shoppingbag'] = shoppingbag
     return redirect(reverse('view_shoppingbag'))

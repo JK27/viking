@@ -48,6 +48,12 @@ body {
 }
 
 /* ---------------- Shop dropdown menu */
+#shopdropdown-menu {
+    background-color: #293949;
+    margin: 0;
+    border: 0;
+}
+
 #shopdropdown-menu a,
 .navbar-brand,
 .navbar-link,
@@ -62,12 +68,6 @@ body {
     text-decoration: none;
     color: #293949;
     background-color: #40c1a6;
-}
-
-#shopdropdown-menu {
-    background-color: #293949;
-    margin: 0;
-    border: 0;
 }
 
 /* ---------------- Search bar */
@@ -91,10 +91,6 @@ body {
 
 .caption-cyan {
     color: #40c1a6;
-}
-
-.caption-white {
-    color: #ffffff;
 }
 
 /* ----------------------------------------- FOOTER*/
@@ -124,6 +120,8 @@ footer {
 
 
 /* ----------------------------------------- SHOP/MEMBERSHIPS NAV */
+/* For categories in memberships/shop nav and 
+    links to category in product card and product_detail.html */
 .category-link {
     color: #293949 !important;
     font-size: 1.25rem;
@@ -146,6 +144,7 @@ footer {
     color: #40c1a6;
 }
 
+/* Current category if statement in products.html */
 a.category-badge span{
     font-size: 1.25rem;
     background: #293949 !important;
@@ -161,6 +160,8 @@ a.category-badge > span.badge:hover {
     border: 3px solid #40c1a6;
 }
 
+/* .shop-home-link shown on same row as sort selector box after
+    search or filetering by category */
 .shop-home-link,
 .card-category-link {
     color: #40c1a6 !important;
@@ -183,11 +184,6 @@ a.category-badge > span.badge:hover {
     color: #40c1a6 !important;
 }
 
-/* ---------------------------------------- MEMBERSHIPS */
-.memberships-container {
-    min-height: 75%;
-}
-
 /* ----------------------------------------- ICONS */
 .icon {
     align-items: center;
@@ -197,8 +193,9 @@ a.category-badge > span.badge:hover {
     width: 1.5rem;
 }
 
-/* ----------------------------------------- BAG CONTAINER */
+/* ----------------------------------------- CONTAINERS */
 .bag-container,
+.memberships-container,
 .profile-container {
     min-height: 75%;
 }
@@ -255,7 +252,7 @@ a.category-badge > span.badge:hover {
     border: 3px solid #40c1a6;
 }
 
-/* ---------------- ADD TO BAG BUTTON */
+/* ---------------- Add to bag button */
 .add-to-bag-btn {
     line-height: 1.5rem;
 }
@@ -304,7 +301,7 @@ legend {
 
 /* ----------------------------------------- TOASTS */
 .custom-toast {
-    max-height: 416px; /* of profile form + submit button */
+    max-height: 416px;
     overflow-y: auto;
 }
 
@@ -351,6 +348,7 @@ legend {
 	color: #40c1a6; 
 }
 
+/* In login and signup templates */
 .allauth-link {
     color: #40c1a6 !important;
     text-decoration: none;
@@ -362,29 +360,20 @@ legend {
 }
 
 /* ----------------------------------------- MEDIA QUERIES */
-/* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
+/* Slightly larger container on xl screens */
   .container {
     max-width: 80%;
   }
 }
-
+/* Larger text on carousels */
 .carousel-item {
     height: 32rem;
 }
 
-/* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
-
     .header-container {
-        padding-top: 68px;
+        padding-top: 67px;
     }
 }
 
@@ -412,9 +401,15 @@ legend {
         font-size: 1rem;
     }
 
-    .btn-cyan {
-        padding: .375rem .375rem;
-        font-size: .75rem;
+    .increment-qty,
+    .decrement-qty {
+        padding: .25rem .5rem !important;
+    }
+
+    /* To compensate offset used on larger screens */
+    .order-confirmation-wrapper,
+    .subscription-confirmation-wrapper {
+        margin-left: 0!important;
     }
 }
 /* ------------------------------------ MAX WIDTH 575PX */
@@ -431,19 +426,6 @@ legend {
         bottom: 50%;
     }
 
-    .small-slide {
-        background-color: #40c1a6;
-        height: 24rem;
-    }
-
-    .small-carousel-inner {
-        height: 150px;
-    }
-
-    .small-carousel-caption {
-        bottom: 65%;
-    }
-
     .carousel-btn:hover {
         text-decoration: none;
     }
@@ -456,6 +438,20 @@ legend {
     a.category-badge span {
         font-size: 1rem;
         padding: 4px;
+    }
+
+    /* Small slides only shown on small screens */
+    .small-slide {
+        background-color: #40c1a6;
+        height: 24rem;
+    }
+
+    .small-carousel-inner {
+        height: 150px;
+    }
+
+    .small-carousel-caption {
+        bottom: 65%;
     }
 }
 

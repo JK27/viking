@@ -5,7 +5,13 @@
     <link rel="stylesheet" href="{% static 'memberships_payment/css/payment.css' %}">
 {% endblock %}
 
-{% block page_title %}Viking Gym - Payment success!{% endblock %} 
+{% block page_title %}
+    {% if from_profile %}
+        Viking Gym - Subscription summary
+    {% else %}
+        Viking Gym - Payment success!
+    {% endif %}
+{% endblock %} 
 
 {% block page_header %}
     <div class="container header-container">
@@ -20,17 +26,24 @@
         <!-- CONFIRMATION EMAIL MESSAGE -->
         <div class="row">
             <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">Thank You!</h2>
-                <hr>
-                <p class="text-black">Your subscription information is below. A confirmation email will be sent to <strong>{{ subscription.email }}</strong>.</p>
+                {% if from_profile %}
+                    <hr>
+                    <h2 class="logo-font mb-4">Thank You!</h2>
+                    <hr>
+                    <p>Your subscription information is below.</p>
+                {% else %}
+                    <hr>
+                    <h2 class="logo-font mb-4">Thank You!</h2>
+                    <hr>
+                    <p class="text-black">Your subscription information is below. Your username is <strong>{{ user.username }}</strong>.</p>
+                {% endif %}
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-7">
+            <div class="col-12 col-lg-9">
                 <!-- SUBSCRIPTION CONFIRMATION WRAPPER -->
-                <div class="subscription-confirmation-wrapper p-2 border">
+                <div class="subscription-confirmation-wrapper p-2 border rounded offset-3">
                     <!-- SUBSCRIPTION INFO -->
                     <div class="row">
                         <div class="col">
@@ -72,7 +85,7 @@
                         </div>
                         <!-- Item price -->
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">£{{ item.membership.price }}/month</p>
+                            <p class="mb-0"><strong>£{{ item.membership.price }}/month</strong></p>
                         </div>
                     </div>
                     {% endfor %}
@@ -181,7 +194,7 @@
                             <p class="mb-0 font-weight-bold">Amount payed today</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">£{{ subscription.subscription_total }}</p>
+                            <p class="mb-0 font-weight-bold">£{{ subscription.subscription_total }}</p>
                         </div>
                     </div>
                 </div>

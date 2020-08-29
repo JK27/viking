@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col">
                 {% if membershipsbag_items %}
-                    <div class="table-responsive rounded d-none d-md-block">
+                    <div class="table-responsive rounded">
                         <table class="table table-sm table-borderless">
                             <thead class="bag-thead">
                                 <tr>
@@ -41,8 +41,11 @@
                                         <h3 class="my-0 bag-thead"><strong>{{ item.membership.friendly_name }}</strong></h3>
                                     </td>
                                     <!-- Membership description -->
-                                    <td class="py-3">
+                                    <td class="py-3  d-none d-md-block">
                                         <p class="my-0">{{ item.membership.full_description|linebreaks }}</p>
+                                    </td>
+                                    <td class="py-3 d-md-none">
+                                        <p class="my-0">{{ item.membership.short_description|linebreaks }}</p>
                                     </td>
                                     <!-- Membership price -->
                                     <td class="py-3">
@@ -64,7 +67,7 @@
                                         <span class="icon">
                                             <i class="fas fa-angle-double-left"></i>
                                         </span>
-                                        <span class="text-uppercase">Back to memberships list</span>
+                                        <span class="text-uppercase">Back</span>
                                         </a>
                                         <a href="{% url 'account_signup' %}" class="btn btn-cyan">
                                         <span class="text-uppercase">Continue</span>
