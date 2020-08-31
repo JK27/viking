@@ -196,8 +196,9 @@ a.category-badge > span.badge:hover {
 /* ----------------------------------------- CONTAINERS */
 .bag-container,
 .memberships-container,
-.profile-container {
-    min-height: 75%;
+.profile-container,
+.allauth-form-inner-content {
+    min-height: 90%;
 }
 
 /* ----------------------------------------- BUTTONS */
