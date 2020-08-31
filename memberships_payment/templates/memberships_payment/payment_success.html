@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block page_title %}
+    <!-- Different page title depending on page of origin -->
     {% if from_profile %}
         Viking Gym - Subscription summary
     {% else %}
@@ -23,7 +24,7 @@
 
 {% block content %}
     <div class="container">
-        <!-- CONFIRMATION EMAIL MESSAGE -->
+        <!-- *** CONFIRMATION EMAIL MESSAGE *** -->
         <div class="row">
             <div class="col">
                 {% if from_profile %}
@@ -42,7 +43,7 @@
 
         <div class="row">
             <div class="col-12 col-lg-9">
-                <!-- SUBSCRIPTION CONFIRMATION WRAPPER -->
+                <!-- *** SUBSCRIPTION CONFIRMATION WRAPPER *** -->
                 <div class="subscription-confirmation-wrapper p-2 border rounded offset-3">
                     <!-- SUBSCRIPTION INFO -->
                     <div class="row">
@@ -50,7 +51,7 @@
                             <small class="text-muted">Subscription Info:</small>
                         </div>
                     </div>
-                    <!-- SUBSCRIPTION Number -->
+                    <!-- Subscription Number -->
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 font-weight-bold">Subscription Number</p>
@@ -59,7 +60,7 @@
                             <p class="mb-0">{{ subscription.subscription_number }}</p>
                         </div>
                     </div>
-                    <!-- SUBSCRIPTION Date -->
+                    <!-- Subscription Date -->
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 font-weight-bold">Subscription Date</p>
@@ -68,7 +69,7 @@
                             <p class="mb-0">{{ subscription.date }}</p>
                         </div>
                     </div>
-                    <!-- SUBSCRIPTION DETAILS -->
+                    <!-- Subscription details -->
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Subscription Details:</small>

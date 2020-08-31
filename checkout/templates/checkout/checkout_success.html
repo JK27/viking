@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block page_title %}
+    <!-- Different page title depending on page of origin -->
     {% if from_profile %}
         Viking Gym - Ordern summary
     {% else %}
@@ -23,7 +24,7 @@
 
 {% block content %}
     <div class="container">
-        <!-- CONFIRMATION EMAIL MESSAGE -->
+        <!-- *** CONFIRMATION EMAIL MESSAGE *** -->
         <div class="row">
             <div class="col">
                 {% if from_profile %}
@@ -39,10 +40,9 @@
                 {% endif %}
             </div>
         </div>
-
+        <!-- *** ORDER CONFIRMATION *** -->
         <div class="row">
             <div class="col-12 col-lg-9">
-                <!-- ORDER CONFIRMATION WRAPPER -->
                 <div class="order-confirmation-wrapper p-2 border rounded offset-3">
                     <!-- ORDER INFO -->
                     <div class="row">
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <!-- DELIVERY INFO -->
+                    <!-- PERSONAL DETAILS -->
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Personal details:</small>
@@ -186,7 +186,7 @@
                 </div>
             </div>
         </div>
-
+        <!-- BUTTONS -->
         <div class="row">
 			<div class="col-12 col-lg-7 text-right">
             {% if from_profile %}

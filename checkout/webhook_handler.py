@@ -59,7 +59,6 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         shoppingbag = intent.metadata.shoppingbag
-        # save_info = intent.metadata.save_info
 
         billing_details = intent.charges.data[0].billing_details
         grand_total = round(intent.charges.data[0].amount / 100, 2)
@@ -83,7 +82,7 @@ class StripeWH_Handler:
             """
             try:
                 order = Order.objects.get(
-                    # looks up field to make exact match but case insensitive
+                    # Looks up field to make exact match but case insensitive
                     full_name__iexact=billing_details.name,
                     email__iexact=billing_details.email,
                     phone_number__iexact=billing_details.phone,
